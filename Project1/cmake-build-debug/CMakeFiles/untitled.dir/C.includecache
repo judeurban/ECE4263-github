@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/untitled/main.c
+stdio.h
+-
+math.h
+-
+
