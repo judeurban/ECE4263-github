@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <math.h>
 
+enum Bool {false, true};
+
 //functions
 void Prompt(void);
 void Calculation(void);
@@ -13,21 +15,32 @@ void Help(void);
 //variables
 double arg1;
 double arg2;
-double result;
 char validOperatorTypes[] = {'+', '-', '*', '/', '&', '%', '^', 's', 'n', 'l'};
 char operator;
+enum Bool isActive = true;
 
-void main() {
+int main()
+{
+    printf("ECE4263 CALCULATOR\n");
+    printf("When prompted for an operator, enter 'h' for help or 'e' to exit.\n");
+
     Prompt();
     Calculation();
+
+//    if(isActive)
+//    {
+//        printf("return!!");
+//    }
+    return 0;
 }
 
-void Prompt() {
-
-    printf("Operand:\n");
+void Prompt()
+{
+    printf("Operator:\n");
     scanf("%c", &operator);
 
-    switch (operator) {
+    switch (operator)
+    {
         case '+':
         case '-':
         case '*':
@@ -49,17 +62,21 @@ void Prompt() {
             scanf("%lf",&arg1);
             printf("%c(%lf)", operator, arg1);
             break;
+        case 'h':
+            Help();
+            break;
+        case 'e':
+            isActive = false;
+            break;
         default:
-            printf("invalid entry");
+            printf("invalid entry.\n");
             return;
     }
-    }
-
-void Help(){
-    printf("helpppp");
 }
 
-void Calculation() {
+void Calculation() 
+{
+    double result;
     switch (operator) {
         case '+':
             result = arg1 + arg2;
@@ -97,8 +114,25 @@ void Calculation() {
         default:
             result = 0;
             break;
-
-            print("= %lf", result);
-
     }
+
+    printf("= %lf", result);
+
+}
+
+void Help()
+{
+    printf(" ----------------------------------------\n");
+    printf("|                                       |\n");
+    printf("|           ECE4263 CALCULATOR          |\n");
+    printf("|                                       |\n");
+    printf(" ----------------------------------------\n\n");
+
+    printf("Valid Operator Types:\n");
+    printf("    '+', '-', '*', '/', '&', modulo, '^', 's', 'n', 'l'\n\n");
+
+    printf("Enter the operator first, then the value(s).\n\n");
+
+    printf("Once the result is computed, enter another operator to \ncontinue computing. Press enter to exit the program");
+    // char validOperatorTypes[] = {'+', '-', '*', '/', '&', '%', '^', 's', 'n', 'l'};
 }
