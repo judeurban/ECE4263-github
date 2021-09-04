@@ -31,6 +31,7 @@ int main()
         Prompt();
         Calculation();
     }
+    printf("goodbye.\n");
     return 0;
 }
 
@@ -61,7 +62,7 @@ void Prompt()
         case 'l':
             printf("Number:\n");
             scanf("%lf",&arg1);
-            printf("%c(%lf)", operator, arg1);
+            printf("%c(%.2lf) ", operator, arg1);
             break;
         case 'i':
             break;
@@ -106,7 +107,6 @@ void Calculation()
         case '&':
             result = 0;
         case '%':
-            printf("\nNote: values must be integers.\n");
             result = (int)arg1 % (int)arg2;
             break;
         case '^':
@@ -157,20 +157,20 @@ void Imaginary()
         magnitude = sqrt(pow(realaxis, 2) + pow(imagaxis, 2));
         phase = atan(imagaxis / realaxis) * 180 / M_PI;
 
-        printf("magnitude: %fl \nphase: %fl\n", magnitude, phase);
+        printf("\nmagnitude: %fl \nphase: %fl\n\n", magnitude, phase);
 
         break;
     case 'R':
     case 'r':
         printf("Magnitude: ");
         scanf("%lf", &magnitude);
-        printf("\nPhase (in degrees, please): ");
+        printf("Phase (in degrees, please): ");
         scanf("%lf", &phase);
 
         realaxis = magnitude * sin(M_PI * phase / 180);
         imagaxis = magnitude * cos(M_PI * phase / 180);
 
-        printf("%lf + j%fl\n", realaxis, imagaxis);
+        printf("\n%lf + j%lf\n\n", realaxis, imagaxis);
         break;
     
     default:
