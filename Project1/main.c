@@ -12,6 +12,7 @@ enum Bool {false, true};
 void Prompt(void);
 void Calculation(void);
 void Help(void);
+void Imaginary(void);
 
 //variables
 double arg1;
@@ -62,6 +63,8 @@ void Prompt()
             scanf("%lf",&arg1);
             printf("%c(%lf)", operator, arg1);
             break;
+        case 'i':
+            break;
         case 'h':
             Help();
             break;
@@ -69,7 +72,7 @@ void Prompt()
             isActive = false;
             break;
         default:
-            //printf("invalid entry.\n");
+            printf("invalid entry.\n");
             return;
     }
 }
@@ -77,6 +80,13 @@ void Prompt()
 void Calculation() 
 {
     double result;
+
+    if(operator == 'i' || operator == 'I')
+    {
+        Imaginary();
+        return;
+    }
+
     switch (operator) {
         case '+':
             result = arg1 + arg2;
@@ -102,12 +112,15 @@ void Calculation()
         case '^':
             result = powl(arg1, arg2);
             break;
+        case 'S':
         case 's':
             result = sqrt(arg1);
             break;
+        case 'N':
         case 'n':
             result = log(arg1);
             break;
+        case 'L':
         case 'l':
             result = log10(arg1);
             break;
@@ -115,9 +128,54 @@ void Calculation()
             return;
 
     }
-
     printf("= %lf\n", result);
+}
 
+void Imaginary()
+{
+    char inputstring[15];
+    double realaxis;
+    double imagaxis;
+    double magnitude;
+    double phase;
+    double pass;
+
+    printf("Convert to PHASOR or RECTANGULAR?\n");
+    scanf(" %s", inputstring);
+
+    //sine inputs as radians
+
+    switch (inputstring[0])
+    {
+    case 'P':
+    case 'p':
+        printf("Real: ");
+        scanf("%lf", &realaxis);
+        printf("Imaginary: ");
+        scanf("%lf", &imagaxis);
+
+        magnitude = sqrt(pow(realaxis, 2) + pow(imagaxis, 2));
+        phase = atan(imagaxis / realaxis) * 180 / M_PI;
+
+        printf("magnitude: %fl \nphase: %fl\n", magnitude, phase);
+
+        break;
+    case 'R':
+    case 'r':
+        printf("Magnitude: ");
+        scanf("%lf", &magnitude);
+        printf("\nPhase (in degrees, please): ");
+        scanf("%lf", &phase);
+
+        realaxis = magnitude * sin(M_PI * phase / 180);
+        imagaxis = magnitude * cos(M_PI * phase / 180);
+
+        printf("%lf + j%fl\n", realaxis, imagaxis);
+        break;
+    
+    default:
+        return;
+    }
 }
 
 void Help()
@@ -129,10 +187,17 @@ void Help()
     printf(" ----------------------------------------\n\n");
 
     printf("Valid Operator Types:\n");
-    printf("    '+', '-', '*', '/', '&', modulo, '^', 's', 'n', 'l'\n\n");
+    printf("    addition: -------------- '+'\n");
+    printf("    subtraction: ----------- '-'\n");
+    printf("    multiplication: -------- '*'\n");
+    printf("    division: -------------- '/'\n");
+    printf("    idek: ------------------ '&'\n");
+    printf("    modulo: ---------------- '{ampersand}'\n");
+    printf("    exponential: ----------- '^'\n");
+    printf("    square-root: ----------- 's'\n");
+    printf("    natural-logarithm: ----- 'n'\n");
+    printf("    logarithm (base 10): --- 'l'\n");
+    printf("    imaginary: ------------- 'i'\n\n");
 
     printf("Enter the operator first, then the value(s).\n\n");
-
-    printf("Once the result is computed, enter another operator to \ncontinue computing. Press enter to exit the program");
-    // char validOperatorTypes[] = {'+', '-', '*', '/', '&', '%', '^', 's', 'n', 'l'};
 }
