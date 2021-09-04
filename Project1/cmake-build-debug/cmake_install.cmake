@@ -1,4 +1,4 @@
-# Install script for directory: /Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/untitled
+# Install script for directory: /Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/Project1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/untitled/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/Project1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

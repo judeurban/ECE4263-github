@@ -5,47 +5,100 @@
 #include <stdio.h>
 #include <math.h>
 
-double Prompt(void);
+//functions
+void Prompt(void);
+void Calculation(void);
+void Help(void);
 
+//variables
 double arg1;
 double arg2;
-
+double result;
 char validOperatorTypes[] = {'+', '-', '*', '/', '&', '%', '^', 's', 'n', 'l'};
 char operator;
 
 void main() {
-    printf("\n= %lf", Prompt());
+    Prompt();
+    Calculation();
 }
 
-double Prompt() {
-    printf("Enter first operator\n");
-    scanf("%lf",&arg1);
-    printf("Enter operand\n");
-    scanf("%c", &operator);
-    scanf("%c", &operator);
-    printf("Enter second operator\n");
-    scanf("%lf",&arg2);
+void Prompt() {
 
-    printf("%lf %c %lf", arg1, operator, arg2);
+    printf("Operand:\n");
+    scanf("%c", &operator);
 
     switch (operator) {
         case '+':
-            return arg1 + arg2;
         case '-':
-            return arg1 - arg2;
         case '*':
-            return arg1 * arg2;
         case '/':
-            if(arg2 == 0)
-            {
-                printf("You cannot divide by zero.\n");
-                return 0;
-            }
-            return arg1 / arg2;
+        case '&':
+        case '%':
         case '^':
-            return powl(arg1, arg2);
-        case 's'
-            return sqrt()
+            printf("First number:\n");
+            scanf("%lf",&arg1);
+
+            printf("Second number:\n");
+            scanf("%lf",&arg2);
+            printf("%lf %c %lf\n", arg1, operator, arg2);
+            break;
+        case 's':
+        case 'n':
+        case 'l':
+            printf("Number:\n");
+            scanf("%lf",&arg1);
+            printf("%c(%lf)", operator, arg1);
+            break;
+        default:
+            printf("invalid entry");
+            return;
+    }
     }
 
+void Help(){
+    printf("helpppp");
+}
+
+void Calculation() {
+    switch (operator) {
+        case '+':
+            result = arg1 + arg2;
+            break;
+        case '-':
+            result = arg1 - arg2;
+            break;
+        case '*':
+            result = arg1 * arg2;
+        case '/':
+            if (arg2 == 0) {
+                printf("= ∞ \n");
+                return;
+            }
+            result = arg1 / arg2;
+            break;
+        case '&':
+            result = 0;
+        case '%':
+            printf("\nNote: values must be integers.\n");
+            result = (int)arg1 % (int)arg2;
+            break;
+        case '^':
+            result = powl(arg1, arg2);
+            break;
+        case 's':
+            result = sqrt(arg1);
+            break;
+        case 'n':
+            result = log(arg1);
+            break;
+        case 'l':
+            result = log10(arg1);
+            break;
+        default:
+            result = 0;
+            break;
+
+            print("= %lf", result);
+
+    }
 }
