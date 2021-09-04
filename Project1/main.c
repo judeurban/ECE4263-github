@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 enum Bool {false, true};
 
@@ -24,20 +25,19 @@ int main()
     printf("ECE4263 CALCULATOR\n");
     printf("When prompted for an operator, enter 'h' for help or 'e' to exit.\n");
 
-    Prompt();
-    Calculation();
-
-//    if(isActive)
-//    {
-//        printf("return!!");
-//    }
+    while(isActive)
+    {
+        Prompt();
+        Calculation();
+    }
     return 0;
 }
 
 void Prompt()
 {
+    operator = '\0';
     printf("Operator:\n");
-    scanf("%c", &operator);
+    scanf(" %c", &operator);
 
     switch (operator)
     {
@@ -69,7 +69,7 @@ void Prompt()
             isActive = false;
             break;
         default:
-            printf("invalid entry.\n");
+            //printf("invalid entry.\n");
             return;
     }
 }
@@ -112,11 +112,11 @@ void Calculation()
             result = log10(arg1);
             break;
         default:
-            result = 0;
-            break;
+            return;
+
     }
 
-    printf("= %lf", result);
+    printf("= %lf\n", result);
 
 }
 
