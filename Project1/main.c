@@ -6,19 +6,23 @@
 #include <math.h>
 #include <time.h>
 
-enum Bool {false, true};
-
 //functions
-void Prompt(void);
+void InputPrompt(void);
 void Calculation(void);
 void Help(void);
 void Imaginary(void);
 
 //variables
+
+char operator;
 double arg1;
 double arg2;
-char validOperatorTypes[] = {'+', '-', '*', '/', '&', '%', '^', 's', 'n', 'l'};
-char operator;
+
+int arg1_int;
+int arg2_int;
+
+//compiles as  0, 1
+enum Bool {false, true};
 enum Bool isActive = true;
 
 int main()
@@ -28,14 +32,14 @@ int main()
 
     while(isActive)
     {
-        Prompt();
+        InputPrompt();
         Calculation();
     }
     printf("goodbye.\n");
     return 0;
 }
 
-void Prompt()
+void InputPrompt()
 {
     operator = '\0';
     printf("Operator:\n");
@@ -47,7 +51,6 @@ void Prompt()
         case '-':
         case '*':
         case '/':
-        case '&':
         case '%':
         case '^':
             printf("First number:\n");
@@ -57,18 +60,28 @@ void Prompt()
             scanf("%lf",&arg2);
             printf("%lf %c %lf\n", arg1, operator, arg2);
             break;
-        case 's':
+        case 'R':
+        case 'r':
+        case 'N':
         case 'n':
+        case 'L':
         case 'l':
-            printf("Number:\n");
+        case 'S':
+        case 's':
+        case 'C':
+        case 'c':
+            printf("Argument:\n");
             scanf("%lf",&arg1);
             printf("%c(%.2lf) ", operator, arg1);
             break;
+        case 'I':
         case 'i':
             break;
+        case 'H':
         case 'h':
             Help();
             break;
+        case 'E':
         case 'e':
             isActive = false;
             break;
@@ -82,12 +95,6 @@ void Calculation()
 {
     double result;
 
-    if(operator == 'i' || operator == 'I')
-    {
-        Imaginary();
-        return;
-    }
-
     switch (operator) {
         case '+':
             result = arg1 + arg2;
@@ -97,6 +104,7 @@ void Calculation()
             break;
         case '*':
             result = arg1 * arg2;
+            break;
         case '/':
             if (arg2 == 0) {
                 printf("= ∞ \n");
@@ -104,16 +112,14 @@ void Calculation()
             }
             result = arg1 / arg2;
             break;
-        case '&':
-            result = 0;
         case '%':
             result = (int)arg1 % (int)arg2;
             break;
         case '^':
             result = powl(arg1, arg2);
             break;
-        case 'S':
-        case 's':
+        case 'R':
+        case 'r':
             result = sqrt(arg1);
             break;
         case 'N':
@@ -124,11 +130,23 @@ void Calculation()
         case 'l':
             result = log10(arg1);
             break;
+        case 'S':
+        case 's':
+            result = sin(arg1 * M_PI / 180);
+            break;
+        case 'C':
+        case 'c':
+            result = cos(arg1 * M_PI / 180);
+            break;
+        case 'i':
+        case 'I':
+            Imaginary();
+            return;
         default:
             return;
 
     }
-    printf("= %lf\n", result);
+    printf("= %lf\n\n", result);
 }
 
 void Imaginary()
@@ -138,7 +156,6 @@ void Imaginary()
     double imagaxis;
     double magnitude;
     double phase;
-    double pass;
 
     printf("Convert to PHASOR or RECTANGULAR?\n");
     scanf(" %s", inputstring);
@@ -167,8 +184,8 @@ void Imaginary()
         printf("Phase (in degrees, please): ");
         scanf("%lf", &phase);
 
-        realaxis = magnitude * sin(M_PI * phase / 180);
-        imagaxis = magnitude * cos(M_PI * phase / 180);
+        realaxis = magnitude * cos(M_PI * phase / 180);
+        imagaxis = magnitude * sin(M_PI * phase / 180);
 
         printf("\n%lf + j%lf\n\n", realaxis, imagaxis);
         break;
@@ -191,12 +208,15 @@ void Help()
     printf("    subtraction: ----------- '-'\n");
     printf("    multiplication: -------- '*'\n");
     printf("    division: -------------- '/'\n");
-    printf("    idek: ------------------ '&'\n");
-    printf("    modulo: ---------------- '{ampersand}'\n");
+    printf("    logical AND: ----------- '&'\n");
+    printf("    logical OR: ------------ '|'\n");
+    printf("    modulo: ---------------- '%c'\n", 37);
     printf("    exponential: ----------- '^'\n");
-    printf("    square-root: ----------- 's'\n");
+    printf("    square-root: ----------- 'r'\n");
     printf("    natural-logarithm: ----- 'n'\n");
     printf("    logarithm (base 10): --- 'l'\n");
+    printf("    sine (degrees): -------- 's'\n");
+    printf("    cosine (degrees): ------ 'c'\n");
     printf("    imaginary: ------------- 'i'\n\n");
 
     printf("Enter the operator first, then the value(s).\n\n");
