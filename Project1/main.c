@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
 
 //functions
 void InputPrompt(void);
@@ -13,13 +12,9 @@ void Help(void);
 void Imaginary(void);
 
 //variables
-
 char operator;
 double arg1;
 double arg2;
-
-int arg1_int;
-int arg2_int;
 
 //compiles as  0, 1
 enum Bool {false, true};
@@ -39,6 +34,7 @@ int main()
     return 0;
 }
 
+//gets arg1 (and sometimes arg2) from user
 void InputPrompt()
 {
     operator = '\0';
@@ -91,6 +87,7 @@ void InputPrompt()
     }
 }
 
+//calculates. would you believe it?
 void Calculation() 
 {
     double result;
@@ -149,6 +146,7 @@ void Calculation()
     printf("= %lf\n\n", result);
 }
 
+//my special imaginary function converting polar <---> rectangular
 void Imaginary()
 {
     char inputstring[15];
@@ -195,6 +193,7 @@ void Imaginary()
     }
 }
 
+//i need help
 void Help()
 {
     printf(" ----------------------------------------\n");
