@@ -5,24 +5,25 @@
 #include <stdio.h>
 #include <math.h>
 
-//functions
-void InputPrompt(void);
-void Calculation(void);
-void Help(void);
-void Imaginary(void);
-
 //variables
 char operator;
 double arg1;
 double arg2;
 
-//compiles as  0, 1
-enum Bool {false, true};
-enum Bool isActive = true;
+//compiles as       0,      1
+typedef enum Bool {false, true} Bool;
+Bool isActive = true;
+
+//functions
+void InputPrompt(void);
+void Calculation(void);
+void Help(void);
+void Imaginary(void);
+Bool isInteger(double);
 
 int main()
 {
-    printf("ECE4263 CALCULATOR\n");
+    printf("\n\nECE4263 CALCULATOR\n");
     printf("When prompted for an operator, enter 'h' for help or 'e' to exit.\n");
 
     while(isActive)
@@ -49,12 +50,19 @@ void InputPrompt()
         case '/':
         case '%':
         case '^':
-            printf("First number:\n");
+        case '&':
+        case '|':
+            printf("First number: ");
             scanf("%lf",&arg1);
 
-            printf("Second number:\n");
+            printf("Second number: ");
             scanf("%lf",&arg2);
-            printf("%lf %c %lf\n", arg1, operator, arg2);
+
+            if (isInteger(arg1) && isInteger(arg2))
+                printf("%i %c %i", (int)arg1, operator, (int)arg2);
+            else
+                printf("%lf %c %lf", arg1, operator, arg2);
+
             break;
         case 'R':
         case 'r':
@@ -66,7 +74,7 @@ void InputPrompt()
         case 's':
         case 'C':
         case 'c':
-            printf("Argument:\n");
+            printf("Argument: ");
             scanf("%lf",&arg1);
             printf("%c(%.2lf) ", operator, arg1);
             break;
@@ -115,6 +123,26 @@ void Calculation()
         case '^':
             result = powl(arg1, arg2);
             break;
+        case '&':
+            //special code just for integer operations
+            if(!isInteger(arg1) || !isInteger(arg2))
+            {
+                printf("\nOnly integer operations allowed for this function\n");
+                return;
+            }
+            result = (int)arg1 & (int)arg2;
+            printf(" = %i\n\n", (int)result);
+            return;
+        case '|':
+            //special code just for integer operations
+            if(!isInteger(arg1) || !isInteger(arg2))
+            {
+                printf("\nOnly integer operations allowed for this function\n");
+                return;
+            }
+            result = (int)arg1 | (int)arg2;
+            printf(" = %i\n\n", (int)result);
+            return;
         case 'R':
         case 'r':
             result = sqrt(arg1);
@@ -143,7 +171,12 @@ void Calculation()
             return;
 
     }
-    printf("= %lf\n\n", result);
+
+    if (isInteger(result))
+        printf(" = %i\n\n", (int)result);
+    else
+        printf(" = %lf\n\n", result);
+
 }
 
 //my special imaginary function converting polar <---> rectangular
@@ -193,6 +226,22 @@ void Imaginary()
     }
 }
 
+Bool isInteger(double floatvalue)
+{
+    double differencefloat;
+    int intvalue;
+
+    intvalue = floatvalue;
+    differencefloat = floatvalue - intvalue;
+
+    if(differencefloat > 0)
+        return false;
+    else
+        return true;
+
+    return true;
+}
+
 //i need help
 void Help()
 {
@@ -207,9 +256,9 @@ void Help()
     printf("    subtraction: ----------- '-'\n");
     printf("    multiplication: -------- '*'\n");
     printf("    division: -------------- '/'\n");
+    printf("    modulo: ---------------- '%c'\n", 37);
     printf("    logical AND: ----------- '&'\n");
     printf("    logical OR: ------------ '|'\n");
-    printf("    modulo: ---------------- '%c'\n", 37);
     printf("    exponential: ----------- '^'\n");
     printf("    square-root: ----------- 'r'\n");
     printf("    natural-logarithm: ----- 'n'\n");
