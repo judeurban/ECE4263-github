@@ -10,8 +10,8 @@ char operator;
 double arg1;
 double arg2;
 
-//compiles as       0,      1
-typedef enum Bool {false, true} Bool;
+//enumerators
+typedef enum Bool {false, true} Bool;   //compiles as       0,      1
 Bool isActive = true;
 
 //functions
@@ -76,7 +76,7 @@ void InputPrompt()
         case 'c':
             printf("Argument: ");
             scanf("%lf",&arg1);
-            printf("%c(%.2lf) ", operator, arg1);
+            printf("%c(%.2lf)", operator, arg1);
             break;
         case 'I':
         case 'i':
@@ -112,12 +112,14 @@ void Calculation()
             break;
         case '/':
             if (arg2 == 0) {
-                printf("= ∞ \n");
+                printf(" = ∞\n\n");
                 return;
             }
             result = arg1 / arg2;
             break;
         case '%':
+            if(!isInteger(arg1) || !isInteger(arg2))
+                printf("\nNote: this function only works with integers!\n");
             result = (int)arg1 % (int)arg2;
             break;
         case '^':
@@ -205,7 +207,12 @@ void Imaginary()
         magnitude = sqrt(pow(realaxis, 2) + pow(imagaxis, 2));
         phase = atan(imagaxis / realaxis) * 180 / M_PI;
 
-        printf("\nmagnitude: %fl \nphase: %fl\n\n", magnitude, phase);
+        if(realaxis < 0 && imagaxis < 0)
+            phase += 180;
+        else if (realaxis < 0)
+            phase += 180;
+
+        printf("\nmagnitude: %fl \nphase: %iº\n\n", magnitude, (int)phase);
 
         break;
     case 'R':
@@ -218,7 +225,10 @@ void Imaginary()
         realaxis = magnitude * cos(M_PI * phase / 180);
         imagaxis = magnitude * sin(M_PI * phase / 180);
 
-        printf("\n%lf + j%lf\n\n", realaxis, imagaxis);
+        if(imagaxis > 0)
+            printf("\n%lf + j%lf\n\n", realaxis, imagaxis);
+        else
+            printf("\n%lf + j(%lf)\n\n", realaxis, imagaxis);
         break;
     
     default:
@@ -226,20 +236,18 @@ void Imaginary()
     }
 }
 
+//returns true for integer, false for float/double
 Bool isInteger(double floatvalue)
 {
-    double differencefloat;
     int intvalue;
 
     intvalue = floatvalue;
-    differencefloat = floatvalue - intvalue;
 
-    if(differencefloat > 0)
-        return false;
-    else
+    if((floatvalue - intvalue) == 0)
         return true;
+    else
+        return false;
 
-    return true;
 }
 
 //i need help
@@ -265,7 +273,8 @@ void Help()
     printf("    logarithm (base 10): --- 'l'\n");
     printf("    sine (degrees): -------- 's'\n");
     printf("    cosine (degrees): ------ 'c'\n");
-    printf("    imaginary: ------------- 'i'\n\n");
+    printf("    imaginary: ------------- 'i'\n");
+    printf("    exit: ------------------ 'e'\n\n");
 
     printf("Enter the operator first, then the value(s).\n\n");
 }
