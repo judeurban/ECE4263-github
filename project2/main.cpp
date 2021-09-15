@@ -16,32 +16,35 @@ public:
     string value;
     Node(/* args */);
 
-    // ~Node();
+    Node(Node &, Node &, string);
 };
 
 //constuctor 1
-Node::Node(/* args */)
+Node::Node()
 {
 }
 
 
-//constructor 2
-// Node::~Node()
-// {
-// }
+// constructor 2
+Node::Node(Node &leftchild, Node &rightchild, string value)
+{
+}
 
 
 int main() {
     Node rootnode;
     Node leftchildnode;
     Node rightchildnode;
+    Node leftchildsnodeleftchild;
+    leftchildnode.leftchild = &leftchildsnodeleftchild;
     rootnode.leftchild = &leftchildnode;
     rootnode.rightchild = &rightchildnode;
 
-    cout << "leftchild node is at" << &leftchildnode << endl;
-    cout << "rightchild node is at" << &rightchildnode << endl;
-    cout << "rootnode left child is at" << rootnode.leftchild << endl;
-    cout << "rootnode right child is at" << rootnode.rightchild << endl;
+    cout << "leftchild node is at " << &leftchildnode << endl;
+    cout << "rightchild node is at " << &rightchildnode << endl;
+    cout << "rootnode left child is at " << rootnode.leftchild << endl;
+    cout << "rootnode right child is at " << rootnode.rightchild << endl;
+    cout << "rootnode left child left child is at " << rootnode.leftchild->leftchild << endl;
 
     return 0;
 }
