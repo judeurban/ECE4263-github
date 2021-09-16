@@ -6,6 +6,13 @@
 
 using namespace std;
 
+struct huffman
+{
+    int path[100];
+    char character[];
+};
+
+
 class Node
 {
 private:
@@ -14,6 +21,7 @@ public:
     Node * leftchild;
     Node * rightchild;
     string value;
+    int path;
     Node(/* args */);
 
     Node(Node &, Node &, string);
@@ -22,6 +30,9 @@ public:
 //constuctor 1
 Node::Node()
 {
+    // place in tree, determine the path
+    // left shift to lower into tree
+    // don't add for left child, add one for right child
 }
 
 
@@ -32,6 +43,16 @@ Node::Node(Node &leftchild, Node &rightchild, string value)
 
 
 int main() {
+    string filepath;
+    string fileline;
+    // cout << "Copy and paste or drag and drop the path here: " ;
+    // cin >> filepath;
+    filepath = "compress.txt";
+    
+    FILE *fileptr = fopen(filepath, "r");
+
+    fgets(fileline, 5, fileptr) 
+    
     Node rootnode;
     Node leftchildnode;
     Node rightchildnode;
