@@ -11,25 +11,7 @@ using namespace std;
 void Decode(void);
 
 string input_string;
-
-// empty map container
-map<int, int> HuffmamDict;
-
-class HuffmanStructure
-{
-private:
-public:
-    string characters[HUFFMAN_ARRAY_LEN];
-    uintptr_t locations[HUFFMAN_ARRAY_LEN];
-
-
-    Append()
-    {
-        characters.append
-        characters.
-        
-    }
-};
+uint8_t huffman_idx;
 
 class HuffmanCharacter
 {
@@ -47,11 +29,13 @@ public:
         frequency = 0;
         // path = p;
         // frequency = f;
+        // cout << &HuffmanCharacter << endl;
     }
 
     HuffmanCharacter() 
     {
-        cout << "new character" << endl;
+        cout << " new blank character" << endl;
+        value = ' ';
         path = 0;
         frequency = 0;
     }
@@ -65,15 +49,34 @@ public:
     }
 };
 
+class HuffmanStructure
+{
+private:
+public:
+    string characters[HUFFMAN_ARRAY_LEN];
+    uintptr_t locations[HUFFMAN_ARRAY_LEN];
+
+
+    void Append(char c, uintptr_t h)
+    {
+        characters[huffman_idx] = c;
+        locations[huffman_idx] = h;
+        huffman_idx++;
+        return;
+    }
+};
+
 int main()
 {
     input_string = "No gains without pains.";
     if (input_string.length() >= HUFFMAN_ARRAY_LEN)
         return 0;
         
-    HuffmanCharacter mynewchar;
-    HuffmanCharacter mychar('+');
-    HuffmanCharacter mynewestchar;
+    // HuffmanCharacter mynewchar;
+    // HuffmanCharacter mychar('+');
+    // HuffmanCharacter mynewestchar;
+
+
 
     //decode
     Decode();
@@ -89,14 +92,26 @@ void Decode()
 {
     uint8_t str_idx;
     uint8_t arr_idx = 0;
-    int addr;
+    uintptr_t addr;
+
+
+    // creating the object 'steve' which is an instance of the class HuffmanCharacter
+    HuffmanCharacter steve;
+
+    //create an object with default values by running the contructor function.
+    new HuffmanCharacter('h');
+
+    cout << "steve's value is: '" << steve.value << "' " << endl; 
+
+    // HuffmanStructure::Append('c', new HuffmanCharacter('a'));
+    // HuffmanStructure::Append('h', addr);
 
     // HuffmamDict.insert(pair<'a', new HuffmanCharacter('a')>);
 
 	// HuffmamDict.insert(pair<int, int >('a', new HuffmanCharacter('a')));
-    HuffmamDict.insert(pair<int, int>('a', 69));
+    // HuffmamDict.insert(pair<int, int>('a', 69));
 	// gquiz1.insert(pair<int, int>(1, 40));
-
+q
 
     // if(HuffmamDict.find(2) == 30)
     // {
