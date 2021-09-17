@@ -13,7 +13,15 @@ void Decode(void);
 string input_string;
 
 // empty map container
-map<char, ptr> HuffmamDict;
+map<int, int> HuffmamDict;
+
+class HuffmanStructure
+{
+private:
+public:
+    char characters[];
+    
+};
 
 class HuffmanCharacter
 {
@@ -73,9 +81,14 @@ void Decode()
 {
     uint8_t str_idx;
     uint8_t arr_idx = 0;
-    uintptr_t addr;
+    int addr;
 
-	HuffmamDict.insert(pair<int, int>(2, 30));
+    // HuffmamDict.insert(pair<'a', new HuffmanCharacter('a')>);
+
+	// HuffmamDict.insert(pair<int, int >('a', new HuffmanCharacter('a')));
+    HuffmamDict.insert(pair<int, int>('a', 69));
+	// gquiz1.insert(pair<int, int>(1, 40));
+
 
     // if(HuffmamDict.find(2) == 30)
     // {
