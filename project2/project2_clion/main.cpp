@@ -12,25 +12,8 @@ void Decode(void);
 
 string input_string;
 
-class Huffman
-{
-private:
-    /* data */
-public:
-    uintptr_t characterlocations[HUFFMAN_ARRAY_LEN];
-    string characters;
-    Huffman(/* args */)
-    {
-        cout << "added character at: " << characterlocations << endl;
-    }
-
-    //append new object ptr to the array in huffman
-    void Append()
-    {
-        characterlocations.appen
-    }
-};
-
+// empty map container
+map<char, ptr> HuffmamDict;
 
 class HuffmanCharacter
 {
@@ -66,9 +49,6 @@ public:
     }
 };
 
-Huffman huffman;
-
-
 int main()
 {
     input_string = "No gains without pains.";
@@ -95,23 +75,20 @@ void Decode()
     uint8_t arr_idx = 0;
     uintptr_t addr;
 
-    for (str_idx = 0; str_idx <= input_string.length(); str_idx++)
-    {
-        if (huffman.characters.find(input_string[str_idx]) != string::npos)
-        {
-            cout << "found!" << '\n';
-            arr_idx++;
-            //increment each number in the huffman frequency
-        }
-        else
-        {
-            cout << "not found!!" << endl;
+	HuffmamDict.insert(pair<int, int>(2, 30));
 
-            addr = reinterpret_cast<uintptr_t>(new HuffmanCharacter(input_string[str_idx]));
+    // if(HuffmamDict.find(2) == 30)
+    // {
+    // cout << "true" << endl;
 
-            //append new object ptr to the array in huffman
+    // }
+    // else
+    // {
+    // cout << "false" << endl;
+    // }
+    // for(str_idx = 0 ; str_idx <= input_string ; str_idx++)
+    // {
 
-            huffman.characterlocations[arr_idx] = addr;
-        }
-    }
+    // }
+
 }
