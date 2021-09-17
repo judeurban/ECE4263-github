@@ -1,124 +1,117 @@
-// huffman compression algorithm in c++
-//jude urban
-//14 september 2021
-
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "main.h"
+#include <stdint.h>
+#include <iterator>
+#include <map>
 
 using namespace std;
 
-struct HuffmanFormat
-{
-    int path[100];
-    string characters;
-    int frequency[100];
-};
+void Decode(void);
 
-class Node
+string input_string;
+
+class Huffman
 {
 private:
     /* data */
 public:
-    Node *leftchild;
-    Node *rightchild;
-    string value;
-    int path;
-    Node(/* args */);
+    uintptr_t characterlocations[HUFFMAN_ARRAY_LEN];
+    string characters;
+    Huffman(/* args */)
+    {
+        cout << "added character at: " << characterlocations << endl;
+    }
 
-    Node(Node &, Node &, string);
+    //append new object ptr to the array in huffman
+    void Append()
+    {
+        characterlocations.appen
+    }
 };
 
-//constuctor 1
-Node::Node()
-{
-    // place in tree, determine the path
-    // left shift to lower into tree
-    // don't add for left child, add one for right child
-}
 
-// constructor 2
-Node::Node(Node &leftchild, Node &rightchild, string value)
+class HuffmanCharacter
 {
-}
+private:
+    /* data */
+public:
+    char value;
+    int path;
+    int frequency;
+    HuffmanCharacter(char c /*, int p, int f */ )
+    {
+        cout << "new character: " << c << endl;
+        value = c;
+        path = 0;
+        frequency = 0;
+        // path = p;
+        // frequency = f;
+    }
+
+    HuffmanCharacter() 
+    {
+        cout << "new character" << endl;
+        path = 0;
+        frequency = 0;
+    }
+
+    void DispChar()
+    {
+        cout << "value: -------- " << value << endl;
+        cout << "path: --------- " << path << endl;
+        cout << "frequency: ---- " << frequency << endl << endl;
+        return;
+    }
+};
+
+Huffman huffman;
+
 
 int main()
 {
-    size_t n;
-    // string filepath;
-    // string fileline;
-    // cout << "Copy and paste or drag and drop the path here: " ;
-    // cin >> filepath;
-    // filepath = "compress.txt";
-
-    // FILE *fileptr = fopen(filepath, "r");
-
-    // fgets(fileline, 5, fileptr)
-
-    string input_string;
-    HuffmanFormat huffman;
-    uint8_t i;
-
-    Node rootnode;
-    Node leftchildnode;
-    Node rightchildnode;
-    Node leftchildsnodeleftchild;
-
     input_string = "No gains without pains.";
-    if (input_string.length() >= 100)
+    if (input_string.length() >= HUFFMAN_ARRAY_LEN)
         return 0;
+        
+    HuffmanCharacter mynewchar;
+    HuffmanCharacter mychar('+');
+    HuffmanCharacter mynewestchar;
 
-    std::string s = "a_b_c";
+    //decode
+    Decode();
 
-    //for each character
-    //if char is in aray,
-    //else
-    //store 'n' in an array. the frequency of each character
+    // mynewchar.DispChar();
+    // mychar.DispChar();
+    // mynewestchar.DispChar();
 
-    // for(i = 0 ; input_string.length() ; i++)
-    // {
-    //     cout << i << endl;
-    //     if(huffman.characters.find(input_string[i] != string::npos))
-    //     {
-    //         // true
-    //         cout << "true... do not add chacter or count " << endl;
-    //     }
-    //     else
-    //     {
-    //         cout << "false... add characater " << endl;
-    //         // huffman.characters.append(input_string[i]);
-    //         huffman.characters.append("str");
-    //         // n = count(input_string.begin(), s.end(), '_');
-    //         // huffman.frequency(i)  = n
-    //     }
-    //     i ++;
-    // }
+    return 0;
+}
 
-    cout << "string length is: " << input_string.length() << endl;
+void Decode()
+{
+    uint8_t str_idx;
+    uint8_t arr_idx = 0;
+    uintptr_t addr;
 
-    for (i = 0; i <= input_string.length(); i++)
+    for (str_idx = 0; str_idx <= input_string.length(); str_idx++)
     {
-        if (huffman.characters.find(input_string[i]) != string::npos)
+        if (huffman.characters.find(input_string[str_idx]) != string::npos)
         {
             cout << "found!" << '\n';
+            arr_idx++;
+            //increment each number in the huffman frequency
         }
         else
         {
             cout << "not found!!" << endl;
+
+            addr = reinterpret_cast<uintptr_t>(new HuffmanCharacter(input_string[str_idx]));
+
+            //append new object ptr to the array in huffman
+
+            huffman.characterlocations[arr_idx] = addr;
         }
     }
-
-    cout << huffman.characters << endl;
-
-    leftchildnode.leftchild = &leftchildsnodeleftchild;
-    rootnode.leftchild = &leftchildnode;
-    rootnode.rightchild = &rightchildnode;
-
-    cout << "leftchild node is at " << &leftchildnode << endl;
-    cout << "rightchild node is at " << &rightchildnode << endl;
-    cout << "rootnode left child is at " << rootnode.leftchild << endl;
-    cout << "rootnode right child is at " << rootnode.rightchild << endl;
-    cout << "rootnode left child left child is at " << rootnode.leftchild->leftchild << endl;
-
-    return 0;
 }
