@@ -19,8 +19,16 @@ class HuffmanStructure
 {
 private:
 public:
-    char characters[];
-    
+    string characters[HUFFMAN_ARRAY_LEN];
+    uintptr_t locations[HUFFMAN_ARRAY_LEN];
+
+
+    Append()
+    {
+        characters.append
+        characters.
+        
+    }
 };
 
 class HuffmanCharacter
