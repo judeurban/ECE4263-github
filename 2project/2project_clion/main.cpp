@@ -3,7 +3,7 @@
 #include <string.h>
 #include <sstream>
 #include <curl/curl.h>
-#include <json.hpp>
+// #include <json.hpp>
 
 using namespace std;    // std::cout, std::cin
 
@@ -35,19 +35,7 @@ void APIcall()
 
     url << "api.openweathermap.org/data/2.5/weather?zip=" << zip_code << "&appid=" << api_key;
 
-    // api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-    // string url[100] = "api.openweathermap.org/data/2.5/weather?zip=&appid=";
-    // url.insert(ZIPCODE_COL, zip_code);
-    // url.insert(KEY_COL, api_key);
-
-    cout << "api.openweathermap.org/data/2.5/weather?zip=74055&appid=3c5c7dcd8ea2d74cfc1a7ee295286488" << endl;
-
     httpGet(url.str());
-
-    // url <<
-
-// insert at zipcode 58
-// insert at key 70
 
 }
 
@@ -65,12 +53,9 @@ void Print(string s, int foreground)
 void httpGet(string url)
 {
 
-    cout << "retrieving the url: " << url << endl;
-
     if(curl)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, "api.openweathermap.org/data/2.5/weather?zip=74055&appid=3c5c7dcd8ea2d74cfc1a7ee295286488");
-        // curl_easy_setopt(curl, CURLOPT_URL, (string)url.str());
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         response = curl_easy_perform(curl);
 
         if(response != CURLE_OK)
