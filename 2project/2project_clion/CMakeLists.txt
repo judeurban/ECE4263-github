@@ -3,4 +3,4 @@ project(2project_clion)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(2project_clion main.cpp)
+add_executable(2project_clion main.cpp httptest.cpp)

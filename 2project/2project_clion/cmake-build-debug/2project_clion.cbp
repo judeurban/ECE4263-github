@@ -80,7 +80,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/httptest.cpp">
+			<Option target="2project_clion"/>
+		</Unit>
 		<Unit filename="/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/main.cpp">
+			<Option target="2project_clion"/>
+		</Unit>
+		<Unit filename="/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/main.h">
 			<Option target="2project_clion"/>
 		</Unit>
 		<Unit filename="/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/CMakeLists.txt">

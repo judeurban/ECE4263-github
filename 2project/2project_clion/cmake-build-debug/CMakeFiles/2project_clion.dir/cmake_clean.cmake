@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "2project_clion"
   "2project_clion.pdb"
+  "CMakeFiles/2project_clion.dir/httptest.cpp.o"
   "CMakeFiles/2project_clion.dir/main.cpp.o"
 )
 

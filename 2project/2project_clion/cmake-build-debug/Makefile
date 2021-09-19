@@ -129,6 +129,30 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/2project_clion.dir/build.make CMakeFiles/2project_clion.dir/build
 .PHONY : 2project_clion/fast
 
+httptest.o: httptest.cpp.o
+.PHONY : httptest.o
+
+# target to build an object file
+httptest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2project_clion.dir/build.make CMakeFiles/2project_clion.dir/httptest.cpp.o
+.PHONY : httptest.cpp.o
+
+httptest.i: httptest.cpp.i
+.PHONY : httptest.i
+
+# target to preprocess a source file
+httptest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2project_clion.dir/build.make CMakeFiles/2project_clion.dir/httptest.cpp.i
+.PHONY : httptest.cpp.i
+
+httptest.s: httptest.cpp.s
+.PHONY : httptest.s
+
+# target to generate assembly for a file
+httptest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2project_clion.dir/build.make CMakeFiles/2project_clion.dir/httptest.cpp.s
+.PHONY : httptest.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... 2project_clion"
+	@echo "... httptest.o"
+	@echo "... httptest.i"
+	@echo "... httptest.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
