@@ -8,7 +8,8 @@
 #define CYAN         36
 #define WHITE        37
 
-
+#define REQUEST_PERIOD 3 //minute(s)
+// #define REQUEST_PERIOD 30 //seconds
 
 /*
 weatherType
@@ -26,7 +27,19 @@ weatherType
 'm' --- moon (clear and night time)
 'p' --- moon phases
 */
+    
+    // const char * types[10] = {"sun", "cloud", "rain", "fog", "clear", "snow", "storm", "tornado"};
 
+/*
+sun 0
+cloud 1
+rain 2
+fog 3
+clear 4
+snow 5
+storm 6
+tornado 7
+*/
 
 /*
 

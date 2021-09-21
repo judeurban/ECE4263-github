@@ -22,6 +22,7 @@ void httpGet(std::string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
 void replacebracketwithspace(void); //why tf do I need this??
 void SetWeatherSwitch(void);
+float Kelvin2Fahrenheit(float);
 
 // classes/objects
 CURL *curl;
@@ -30,7 +31,8 @@ json json_response;
 
 // variables
 std::string readBuffer;
-bool isDaytime;
+std::string zip_code;
+bool isActive = true;
 
 struct WeatherSwitch
 {
@@ -40,12 +42,12 @@ struct WeatherSwitch
 
 struct MainWeather
 {
-    int feels_like;
     int humidity;
     int pressure;
-    int temp;
-    int temp_max;
-    int temp_min;
+    float feels_like;
+    float temp;
+    float temp_max;
+    float temp_min;
 };
 
 struct Sys
@@ -70,6 +72,7 @@ struct Coordinates
 class Weather
 {
 private:
+
     void SetWeatherSwitch()
     {
         std::string::size_type position;
@@ -77,13 +80,14 @@ private:
         // .length() doesn't work on an array of strings
         int array_len = sizeof(this->weatherswitch.types) / sizeof(this->weatherswitch.types[0]);
 
+        // find weather description
         for (int i = 0 ; i <= array_len ; i++)
         {
             position = this->description.find(this->weatherswitch.types[i]);
             if (position == std::string::npos)
             {
                 // not found
-                continue;  
+                continue;
             }
             else 
             {
@@ -92,10 +96,12 @@ private:
                 return;
             }
         }
-    }   
+    }
 
 public:
     // independent variables
+    bool isMetric;
+    bool isDaytime;
     std::string name;
     std::string description;
 
@@ -143,86 +149,101 @@ public:
         // if(SysTime > Sunrise && SysTime < Sunset) daytime = true;
 
         if(time(0) > this->sys.sunrise && time(0) < this->sys.sunset)
-            isDaytime = true;
+            this->isDaytime = true;
         else 
-            isDaytime = false;
+            this->isDaytime = false;
 
         SetWeatherSwitch();
+        SetImperialMetric();
 
-    }
-
-    void Print(void)
-    {
-        // strings
-        cout << "name: " << this->name << endl;
-        cout << "description: " << this->description << endl;
-
-        // integers
-        cout << "visibility: " << this->visibility << endl;
-
-        // main weather struct
-        cout << "feels_like: " << this->main.feels_like << endl;
-        cout << "humidity: " << this->main.humidity << endl;
-        cout << "pressure: " << this->main.pressure << endl;
-        cout << "temp (Kelvin): " << this->main.temp << endl;
-        cout << "temp_max: " << this->main.temp_max << endl;
-        cout << "temp_min: " << this->main.temp_min << endl;
-
-        // wind struct
-        cout << "wind direction: " << this->wind.deg << endl;
-        cout << "wind speed: " << this->wind.speed << endl;
-
-        // coordinates struct
-        cout << "location lat: " << this->coordinates.lat << endl;
-        cout << "location lon: " << this->coordinates.lon << endl;
-
-        if(isDaytime)
-            cout << "time of day: day" << endl;
+        //find country, convert to F or C
+        if(this->isMetric)
+        {
+            //celsius
+            this->main.feels_like -= 273.15;
+            this->main.temp -= 273.15;
+            this->main.temp_max -= 273.15;
+            this->main.temp_min -= 273.15;
+        }
         else
-            cout << "time of day: night" << endl;
-
+        {
+            //fahrenheit
+            this->main.feels_like = Kelvin2Fahrenheit(this->main.feels_like);
+            this->main.temp = Kelvin2Fahrenheit(this->main.temp);
+            this->main.temp_max = Kelvin2Fahrenheit(this->main.temp_max);
+            this->main.temp_min = Kelvin2Fahrenheit(this->main.temp_min);
+        }
     }
 
+    void PrintClass(void);
     void ArtPrint();
+    void PrintFormatted();
+    void SetImperialMetric(void);
 };
 
 
 int main()
 {
     system("clear");
-
-    curl_global_init(CURL_GLOBAL_ALL);
-    curl = curl_easy_init();
-
-    stringstream buf;
-    APIcall();
-
     Weather weather;
+    time_t check_time = time(0);
 
-    weather.UpdateWeather();
-    weather.Print();
-    weather.ArtPrint();
+    cout << "Enter Zip Code: " ;
+    cin >> zip_code; 
 
+    while(isActive)
+    {
+        if(time(0) >= check_time)
+        {
+            system("clear");
+
+            // internet stuff
+            curl_global_init(CURL_GLOBAL_ALL);
+            curl = curl_easy_init();
+            
+            APIcall();
+
+        if (readBuffer.length() <= 50)
+        {
+            cout << "404 - city not found" << endl;
+            isActive = false;
+            break;
+        }
+
+            weather.UpdateWeather();
+            weather.ArtPrint();
+            // weather.PrintClass();
+            weather.PrintFormatted();
+            
+            check_time += REQUEST_PERIOD*60;
+        }
+    }
+    
 }
 
 void APIcall()
 {
     std::string buffer[200];
     std::string api_key = "3c5c7dcd8ea2d74cfc1a7ee295286488";
-    std::string zip_code;
     stringstream url;
-
-    cout << "Enter Zip Code: " ;
-    cin >> zip_code;
 
     url << "api.openweathermap.org/data/2.5/weather?zip=" << zip_code << "&appid=" << api_key;
 
-    httpGet(url.str());
-
+    try
+    {
+        httpGet(url.str());
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        cout << "Check internet connection or invalid Zip Code" << endl;
+    }
 }
 
 void httpGet(std::string url)
 {
+    readBuffer.clear();
+
     if(curl)
     {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -284,10 +305,14 @@ void Weather::ArtPrint()
 {
     int COLOR;
 
-    if(isDaytime)
+    if(this->isDaytime)
+    {
         COLOR = YELLOW;
+    }
     else
+    {
         COLOR = BLUE;
+    }
 
     std::string filename;
     ifstream file;
@@ -297,12 +322,13 @@ void Weather::ArtPrint()
     {
     // case "sun":
     case 0:
-        if(!isDaytime) return;
+        if(!this->isDaytime) return;
         file.open("sunny.txt");
+        COLOR = YELLOW;
         break;
     // case "clouds":
     case 1:
-        if(isDaytime) COLOR = WHITE;
+        if(this->isDaytime) COLOR = WHITE;
         file.open("clouds.txt");
         break;
     // case "rain":
@@ -315,9 +341,9 @@ void Weather::ArtPrint()
         break;
     // case "clear":
     case 4:
-        if(isDaytime)
+        if(this->isDaytime)
         {
-            COLOR = WHITE;
+            COLOR = YELLOW;
             file.open("sunny.txt");
         }
         else
@@ -349,9 +375,73 @@ void Weather::ArtPrint()
 
     while(getline(file,text))
     {
-        ::Print(text, COLOR);
+        Print(text, COLOR);
         // cout << text << endl;
     }
     file.close();
 
+}
+
+void Weather::PrintClass()
+{
+    // strings
+    cout << endl << endl;
+    cout << "name: " << this->name << endl;
+    cout << "description: " << this->description << endl;
+
+    // integers
+    cout << "visibility: " << this->visibility << endl;
+
+    // main weather struct
+    cout << "feels_like: " << this->main.feels_like << endl;
+    cout << "humidity: " << this->main.humidity << endl;
+    cout << "pressure: " << this->main.pressure << endl;
+    cout << "temp (Kelvin): " << this->main.temp << endl;
+    cout << "temp_max: " << this->main.temp_max << endl;
+    cout << "temp_min: " << this->main.temp_min << endl;
+
+    // wind struct
+    cout << "wind direction: " << this->wind.deg << endl;
+    cout << "wind speed: " << this->wind.speed << endl;
+
+    // coordinates struct
+    cout << "location lat: " << this->coordinates.lat << endl;
+    cout << "location lon: " << this->coordinates.lon << endl;
+
+    if(this->isDaytime)
+        cout << "time of day: day" << endl;
+    else
+        cout << "time of day: night" << endl;
+
+    if(this->isMetric)
+        cout << "Using Metric units" << endl;
+    else
+        cout << "Using Imperial units" << endl;
+
+}
+
+void Weather::SetImperialMetric()
+{
+    if(this->sys.country.find("US") == std::string::npos)       
+        isMetric = true;                                        //NOT USA
+    else                                                        
+        isMetric = false;                                       //USA
+}
+
+void Weather::PrintFormatted()
+{
+    char datetime[20];
+    time_t now = time(NULL);
+    strftime(datetime, 20, "%Y-%m-%d %H:%M:%S", localtime(&now));
+
+    cout << endl << endl;
+    cout << "Current Date/Time: " << datetime << endl;
+    cout << "LOCATION: " << this->name << endl;
+    cout << "DESCRIPTION: " << this->description << endl;
+    cout << "PRESSURE: " << this->main.pressure <<  " mb" << endl;
+
+    cout << "FEELS LIKE: " << this->main.feels_like << "º F" << endl;
+    cout << "TEMPERATURE: " << this->main.temp << "º F" << endl;
+    cout << "HIGH TEMPERATURE: " << this->main.temp_max << "º" << endl;
+    cout << "LOW TEMPERATURE: " << this->main.temp_min << "º" << endl;
 }

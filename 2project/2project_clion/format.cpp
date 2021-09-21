@@ -6,32 +6,15 @@
 
 using namespace std;
 
-char weatherType;                   // description in main.h
+char weatherSwitch;                   // description in main.h
 
 int main()
 {
-    // string description = "hot and sunny";
-    string description = "few clouds";
 
-    std::string::size_type pos = description.find("sun");
-
-    
-
-    if (pos == std::string::npos)
-    {
-        cout << "did not find the string..." << endl;
-    }
-    else 
-    {
-    cout << "position is: " << pos << endl;
-    }
-
-    pos = description.find("cloud");
-    cout << "position is: " << pos << endl;
-
-    cout << "weathertype is: " << weatherType << endl;
-
-
+    char buff[20];
+    time_t now = time(NULL);
+    strftime(buff, 20, "%Y-%m-%d %H:%M:%S", localtime(&now));
+    cout << buff << endl;
 
     return 0;
 }
