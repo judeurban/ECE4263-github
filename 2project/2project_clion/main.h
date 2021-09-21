@@ -8,6 +8,7 @@
 #define CYAN         36
 #define WHITE        37
 
+
 /*
 
 Here, \033 is the ESC character, ASCII 27. It is followed by [, then zero or 

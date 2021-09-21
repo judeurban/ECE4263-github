@@ -6,32 +6,86 @@
 #include <nlohmann/json.hpp>
 #include "main.h"
 
-using namespace std;    // std::cout, std::cin
+// namespaces
+
+using namespace std;
 using json = nlohmann::json;
+
+// functions
 
 void PrintGradient(string);
 void PrintBG(string, int, int);
 void Print(string, int);
 void APIcall(void);
 void httpGet(string);
+static size_t WriteCallback(void *, size_t, size_t, void *);
 
-std::string rcvd_buffer;
+// classes/objects
 CURL *curl;
 CURLcode response;
-std::string readBuffer;
-
 json json_response;
 
-struct weather {
+// variables
+string readBuffer;
+
+struct weatherstruct {
     string name;
     int visibility;
 };
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+struct MainWeather
 {
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
+    int feels_like;
+    int humidity;
+    int pressure;
+    int temp;
+    int temp_max;
+    int temp_min;
+};
+
+struct Wind
+{
+    int deg;
+    int speed;
+};
+
+struct Coordinates
+{
+    int lat;
+    int lon;
+};
+
+class Weather
+{
+private:
+    /* data */
+public:
+    string description;
+    string name;
+    int visibility;
+    MainWeather main;
+    Wind wind;
+    Coordinates coordinates;
+
+    // Weather(/* args */)
+    // {
+    // }
+    void UpdateWeather(void)
+    {
+        // w.visibility = json_response["visibility"].get<int>();
+        this->name = json_response["name"].get<string>();
+        this->visibility = json_response["visibility"].get<int>();
+        this->description = json_response["description"].get<int>();
+
+    }
+
+    void PrintClass(void)
+    {
+        cout << this->name << endl;
+        cout << this->visibility << endl;
+        cout << this->description << endl;
+    }
+};
 
 int main()
 {
@@ -44,17 +98,21 @@ int main()
     json_response = json::parse(readBuffer);
     // cout << json_response.dump(4) << endl;
 
-    // auto weatherobject = json_response.get<weather>();
+    // auto weatherobject = json_response.get<weatherstruct>();
+
+    // cout << weatherobject.name << endl;
+    Weather weather;
+    // Weather::UpdateWeather();
+    // weatherstruct weatherobject 
+    // {
+    //     json_response["name"].get<string>(),
+    //     json_response["visibility"].get<int>()
+    // };
 
     // cout << weatherobject.name << endl;
 
-    weather weatherobject 
-    {
-        json_response["name"].get<string>(),
-        json_response["visibility"].get<int>()
-    };
-
-    cout << weatherobject.name << endl;
+    weather.UpdateWeather();
+    weather.PrintClass();
 
     // cout << json_response.get<weather>() << endl;
 
@@ -119,3 +177,8 @@ void Print(string s, int foreground)
     cout << "\033[0;" << foreground << "m" << s << "\033[0m\n";
 }
 
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
