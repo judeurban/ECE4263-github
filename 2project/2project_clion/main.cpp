@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <string.h>
 #include <sstream>
 #include <curl/curl.h>
@@ -18,9 +19,11 @@ std::string rcvd_buffer;
 CURL *curl;
 CURLcode response;
 
+json json_response;
 
 int main()
 {
+    // system("clear");
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
 
@@ -41,29 +44,26 @@ void APIcall()
 
 }
 
-void PrintBG(string s, int foreground, int background)
-{
-    background += 10;
-    cout << "\033[0;" << background << ";" << foreground << "m" << s << "\033[0m\n";
-}
-
-void Print(string s, int foreground)
-{
-    cout << "\033[0;" << foreground << "m" << s << "\033[0m\n";
-}
-
 void httpGet(string url)
 {
-
+    cout << "1" << endl;
     if(curl)
     {
+        cout << "2" << endl;
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+        // curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
+
+        cout << "3" << endl;
+
         response = curl_easy_perform(curl);
+        
+        cout << "4" << endl;
 
         if(response != CURLE_OK)
         {
-            fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
             // cout << stderr << "Request Failed: " << curl_easy_strerror(response) << endl << endl;
+            fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
             return;
         } 
         else
@@ -75,4 +75,15 @@ void httpGet(string url)
     }
     
     curl_global_cleanup();
+}
+
+void PrintBG(string s, int foreground, int background)
+{
+    background += 10;
+    cout << "\033[0;" << background << ";" << foreground << "m" << s << "\033[0m\n";
+}
+
+void Print(string s, int foreground)
+{
+    cout << "\033[0;" << foreground << "m" << s << "\033[0m\n";
 }

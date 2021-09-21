@@ -8,6 +8,8 @@
         "vector": "cpp",
         "iostream": "cpp",
         "regex": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "filesystem": "cpp",
+        "stdexcept": "cpp"
     }
 }
