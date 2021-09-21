@@ -9,6 +9,21 @@
 #define WHITE        37
 
 
+
+/*
+weatherType
+
+'s' --- sunny
+'c' --- cloudy
+'m' --- moon (clear and night time)
+'p' --- moon phases
+'r' --- rain
+'w' --- snow (winter)
+'t' --- thunderstorm
+'n' --- nado (tornado)
+*/
+
+
 /*
 
 Here, \033 is the ESC character, ASCII 27. It is followed by [, then zero or 

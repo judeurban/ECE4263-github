@@ -1,43 +1,46 @@
-"coord": {
-    "lon": -95.8222,
-    "lat": 36.2863
-},
-"weather": [
-    {
-        "id": 801,
-        "main": "Clouds",
-        "description": "few clouds",
-        "icon": "02d"
-    }
-],
-"base": "stations",
-"main": {
-    "temp": 298.75,
-    "feels_like": 299.43,
-    "temp_min": 297.07,
-    "temp_max": 299.85,
-    "pressure": 1015,
-    "humidity": 79
-},
-"visibility": 10000,
-"wind": {
-    "speed": 2.68,
-    "deg": 170,
-    "gust": 4.47
-},
-"clouds": {
-    "all": 20
-},
-"dt": 1632062401,
-"sys": {
-    "type": 2,
-    "id": 2003622,
-    "country": "US",
-    "sunrise": 1632053345,
-    "sunset": 1632097498
-},
-"timezone": -18000,
-"id": 0,
-"name": "Owasso",
-"cod": 200
-}0
+{
+    "coord": {
+        "lon": -95.8222,
+        "lat": 36.2863
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01n"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 297.84,
+        "feels_like": 298.19,
+        "temp_min": 296.24,
+        "temp_max": 300.21,
+        "pressure": 1015,
+        "humidity": 70,
+        "sea_level": 1015,
+        "grnd_level": 991
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 8.53,
+        "deg": 25,
+        "gust": 16.66
+    },
+    "clouds": {
+        "all": 2
+    },
+    "dt": 1632203939,
+    "sys": {
+        "type": 1,
+        "id": 4194,
+        "country": "US",
+        "sunrise": 1632226237,
+        "sunset": 1632270117
+    },
+    "timezone": -18000,
+    "id": 0,
+    "name": "Owasso",
+    "cod": 200
+}

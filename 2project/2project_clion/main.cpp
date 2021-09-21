@@ -22,6 +22,7 @@ void httpGet(std::string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
 void replacebracketwithspace(void); //why tf do I need this??
 void ArtPrint(char);
+void SetWeatherSwitch(void);
 
 // classes/objects
 CURL *curl;
@@ -31,6 +32,12 @@ json json_response;
 // variables
 std::string readBuffer;
 bool isDaytime;
+
+struct WeatherSwitch
+{
+    const char * types[10] = {"sun", "cloud", "rain", "fog", "clear", "storm", "tornado"};
+    uint8_t current;         //holds the current TRUE value of type
+};
 
 struct MainWeather
 {
@@ -52,19 +59,44 @@ struct Sys
 struct Wind
 {
     int deg;
-    int speed;
+    float speed;
 };
 
 struct Coordinates
 {
-    int lat;
-    int lon;
+    float lat;
+    float lon;
 };
 
 class Weather
 {
 private:
-    /* data */
+    void SetWeatherSwitch()
+    {
+        std::string::size_type position;
+
+        // .length() doesn't work on an array of strings
+        int array_len = sizeof(this->weatherswitch.types) / sizeof(this->weatherswitch.types[0]);
+
+        for (int i = 0 ; i >= array_len ; i++)
+        {
+            position = this->description.find(this->weatherswitch.types[i]);
+            if (position == std::string::npos)
+            {
+                // not found
+                continue;  
+            }
+            else 
+            {
+                // found
+                this->weatherswitch.current = i;
+                return;
+            }
+        }
+
+        // }
+    }   
+
 public:
     // independent variables
     std::string name;
@@ -77,6 +109,7 @@ public:
     Sys sys;
     Wind wind;
     Coordinates coordinates;
+    WeatherSwitch weatherswitch;
 
     void UpdateWeather(void)
     {
@@ -117,12 +150,14 @@ public:
         else 
             isDaytime = false;
 
+        SetWeatherSwitch();
+
     }
 
     void Print(void)
     {
         // strings
-        cout << "name:" << this->name << endl;
+        cout << "name: " << this->name << endl;
         cout << "description: " << this->description << endl;
 
         // integers
@@ -145,9 +180,9 @@ public:
         cout << "location lon: " << this->coordinates.lon << endl;
 
         if(isDaytime)
-            cout << "Daytime" << endl;
+            cout << "time of day: day" << endl;
         else
-            cout << "Nighttime" << endl;
+            cout << "time of day: night" << endl;
 
     }
 };
@@ -165,8 +200,8 @@ int main()
 
     weather.UpdateWeather();
     weather.Print();
-    // weather.Print();
 
+    // weather.Print();
     // ArtPrint('m');
     // ArtPrint('w');
     // ArtPrint('r');
@@ -247,7 +282,7 @@ float Kelvin2Fahrenheit(float degKelvin)
     return ( (degKelvin - 273.15) * 9 / 5 ) + 32;
 }
 
-void ArtPrint(char c)
+void ArtPrint(Weather w)
 {
     int COLOR;
 
@@ -260,11 +295,15 @@ void ArtPrint(char c)
     ifstream file;
     std::string text;
 
-    switch (c)
+    switch (w.weatherswitch.current)
     {
     case 'm':
         if(isDaytime) return;
         file.open("moon.txt");
+        break;
+    case 'c':
+        if(isDaytime) COLOR = WHITE;
+        file.open("clouds.txt");
         break;
     case 'p':
         if(isDaytime) return;
