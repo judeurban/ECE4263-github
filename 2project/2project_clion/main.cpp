@@ -19,6 +19,7 @@ void Print(string, int);
 void APIcall(void);
 void httpGet(string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
+void replacebracketwithspace(void); //why tf do I need this??
 
 // classes/objects
 CURL *curl;
@@ -60,30 +61,69 @@ class Weather
 private:
     /* data */
 public:
-    string description;
+    // independent variables
     string name;
+    std::string description;
     int visibility;
+    
+    // structs
     MainWeather main;
     Wind wind;
     Coordinates coordinates;
 
-    // Weather(/* args */)
-    // {
-    // }
     void UpdateWeather(void)
     {
-        // w.visibility = json_response["visibility"].get<int>();
-        this->name = json_response["name"].get<string>();
-        this->visibility = json_response["visibility"].get<int>();
-        this->description = json_response["description"].get<int>();
+        json_response = json::parse(readBuffer);
 
+        // strings
+        this->name = json_response["name"].get<string>();
+        this->description = json_response["weather"]["description"].get<string>();
+
+        // integers
+        this->visibility = json_response["visibility"].get<int>();
+
+        // main weather struct
+        this->main.feels_like = json_response["main"]["feels_like"].get<int>();
+        this->main.humidity = json_response["main"]["humidity"].get<int>();
+        this->main.pressure = json_response["main"]["pressure"].get<int>();
+        this->main.temp = json_response["main"]["temp"].get<int>();
+        this->main.temp_max = json_response["main"]["temp_max"].get<int>();
+        this->main.temp_min = json_response["main"]["temp_min"].get<int>();
+
+        // wind struct
+        this->wind.deg = json_response["wind"]["deg"].get<int>();
+        this->wind.speed = json_response["wind"]["speed"].get<int>();
+
+        // coordinates struct
+        this->coordinates.lat = json_response["coord"]["lat"].get<int>();
+        this->coordinates.lon = json_response["coord"]["lon"].get<int>();
     }
 
-    void PrintClass(void)
+    void Print(void)
     {
-        cout << this->name << endl;
-        cout << this->visibility << endl;
-        cout << this->description << endl;
+        // strings
+        cout << "name:" << this->name << endl;
+        cout << "description: " << this->description << endl;
+
+        // integers
+        cout << "visibility: " << this->visibility << endl;
+
+        // main weather struct
+        cout << "feels_like: " << this->main.feels_like << endl;
+        cout << "humidity: " << this->main.humidity << endl;
+        cout << "pressure: " << this->main.pressure << endl;
+        cout << "temp (Kelvin): " << this->main.temp << endl;
+        cout << "temp_max: " << this->main.temp_max << endl;
+        cout << "temp_min: " << this->main.temp_min << endl;
+
+        // wind struct
+        cout << "wind direction: " << this->wind.deg << endl;
+        cout << "wind speed: " << this->wind.speed << endl;
+
+        // coordinates struct
+        cout << "location lat: " << this->coordinates.lat << endl;
+        cout << "location lon: " << this->coordinates.lon << endl;
+
     }
 };
 
@@ -95,7 +135,7 @@ int main()
 
     stringstream buf;
     APIcall();
-    json_response = json::parse(readBuffer);
+    replacebracketwithspace();
     // cout << json_response.dump(4) << endl;
 
     // auto weatherobject = json_response.get<weatherstruct>();
@@ -112,7 +152,13 @@ int main()
     // cout << weatherobject.name << endl;
 
     weather.UpdateWeather();
-    weather.PrintClass();
+    weather.Print();
+
+    // cout << json_response["name"].get<string>() << endl;
+    // cout << json_response["sys"]["country"].get<string>() << endl;
+
+    // weather.UpdateWeather();
+    // weather.PrintClass();
 
     // cout << json_response.get<weather>() << endl;
 
@@ -181,4 +227,20 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
 {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
+}
+
+void replacebracketwithspace(void)
+{
+    for (int i = 0; i <= readBuffer.length(); i++)
+    {
+        if (readBuffer[i] == '[' || readBuffer[i] == ']')
+        {
+            readBuffer[i] = ' ';
+        }
+    }
+}
+
+float Kelvin2Fahrenheit(float degKelvin)
+{
+    return ( (degKelvin - 273.15) * 9 / 5 ) + 32;
 }
