@@ -15,12 +15,16 @@ weatherType
 
 's' --- sunny
 'c' --- cloudy
-'m' --- moon (clear and night time)
-'p' --- moon phases
 'r' --- rain
+'f' --- fog
+'c' --- clear
+    DAYTIME: sunny      NIGHTTIME: moon
 'w' --- snow (winter)
 't' --- thunderstorm
 'n' --- nado (tornado)
+
+'m' --- moon (clear and night time)
+'p' --- moon phases
 */
 
 

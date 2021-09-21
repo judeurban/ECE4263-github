@@ -21,7 +21,6 @@ void APIcall(void);
 void httpGet(std::string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
 void replacebracketwithspace(void); //why tf do I need this??
-void ArtPrint(char);
 void SetWeatherSwitch(void);
 
 // classes/objects
@@ -35,7 +34,7 @@ bool isDaytime;
 
 struct WeatherSwitch
 {
-    const char * types[10] = {"sun", "cloud", "rain", "fog", "clear", "storm", "tornado"};
+    const char * types[10] = {"sun", "cloud", "rain", "fog", "clear", "snow", "storm", "tornado"};
     uint8_t current;         //holds the current TRUE value of type
 };
 
@@ -78,23 +77,23 @@ private:
         // .length() doesn't work on an array of strings
         int array_len = sizeof(this->weatherswitch.types) / sizeof(this->weatherswitch.types[0]);
 
-        for (int i = 0 ; i >= array_len ; i++)
+        for (int i = 0 ; i <= array_len ; i++)
         {
             position = this->description.find(this->weatherswitch.types[i]);
             if (position == std::string::npos)
             {
                 // not found
+                cout << " '" << this->weatherswitch.types[i] << "' was not found " << endl;
                 continue;  
             }
             else 
             {
                 // found
                 this->weatherswitch.current = i;
+                cout << " '" << this->weatherswitch.types[i] << "' was found " << endl;
                 return;
             }
         }
-
-        // }
     }   
 
 public:
@@ -185,7 +184,10 @@ public:
             cout << "time of day: night" << endl;
 
     }
+
+    void ArtPrint();
 };
+
 
 int main()
 {
@@ -200,13 +202,7 @@ int main()
 
     weather.UpdateWeather();
     weather.Print();
-
-    // weather.Print();
-    // ArtPrint('m');
-    // ArtPrint('w');
-    // ArtPrint('r');
-
-    // Print(weather.description, BLUE);
+    weather.ArtPrint();
 
 }
 
@@ -282,7 +278,7 @@ float Kelvin2Fahrenheit(float degKelvin)
     return ( (degKelvin - 273.15) * 9 / 5 ) + 32;
 }
 
-void ArtPrint(Weather w)
+void Weather::ArtPrint()
 {
     int COLOR;
 
@@ -295,48 +291,63 @@ void ArtPrint(Weather w)
     ifstream file;
     std::string text;
 
-    switch (w.weatherswitch.current)
+    switch (this->weatherswitch.current)
     {
-    case 'm':
-        if(isDaytime) return;
-        file.open("moon.txt");
-        break;
-    case 'c':
-        if(isDaytime) COLOR = WHITE;
-        file.open("clouds.txt");
-        break;
-    case 'p':
-        if(isDaytime) return;
-        file.open("moonphases.txt");
-        break;
-    case 'r':
-        file.open("rain.txt");
-        COLOR = BLUE;
-        break;
-    case 'w':
-        file.open("snow.txt");
-        COLOR = WHITE;
-        break;
-    case 's':
+    // case "sun":
+    case 0:
         if(!isDaytime) return;
         file.open("sunny.txt");
         break;
-    case 't':
+    // case "clouds":
+    case 1:
+        if(isDaytime) COLOR = WHITE;
+        file.open("clouds.txt");
+        break;
+    // case "rain":
+    case 2:
+        file.open("rain.txt");
+        COLOR = BLUE;
+        break;
+    // case "fog":
+    case 3:
+        break;
+    // case "clear":
+    case 4:
+        if(isDaytime)
+        {
+            COLOR = WHITE;
+            file.open("sunny.txt");
+        }
+        else
+        {
+            COLOR = BLUE;
+            file.open("moon.txt");
+        }
+        break;
+    // case "snow":
+    case 5:
+        file.open("snow.txt");
+        COLOR = WHITE;
+        break;
+    // case "storm":
+    case 6:
         file.open("thunderstorm.txt");
         COLOR = YELLOW;
         break;
-    case 'n':
+    // case "tornado":
+    case 7:
         file.open("tornado.txt");
         COLOR = BLACK;
     default:
-        file.close();
+        if(file.is_open())
+            file.close();
         return;
     }
 
 
     while(getline(file,text))
     {
-        Print(text, COLOR);
+        ::Print(text, COLOR);
         // cout << text << endl;
     }
     file.close();
