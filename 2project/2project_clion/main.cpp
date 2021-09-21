@@ -4,6 +4,7 @@
 #include <sstream>
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
+#include<fstream>
 #include "main.h"
 
 // namespaces
@@ -20,6 +21,7 @@ void APIcall(void);
 void httpGet(string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
 void replacebracketwithspace(void); //why tf do I need this??
+void ArtPrint(char);
 
 // classes/objects
 CURL *curl;
@@ -28,11 +30,6 @@ json json_response;
 
 // variables
 string readBuffer;
-
-struct weatherstruct {
-    string name;
-    int visibility;
-};
 
 struct MainWeather
 {
@@ -135,32 +132,16 @@ int main()
 
     stringstream buf;
     APIcall();
-    replacebracketwithspace();
-    // cout << json_response.dump(4) << endl;
 
-    // auto weatherobject = json_response.get<weatherstruct>();
-
-    // cout << weatherobject.name << endl;
     Weather weather;
-    // Weather::UpdateWeather();
-    // weatherstruct weatherobject 
-    // {
-    //     json_response["name"].get<string>(),
-    //     json_response["visibility"].get<int>()
-    // };
-
-    // cout << weatherobject.name << endl;
 
     weather.UpdateWeather();
-    weather.Print();
+    // weather.Print();
 
-    // cout << json_response["name"].get<string>() << endl;
-    // cout << json_response["sys"]["country"].get<string>() << endl;
+    ArtPrint('s');
 
-    // weather.UpdateWeather();
-    // weather.PrintClass();
+    // Print(weather.description, BLUE);
 
-    // cout << json_response.get<weather>() << endl;
 
 }
 
@@ -179,37 +160,27 @@ void APIcall()
 
 void httpGet(string url)
 {
-    cout << "1" << endl;
     if(curl)
     {
-        cout << "2" << endl;
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         // curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
-        cout << "3" << endl;
 
         response = curl_easy_perform(curl);
         
-        cout << "4" << endl;
-
         if(response != CURLE_OK)
         {
             // cout << stderr << "Request Failed: " << curl_easy_strerror(response) << endl << endl;
             fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
             return;
         } 
-        else
-        {
-            // fprintf("%s", response);
-            // cout << response << endl;
-            // cout << readBuffer << endl;
-        }
+
         curl_easy_cleanup(curl);
     }
     
     curl_global_cleanup();
+    replacebracketwithspace();      //my json libarary exploded when a pair of '[]' showed up
 }
 
 void PrintBG(string s, int foreground, int background)
@@ -243,4 +214,52 @@ void replacebracketwithspace(void)
 float Kelvin2Fahrenheit(float degKelvin)
 {
     return ( (degKelvin - 273.15) * 9 / 5 ) + 32;
+}
+
+void ArtPrint(char c)
+{
+    int COLOR = WHITE;
+    string filename;
+    ifstream file;
+    string text;
+
+    switch (c)
+    {
+    case 'm':
+        file.open("moon.txt");
+        break;
+    case 'p':
+        file.open("moonphases.txt");
+        break;
+    case 'r':
+        file.open("rain.txt");
+        COLOR = BLUE;
+        break;
+    case 'w':
+        file.open("snow.txt");
+        break;
+    case 's':
+        file.open("sunny.txt");
+        COLOR = YELLOW;
+        break;
+    case 't':
+        file.open("thunderstorm.txt");
+        COLOR = BLUE;
+        break;
+    case 'n':
+        file.open("tornado.txt");
+        COLOR = BLACK;
+    default:
+        file.close();
+        return;
+    }
+
+
+    while(getline(file,text))
+    {
+        Print(text, COLOR);
+        // cout << text << endl;
+    }
+    file.close();
+
 }

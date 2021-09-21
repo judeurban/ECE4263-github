@@ -67,6 +67,11 @@
         "utility": "cpp",
         "vector": "cpp",
         "map": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "clocale": "cpp",
+        "forward_list": "cpp",
+        "numeric": "cpp",
+        "queue": "cpp",
+        "valarray": "cpp"
     }
 }
