@@ -1,11 +1,12 @@
 #include <iostream>
-#include "main.h"
 #include <string.h>
 #include <sstream>
 #include <curl/curl.h>
-// #include <json.hpp>
+#include <nlohmann/json.hpp>
+#include "main.h"
 
 using namespace std;    // std::cout, std::cin
+using json = nlohmann::json;
 
 void PrintGradient(string);
 void PrintBG(string, int, int);
@@ -16,6 +17,7 @@ void httpGet(string);
 std::string rcvd_buffer;
 CURL *curl;
 CURLcode response;
+
 
 int main()
 {
