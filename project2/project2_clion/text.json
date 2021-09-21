@@ -1,0 +1,43 @@
+{
+    "base": "stations",
+    "clouds": {
+        "all": 20
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 36.2863,
+        "lon": -95.8222
+    },
+    "dt": 1632189843,
+    "id": 0,
+    "main": {
+        "feels_like": 304.08,
+        "humidity": 43,
+        "pressure": 1008,
+        "temp": 303.83,
+        "temp_max": 306.09,
+        "temp_min": 300.07
+    },
+    "name": "Owasso",
+    "sys": {
+        "country": "US",
+        "id": 6073,
+        "sunrise": 1632139791,
+        "sunset": 1632183807,
+        "type": 1
+    },
+    "timezone": -18000,
+    "visibility": 10000,
+    "weather": [
+        {
+            "description": "few clouds",
+            "icon": "02n",
+            "id": 801,
+            "main": "Clouds"
+        }
+    ],
+    "wind": {
+        "deg": 180,
+        "speed": 4.63
+    }
+}

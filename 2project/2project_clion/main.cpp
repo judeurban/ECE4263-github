@@ -18,17 +18,46 @@ void httpGet(string);
 std::string rcvd_buffer;
 CURL *curl;
 CURLcode response;
+std::string readBuffer;
 
 json json_response;
 
+struct weather {
+    string name;
+    int visibility;
+};
+
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
 int main()
 {
-    // system("clear");
+    system("clear");
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
 
     stringstream buf;
     APIcall();
+    json_response = json::parse(readBuffer);
+    // cout << json_response.dump(4) << endl;
+
+    // auto weatherobject = json_response.get<weather>();
+
+    // cout << weatherobject.name << endl;
+
+    weather weatherobject 
+    {
+        json_response["name"].get<string>(),
+        json_response["visibility"].get<int>()
+    };
+
+    cout << weatherobject.name << endl;
+
+    // cout << json_response.get<weather>() << endl;
+
 }
 
 void APIcall()
@@ -51,9 +80,10 @@ void httpGet(string url)
     {
         cout << "2" << endl;
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
-        // curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
 
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        // curl_easy_setopt(curl, CURLOPT_NOBODY, 1);
         cout << "3" << endl;
 
         response = curl_easy_perform(curl);
@@ -69,7 +99,8 @@ void httpGet(string url)
         else
         {
             // fprintf("%s", response);
-            cout << response << endl;
+            // cout << response << endl;
+            // cout << readBuffer << endl;
         }
         curl_easy_cleanup(curl);
     }
@@ -87,3 +118,4 @@ void Print(string s, int foreground)
 {
     cout << "\033[0;" << foreground << "m" << s << "\033[0m\n";
 }
+
