@@ -61,6 +61,7 @@ struct Wind
 {
     int deg;
     float speed;
+    float gust;
 };
 
 struct Coordinates
@@ -131,16 +132,17 @@ public:
         this->sys.sunset = json_response["sys"]["sunset"].get<int>();
 
         // main weather struct
-        this->main.feels_like = json_response["main"]["feels_like"].get<int>();
+        this->main.feels_like = json_response["main"]["feels_like"].get<float>();
         this->main.humidity = json_response["main"]["humidity"].get<int>();
         this->main.pressure = json_response["main"]["pressure"].get<int>();
-        this->main.temp = json_response["main"]["temp"].get<int>();
-        this->main.temp_max = json_response["main"]["temp_max"].get<int>();
-        this->main.temp_min = json_response["main"]["temp_min"].get<int>();
+        this->main.temp = json_response["main"]["temp"].get<float>();
+        this->main.temp_max = json_response["main"]["temp_max"].get<float>();
+        this->main.temp_min = json_response["main"]["temp_min"].get<float>();
 
         // wind struct
         this->wind.deg = json_response["wind"]["deg"].get<int>();
-        this->wind.speed = json_response["wind"]["speed"].get<int>();
+        this->wind.speed = json_response["wind"]["speed"].get<float>();
+        this->wind.gust = json_response["wind"]["gust"].get<float>();
 
         // coordinates struct
         this->coordinates.lat = json_response["coord"]["lat"].get<int>();
@@ -435,13 +437,32 @@ void Weather::PrintFormatted()
     strftime(datetime, 20, "%Y-%m-%d %H:%M:%S", localtime(&now));
 
     cout << endl << endl;
-    cout << "Current Date/Time: " << datetime << endl;
-    cout << "LOCATION: " << this->name << endl;
-    cout << "DESCRIPTION: " << this->description << endl;
-    cout << "PRESSURE: " << this->main.pressure <<  " mb" << endl;
+    cout << datetime << endl;
+    cout << this->name << " | " << this->description << endl;
 
-    cout << "FEELS LIKE: " << this->main.feels_like << "º F" << endl;
-    cout << "TEMPERATURE: " << this->main.temp << "º F" << endl;
-    cout << "HIGH TEMPERATURE: " << this->main.temp_max << "º" << endl;
-    cout << "LOW TEMPERATURE: " << this->main.temp_min << "º" << endl;
+    strftime(datetime, 20, "%H:%M", localtime(&this->sys.sunrise));
+    cout << "sunrise: " << datetime << endl;
+
+    strftime(datetime, 20, "%H:%M", localtime(&this->sys.sunset));
+    cout << "sunset: " << datetime << endl << endl;
+
+    cout << "---------TEMPERATURE---------" << endl << endl;
+
+    cout << "current: " << this->main.temp << "º" << endl;
+    cout << "feels like: " << this->main.feels_like << "º" << endl;
+    cout << "high: " << this->main.temp_max << "º" << endl;
+    cout << "low: " << this->main.temp_min << "º" << endl << endl;
+
+    cout << "-------------AIR-------------" << endl << endl;
+
+    cout << "humidity: " << this->main.humidity <<  "%" << endl;
+    cout << "pressure: " << this->main.pressure <<  " mb" << endl;
+    cout << "wind: " << this->wind.speed << " MPH" << endl;
+    cout << "direction: " << this->wind.deg << " degrees from the north" << endl;
+    cout << "gust: " << this->wind.gust << endl;
+
+    // datetime[0] = 0;    //null
+    // strftime(datetime, 20, "%H:%M", &this->sys.sunset);
+    // cout << "sunset " << datetime << endl;
+
 }
