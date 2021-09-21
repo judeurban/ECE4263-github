@@ -83,14 +83,12 @@ private:
             if (position == std::string::npos)
             {
                 // not found
-                cout << " '" << this->weatherswitch.types[i] << "' was not found " << endl;
                 continue;  
             }
             else 
             {
                 // found
                 this->weatherswitch.current = i;
-                cout << " '" << this->weatherswitch.types[i] << "' was found " << endl;
                 return;
             }
         }
@@ -192,6 +190,7 @@ public:
 int main()
 {
     system("clear");
+
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
 
@@ -210,8 +209,11 @@ void APIcall()
 {
     std::string buffer[200];
     std::string api_key = "3c5c7dcd8ea2d74cfc1a7ee295286488";
-    std::string zip_code = "74055";
+    std::string zip_code;
     stringstream url;
+
+    cout << "Enter Zip Code: " ;
+    cin >> zip_code;
 
     url << "api.openweathermap.org/data/2.5/weather?zip=" << zip_code << "&appid=" << api_key;
 
