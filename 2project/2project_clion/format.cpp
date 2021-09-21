@@ -2,22 +2,16 @@
 #include<fstream>
 #include<cstdlib>
 #include<iomanip>
+#include <time.h>
 
 using namespace std;
 
 int main()
 {
-    string filename;
-    ifstream file;
-    string text;
+    
+    time_t curtime = time(0);
 
-    file.open("moonphases.txt");
-
-    while(getline(file,text))
-    {
-        cout << text << endl;
-    }
-    file.close();
+    cout << curtime << endl;
 
     return 0;
 }

@@ -9,16 +9,16 @@
 
 // namespaces
 
-using namespace std;
 using json = nlohmann::json;
+using namespace std;
 
 // functions
 
-void PrintGradient(string);
-void PrintBG(string, int, int);
-void Print(string, int);
+void PrintGradient(std::string);
+void PrintBG(std::string, int, int);
+void Print(std::string, int);
 void APIcall(void);
-void httpGet(string);
+void httpGet(std::string);
 static size_t WriteCallback(void *, size_t, size_t, void *);
 void replacebracketwithspace(void); //why tf do I need this??
 void ArtPrint(char);
@@ -29,7 +29,8 @@ CURLcode response;
 json json_response;
 
 // variables
-string readBuffer;
+std::string readBuffer;
+bool isDaytime;
 
 struct MainWeather
 {
@@ -39,6 +40,13 @@ struct MainWeather
     int temp;
     int temp_max;
     int temp_min;
+};
+
+struct Sys
+{
+    std::string country;
+    time_t sunrise;
+    time_t sunset;
 };
 
 struct Wind
@@ -59,12 +67,14 @@ private:
     /* data */
 public:
     // independent variables
-    string name;
+    std::string name;
     std::string description;
+
     int visibility;
     
     // structs
     MainWeather main;
+    Sys sys;
     Wind wind;
     Coordinates coordinates;
 
@@ -73,11 +83,16 @@ public:
         json_response = json::parse(readBuffer);
 
         // strings
-        this->name = json_response["name"].get<string>();
-        this->description = json_response["weather"]["description"].get<string>();
+        this->name = json_response["name"].get<std::string>();
+        this->description = json_response["weather"]["description"].get<std::string>();
 
         // integers
         this->visibility = json_response["visibility"].get<int>();
+
+        // time
+        this->sys.country = json_response["sys"]["country"].get<std::string>();
+        this->sys.sunrise = json_response["sys"]["sunrise"].get<int>();
+        this->sys.sunset = json_response["sys"]["sunset"].get<int>();
 
         // main weather struct
         this->main.feels_like = json_response["main"]["feels_like"].get<int>();
@@ -94,6 +109,14 @@ public:
         // coordinates struct
         this->coordinates.lat = json_response["coord"]["lat"].get<int>();
         this->coordinates.lon = json_response["coord"]["lon"].get<int>();
+
+        // if(SysTime > Sunrise && SysTime < Sunset) daytime = true;
+
+        if(time(0) > this->sys.sunrise && time(0) < this->sys.sunset)
+            isDaytime = true;
+        else 
+            isDaytime = false;
+
     }
 
     void Print(void)
@@ -121,6 +144,11 @@ public:
         cout << "location lat: " << this->coordinates.lat << endl;
         cout << "location lon: " << this->coordinates.lon << endl;
 
+        if(isDaytime)
+            cout << "Daytime" << endl;
+        else
+            cout << "Nighttime" << endl;
+
     }
 };
 
@@ -136,20 +164,22 @@ int main()
     Weather weather;
 
     weather.UpdateWeather();
+    weather.Print();
     // weather.Print();
 
-    ArtPrint('s');
+    // ArtPrint('m');
+    // ArtPrint('w');
+    // ArtPrint('r');
 
     // Print(weather.description, BLUE);
-
 
 }
 
 void APIcall()
 {
-    string buffer[200];
-    string api_key = "3c5c7dcd8ea2d74cfc1a7ee295286488";
-    string zip_code = "74055";
+    std::string buffer[200];
+    std::string api_key = "3c5c7dcd8ea2d74cfc1a7ee295286488";
+    std::string zip_code = "74055";
     stringstream url;
 
     url << "api.openweathermap.org/data/2.5/weather?zip=" << zip_code << "&appid=" << api_key;
@@ -158,7 +188,7 @@ void APIcall()
 
 }
 
-void httpGet(string url)
+void httpGet(std::string url)
 {
     if(curl)
     {
@@ -175,21 +205,22 @@ void httpGet(string url)
             fprintf(stderr, "Request failed: %s\n", curl_easy_strerror(response));
             return;
         } 
+        // cout << readBuffer << endl;
 
         curl_easy_cleanup(curl);
     }
     
     curl_global_cleanup();
-    replacebracketwithspace();      //my json libarary exploded when a pair of '[]' showed up
+    replacebracketwithspace();      //my json libarary exploded when a pair of '[]' showed up lol
 }
 
-void PrintBG(string s, int foreground, int background)
+void PrintBG(std::string s, int foreground, int background)
 {
     background += 10;
     cout << "\033[0;" << background << ";" << foreground << "m" << s << "\033[0m\n";
 }
 
-void Print(string s, int foreground)
+void Print(std::string s, int foreground)
 {
     cout << "\033[0;" << foreground << "m" << s << "\033[0m\n";
 }
@@ -218,17 +249,25 @@ float Kelvin2Fahrenheit(float degKelvin)
 
 void ArtPrint(char c)
 {
-    int COLOR = WHITE;
-    string filename;
+    int COLOR;
+
+    if(isDaytime)
+        COLOR = YELLOW;
+    else
+        COLOR = BLUE;
+
+    std::string filename;
     ifstream file;
-    string text;
+    std::string text;
 
     switch (c)
     {
     case 'm':
+        if(isDaytime) return;
         file.open("moon.txt");
         break;
     case 'p':
+        if(isDaytime) return;
         file.open("moonphases.txt");
         break;
     case 'r':
@@ -237,14 +276,15 @@ void ArtPrint(char c)
         break;
     case 'w':
         file.open("snow.txt");
+        COLOR = WHITE;
         break;
     case 's':
+        if(!isDaytime) return;
         file.open("sunny.txt");
-        COLOR = YELLOW;
         break;
     case 't':
         file.open("thunderstorm.txt");
-        COLOR = BLUE;
+        COLOR = YELLOW;
         break;
     case 'n':
         file.open("tornado.txt");
