@@ -8,7 +8,7 @@
 #define CYAN         36
 #define WHITE        37
 
-#define REQUEST_PERIOD 3 //minute(s)
+#define REQUEST_PERIOD 30 //minute(s)
 // #define REQUEST_PERIOD 30 //seconds
 
 /*

@@ -205,19 +205,20 @@ int main()
             
             APIcall();
 
-        if (readBuffer.length() <= 50)
-        {
-            cout << "404 - city not found" << endl;
-            isActive = false;
-            break;
-        }
+            if (readBuffer.length() <= 50)
+            {
+                cout << "404 - city not found" << endl;
+                isActive = false;
+                break;
+            }
 
             weather.UpdateWeather();
-            weather.ArtPrint();
             // weather.PrintClass();
             weather.PrintFormatted();
+            cout << endl << endl;
+            weather.ArtPrint();
             
-            check_time += REQUEST_PERIOD*60;
+            check_time += REQUEST_PERIOD;
         }
     }
     
@@ -436,7 +437,6 @@ void Weather::PrintFormatted()
     time_t now = time(NULL);
     strftime(datetime, 20, "%Y-%m-%d %H:%M:%S", localtime(&now));
 
-    cout << endl << endl;
     cout << datetime << endl;
     cout << this->name << " | " << this->description << endl;
 
