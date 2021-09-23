@@ -1,7 +1,7 @@
 {
     "coord": {
-        "lon": -95.8222,
-        "lat": 36.2863
+        "lon": -95.8079,
+        "lat": 36.0447
     },
     "weather": [
         {
@@ -13,32 +13,32 @@
     ],
     "base": "stations",
     "main": {
-        "temp": 288.31,
-        "feels_like": 287.47,
-        "temp_min": 284.21,
-        "temp_max": 291.55,
+        "temp": 288.58,
+        "feels_like": 287.69,
+        "temp_min": 284.13,
+        "temp_max": 291.47,
         "pressure": 1021,
-        "humidity": 61
+        "humidity": 58
     },
     "visibility": 10000,
     "wind": {
-        "speed": 2.62,
-        "deg": 92,
-        "gust": 3.36
+        "speed": 0.45,
+        "deg": 11,
+        "gust": 1.79
     },
     "clouds": {
         "all": 0
     },
-    "dt": 1632369329,
+    "dt": 1632369539,
     "sys": {
         "type": 2,
-        "id": 2003622,
+        "id": 2008347,
         "country": "US",
-        "sunrise": 1632312684,
-        "sunset": 1632356426
+        "sunrise": 1632312682,
+        "sunset": 1632356422
     },
     "timezone": -18000,
     "id": 0,
-    "name": "Owasso",
+    "name": "Broken Arrow",
     "cod": 200
 }

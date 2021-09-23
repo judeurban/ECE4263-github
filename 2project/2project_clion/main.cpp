@@ -32,7 +32,8 @@ json json_response;
 // variables
 std::string readBuffer;
 std::string zip_code;
-bool isActive = true;
+
+
 
 struct WeatherSwitch
 {
@@ -190,14 +191,14 @@ int main()
     Weather weather;
     time_t check_time = time(0);
 
+    requestzip:
     cout << "Enter Zip Code: " ;
     cin >> zip_code; 
 
-    while(isActive)
+    while(1)
     {
         if(time(0) >= check_time)
         {
-            system("clear");
 
             // internet stuff
             curl_global_init(CURL_GLOBAL_ALL);
@@ -208,11 +209,20 @@ int main()
             if (readBuffer.length() <= 50)
             {
                 cout << "404 - city not found" << endl;
-                isActive = false;
+                goto requestzip;
                 break;
             }
 
-            weather.UpdateWeather();
+            try
+            {
+                weather.UpdateWeather();
+            }
+            catch(const std::exception& e)
+            {
+                std::cout << e.what() << '\n';
+            }
+            
+            system("clear");
             // weather.PrintClass();
             weather.PrintFormatted();
             cout << endl << endl;
@@ -301,12 +311,14 @@ void replacebracketwithspace(void)
 
 float Kelvin2Fahrenheit(float degKelvin)
 {
-    return ( (degKelvin - 273.15) * 9 / 5 ) + 32;
+    return (int)( (degKelvin - 273.15) * 9 / 5 ) + 32;
 }
 
 void Weather::ArtPrint()
 {
     int COLOR;
+    // cout << this->weatherswitch.types[this->weatherswitch.current] << endl;
+    cout << this->weatherswitch.current << endl;
 
     if(this->isDaytime)
     {
