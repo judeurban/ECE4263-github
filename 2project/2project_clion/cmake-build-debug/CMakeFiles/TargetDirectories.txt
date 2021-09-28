@@ -1,3 +1,0 @@
-/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/2project/2project_clion/cmake-build-debug/CMakeFiles/2project_clion.dir
