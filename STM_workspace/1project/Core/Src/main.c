@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <HMC5883L.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -74,7 +75,8 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
+  // #define compass _HMC5883L_H_
+  // compass = _HMC5883L_H_;
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -91,12 +93,15 @@ int main(void)
   MX_I2C4_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_I2C_AddrCallback(&hi2c4, (int)hi2c4.hdmarx, hi2c4.Init.AddressingMode);
+ // HMC5883L_initialize();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // HMC5883L_initialize();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

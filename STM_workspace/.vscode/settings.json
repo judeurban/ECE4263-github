@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stm32f7xx.h": "c",
-        "driver_i2c.h": "c"
+        "driver_i2c.h": "c",
+        "main.h": "c",
+        "hmc5883l.h": "c"
     }
 }
