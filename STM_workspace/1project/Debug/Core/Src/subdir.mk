@@ -5,9 +5,6 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/HMC5883L.c \
-../Core/Src/I2Cdev.c \
-../Core/Src/MPU6050.c \
 ../Core/Src/main.c \
 ../Core/Src/stm32f7xx_hal_msp.c \
 ../Core/Src/stm32f7xx_it.c \
@@ -16,9 +13,6 @@ C_SRCS += \
 ../Core/Src/system_stm32f7xx.c 
 
 C_DEPS += \
-./Core/Src/HMC5883L.d \
-./Core/Src/I2Cdev.d \
-./Core/Src/MPU6050.d \
 ./Core/Src/main.d \
 ./Core/Src/stm32f7xx_hal_msp.d \
 ./Core/Src/stm32f7xx_it.d \
@@ -27,9 +21,6 @@ C_DEPS += \
 ./Core/Src/system_stm32f7xx.d 
 
 OBJS += \
-./Core/Src/HMC5883L.o \
-./Core/Src/I2Cdev.o \
-./Core/Src/MPU6050.o \
 ./Core/Src/main.o \
 ./Core/Src/stm32f7xx_hal_msp.o \
 ./Core/Src/stm32f7xx_it.o \

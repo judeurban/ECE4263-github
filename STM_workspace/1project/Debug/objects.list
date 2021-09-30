@@ -1,6 +1,3 @@
-"./Core/Src/HMC5883L.o"
-"./Core/Src/I2Cdev.o"
-"./Core/Src/MPU6050.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f7xx_hal_msp.o"
 "./Core/Src/stm32f7xx_it.o"

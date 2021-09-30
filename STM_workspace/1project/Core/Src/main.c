@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <HMC5883L.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -35,25 +34,25 @@
 /* USER CODE BEGIN PD */
 
 #define HMC5883l_ADDRESS (0x1E << 1)
-#define HMC5883l_Enable_A (0x78)        //control REG A
-#define HMC5883l_Enable_B (0xA0)        //control REG B
-#define HMC5883l_MR (0x00)              //node register
+#define HMC5883l_Enable_A (0x70)        //control REG A, (0x70, measurement set, f = 15 Hz)
+#define HMC5883l_Enable_B (0xA0)        //control REG B, (0xA0, gain of 5)
+#define HMC5883l_MR (0x00)              //node register, (0x00, continuous measurement)
 
 /*  HMC5883l MSB and LSB addresses  */
 
 #define HMC5883l_ADD_DATAX_MSB  (0x03)
 #define HMC5883l_ADD_DATAX_LSB  (0x04)
 
-#define HMC5883l_ADD_DATAZ_MSB  (0x05)
-#define HMC5883l_ADD_DATAZ_LSB  (0x06)
-
 #define HMC5883l_ADD_DATAY_MSB  (0x07)
 #define HMC5883l_ADD_DATAY_LSB  (0x08)
 
-/*  SUM (MSB + LSB) DEFINE  */
-#define HMC5883l_ADD_DATAX_MSB_MULTI (HMC5883l_ADD_DATAX_MSB | 0x80)
-#define HMC5883l_ADD_DATAY_MSB_MULTI (HMC5883l_ADD_DATAY_MSB | 0x80)
-#define HMC5883l_ADD_DATAZ_MSB_MULTI (HMC5883l_ADD_DATAZ_MSB | 0x80) 
+#define HMC5883l_ADD_DATAZ_MSB  (0x05)
+#define HMC5883l_ADD_DATAZ_LSB  (0x06)
+
+/*  sum of the two registers  */
+#define HMC5883l_ADD_DATAX_MSB_LSB (HMC5883l_ADD_DATAX_MSB | HMC5883l_ADD_DATAX_LSB)
+#define HMC5883l_ADD_DATAY_MSB_LSB (HMC5883l_ADD_DATAY_MSB | HMC5883l_ADD_DATAY_LSB)
+#define HMC5883l_ADD_DATAZ_MSB_LSB (HMC5883l_ADD_DATAZ_MSB | HMC5883l_ADD_DATAZ_LSB) 
 
 /*  variables to receive data */
 uint8_t DataX[2];
@@ -108,9 +107,9 @@ int main(void)
   
   /*  clear all variables   */
 
-  Xaxis = 0;
-  Yaxis = 0;
-  Zaxis = 0;
+  // Xaxis = 0;
+  // Yaxis = 0;
+  // Zaxis = 0;
   
   /* USER CODE END 1 */
 
@@ -144,10 +143,10 @@ int main(void)
   HMC5883L_initialize();
 */
 
-  HAL_I2C_Init(&hi2c4);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883L_ADDRESS, 0x00, 1, &RegSettingA, 1, 100);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883L_ADDRESS, 0x01, 1, &RegSettingB, 1, 100);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883L_ADDRESS, 0x02, 1, &RegSettingMR, 1, 100);
+  // HAL_I2C_Init(&hi2c4);
+  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x00, 1, HMC5883l_Enable_A, 1, 100);
+  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x01, 1, HMC5883l_Enable_B, 1, 100);
+  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x02, 1, HMC5883l_MR, 1, 100);
 
   /* USER CODE END 2 */
 
@@ -155,20 +154,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+    HAL_I2C_Mem_Read(&hi2c4, HMC5883l_ADDRESS, HMC5883l_ADD_DATAX_MSB_LSB, 1, DataX, 2, 100);
+    Xaxis = ( (DataX[1]<<8) | (DataX[0]) )/660.f;
+
+    /*  read y axis values  */
+    HAL_I2C_Mem_Read(&hi2c4, HMC5883l_ADDRESS, HMC5883l_ADD_DATAY_MSB_LSB, 1, DataY, 2, 100);
+    Yaxis = ( (DataY[1]<<8) | (DataY[0]) )/660.f;
+
+    HAL_I2C_Mem_Read(&hi2c4, HMC5883l_ADDRESS, HMC5883l_ADD_DATAZ_MSB_LSB, 1, DataZ, 2, 100);
+    Zaxis = ( (DataZ[1]<<8) | (DataZ[0]) )/660.f;
+
+
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
 
     /*  read x axis values  */
     // storing two bytes into DataX. | operation "adds" the two bytes together.
-    HAL_I2C_Mem_Read(&hi2c4, HMC5883L_ADDRESS, HMC5883l_ADD_DATAX_MSB_MULTI, 1, DataX, 2, 100);
-    Xaxis = ( (DataX[1]<<8) | (DataX[0]) )/660.f;
-
-    /*  read y axis values  */
-    HAL_I2C_Mem_Read(&hi2c4, HMC5883L_ADDRESS, HMC5883l_ADD_DATAY_MSB_MULTI, 1, DataY, 2, 100);
-    Yaxis = ( (DataY[1]<<8) | (DataY[0]) )/660.f;
-
-    HAL_I2C_Mem_Read(&hi2c4, HMC5883L_ADDRESS, HMC5883l_ADD_DATAZ_MSB_MULTI, 1, DataZ, 2, 100);
-    Zaxis = ( (DataZ[1]<<8) | (DataZ[0]) )/660.f;
 
 
   }

@@ -24,9 +24,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
- ../Core/Inc/HMC5883L.h ../Core/Inc/I2Cdev.h \
- ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32F7xx.h
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h
 
 ../Core/Inc/main.h:
 
@@ -81,9 +79,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr.h:
 
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h:
-
-../Core/Inc/HMC5883L.h:
-
-../Core/Inc/I2Cdev.h:
-
-../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32F7xx.h:
