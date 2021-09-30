@@ -143,10 +143,21 @@ int main(void)
   HMC5883L_initialize();
 */
 
-  // HAL_I2C_Init(&hi2c4);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x00, 1, HMC5883l_Enable_A, 1, 100);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x01, 1, HMC5883l_Enable_B, 1, 100);
-  HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x02, 1, HMC5883l_MR, 1, 100);
+  HAL_I2C_Init(&hi2c4);
+
+  //healty
+  if(HAL_I2C_IsDeviceReady(&hi2c4, HMC5883l_ADDRESS, 3, 100) == HAL_OK)
+  {
+    HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x00, 1, HMC5883l_Enable_A, 1, 100);
+    HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x01, 1, HMC5883l_Enable_B, 1, 100);
+    HAL_I2C_Mem_Write(&hi2c4, HMC5883l_ADDRESS, 0x02, 1, HMC5883l_MR, 1, 100);
+  }
+  //not healthy
+  else
+  {
+    return 0; 
+  }
+
 
   /* USER CODE END 2 */
 
