@@ -246,6 +246,7 @@ int8_t 	I2Cdev_writeBytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t len, uint8
  * @param data 		New byte value to write
  * @return Status of operation (0 = success, <0 = error)
  */
+
 int8_t 	I2Cdev_writeByte(uint8_t dev_addr, uint8_t reg_addr, uint8_t data) {
 	int8_t err;
 
@@ -257,7 +258,8 @@ int8_t 	I2Cdev_writeByte(uint8_t dev_addr, uint8_t reg_addr, uint8_t data) {
 
 
 /** Write single 16-bit word to an 16-bit device register.
- * @param dev_addr 	I2C slave device address
+ * @param dev_addr 	I2C slave devi
+ * ce address
  * @param reg_addr 	Register address to write to
  * @param data 		New byte value to write
  * @return Status of operation (0 = success, <0 = error)

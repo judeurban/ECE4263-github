@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "hmc5883l.h": "c",
+        "main.h": "c"
+    }
+}
