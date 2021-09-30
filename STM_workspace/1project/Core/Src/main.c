@@ -143,7 +143,7 @@ int main(void)
   HMC5883L_initialize();
 */
 
-  HAL_I2C_Init(&hi2c4);
+   HAL_I2C_Init(&hi2c4);
 
   //healty
   if(HAL_I2C_IsDeviceReady(&hi2c4, HMC5883l_ADDRESS, 3, 100) == HAL_OK)
@@ -155,7 +155,7 @@ int main(void)
   //not healthy
   else
   {
-    return 0; 
+    //return 0;
   }
 
 
