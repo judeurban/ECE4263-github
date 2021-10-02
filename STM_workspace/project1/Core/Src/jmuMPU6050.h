@@ -1,6 +1,3 @@
-void MPU6050_init(I2C_HandleTypeDef *);
-void MPU6050_read();
-
 #define MPU6050_I2CADDR_DEFAULT                                                \
   0x68                         ///< MPU6050 default i2c address w/ AD0 high
 #define MPU6050_DEVICE_ID 0x68 ///< The correct MPU6050_WHO_AM_I value
@@ -29,3 +26,13 @@ void MPU6050_read();
 #define MPU6050_TEMP_L 0x42     ///< Temperature data low byte register
 #define MPU6050_ACCEL_OUT 0x3B  ///< base address for sensor data reads
 
+int16_t X_RAW_accel = 0;
+int16_t Y_RAW_accel = 0;
+int16_t Z_RAW_accel = 0;
+
+// float Ax, Ay, Az, Gx, Gy, Gz;
+float Ax, Ay, Az;
+
+
+void MPU6050_init(I2C_HandleTypeDef *);
+void MPU6050_Read_Accel(I2C_HandleTypeDef *);

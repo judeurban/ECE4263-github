@@ -102,6 +102,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    MPU6050_Read_Accel(&hi2c4);
+    HAL_Delay(50);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -249,6 +251,25 @@ void MPU6050_init(I2C_HandleTypeDef * hi2c)
 		HAL_I2C_Mem_Write(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_GYRO_CONFIG, 1, &data, 1, 1000);
   
   }
+}
+
+void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c)
+{
+  uint8_t rcvd_data[6];
+
+  //read all six byes of data from the accelerometer
+  //error!!
+  HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_ACCEL_OUT, 1, rcvd_data, 6, 1000);
+
+  X_RAW_accel = (uint16_t)(rcvd_data[0] << 8 | rcvd_data[1]);
+  Y_RAW_accel = (uint16_t)(rcvd_data[2] << 8 | rcvd_data[3]);
+  Z_RAW_accel = (uint16_t)(rcvd_data[4] << 8 | rcvd_data[5]);
+
+  /*  16384.0 is device constant  */
+  Ax = X_RAW_accel / 16384.0;
+  Ay = Y_RAW_accel / 16384.0;
+  Az = Z_RAW_accel / 16384.0;
+
 }
 
 /* USER CODE END 4 */
