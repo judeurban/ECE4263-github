@@ -69,6 +69,7 @@ static void MX_I2C4_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -103,6 +104,8 @@ int main(void)
   while (1)
   {
     MPU6050_Read_Accel(&hi2c4);
+    MPU6050_Read_Gyro(&hi2c4);
+
     HAL_Delay(50);
     /* USER CODE END WHILE */
 
@@ -228,9 +231,10 @@ void MPU6050_init(I2C_HandleTypeDef * hi2c)
     a return of 0x68 implies a healthy connection
   */
   
+  // HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, 0x68, 1, &check, 1, 1000);    //returns 0x20 or 0d32
   HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_WHO_AM_I, 1, &check, 1, 1000);
-
-  if(check == (0x68))
+  // if(check == (0x68))
+  if(check == (0x20))
   {
 		// power management register 0X6B we should write all 0's to wake the sensor up
     data = 0x00;
@@ -253,14 +257,16 @@ void MPU6050_init(I2C_HandleTypeDef * hi2c)
   }
 }
 
+//read accelerometer data from the MPU6050. pass the I2C bus!
 void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c)
 {
   uint8_t rcvd_data[6];
 
   //read all six byes of data from the accelerometer
   //error!!
-  HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_ACCEL_OUT, 1, rcvd_data, 6, 1000);
+  HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_ACCEL_OUT, 1, &rcvd_data, 6, 1000);
 
+  //                          MSB(yte)           LSB(yte)
   X_RAW_accel = (uint16_t)(rcvd_data[0] << 8 | rcvd_data[1]);
   Y_RAW_accel = (uint16_t)(rcvd_data[2] << 8 | rcvd_data[3]);
   Z_RAW_accel = (uint16_t)(rcvd_data[4] << 8 | rcvd_data[5]);
@@ -271,6 +277,27 @@ void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c)
   Az = Z_RAW_accel / 16384.0;
 
 }
+
+//read gyro data from the MPU6050. pass the I2C bus!
+void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c)
+{
+  uint8_t rcvd_data[6];
+
+  //read all six byes of data from the gyro
+  //error!!
+  HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_GYRO_OUT, 1, &rcvd_data, 6, 1000);
+
+  X_RAW_gyro = (uint16_t)(rcvd_data[0] << 8 | rcvd_data[1]);
+  Y_RAW_gyro = (uint16_t)(rcvd_data[2] << 8 | rcvd_data[3]);
+  Z_RAW_gyro = (uint16_t)(rcvd_data[4] << 8 | rcvd_data[5]);
+
+  /*  131.0 is device constant  */
+  Gx = X_RAW_gyro / 131.0;
+  Gy = Y_RAW_gyro / 131.0;
+  Gz = Z_RAW_gyro / 131.0;
+
+}
+
 
 /* USER CODE END 4 */
 

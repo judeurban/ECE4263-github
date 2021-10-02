@@ -14,6 +14,9 @@
 #define MPU6050_SMPLRT_DIV 0x19  ///< sample rate divisor register
 #define MPU6050_CONFIG 0x1A      ///< General configuration register
 #define MPU6050_GYRO_CONFIG 0x1B ///< Gyro specfic configuration register
+#define MPU6050_GYRO_OUT 0x43
+
+
 #define MPU6050_ACCEL_CONFIG                                                   \
   0x1C ///< Accelerometer specific configration register
 #define MPU6050_INT_PIN_CONFIG 0x37    ///< Interrupt pin configuration register
@@ -26,13 +29,30 @@
 #define MPU6050_TEMP_L 0x42     ///< Temperature data low byte register
 #define MPU6050_ACCEL_OUT 0x3B  ///< base address for sensor data reads
 
+/*
+
+hex     decimal     register
+
+3B      59          ACCEL_XOUT[15:8]
+3C      60          ACCEL_XOUT[7:0]
+3D      61          ACCEL_YOUT[15:8]
+3E      62          ACCEL_YOUT[7:0]
+3F      63          ACCEL_ZOUT[15:8]
+40      64          ACCEL_ZOUT[7:0]
+
+source: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
+
+*/
+
 int16_t X_RAW_accel = 0;
 int16_t Y_RAW_accel = 0;
 int16_t Z_RAW_accel = 0;
 
-// float Ax, Ay, Az, Gx, Gy, Gz;
-float Ax, Ay, Az;
+int16_t X_RAW_gyro = 0;
+int16_t Y_RAW_gyro = 0;
+int16_t Z_RAW_gyro = 0;
 
+float Ax, Ay, Az, Gx, Gy, Gz;
 
 void MPU6050_init(I2C_HandleTypeDef *);
 void MPU6050_Read_Accel(I2C_HandleTypeDef *);
