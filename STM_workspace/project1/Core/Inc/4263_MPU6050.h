@@ -15,8 +15,6 @@ source: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-
 
 */
 
-// #define MPU6050_I2CADDR_DEFAULT                                                \
-//   0x68                         ///< MPU6050 default i2c address w/ AD0 high
 
 #define MPU6050_I2CADDR_DEFAULT 0xD0                                         \
 
@@ -60,6 +58,6 @@ int16_t Z_RAW_gyro;
 float Ax, Ay, Az, Gx, Gy, Gz;
 
 void MPU6050_init(I2C_HandleTypeDef *);
-void MPU6050_Read_Accel(I2C_HandleTypeDef *);
-void MPU6050_Read_Gyro(I2C_HandleTypeDef *);
+void MPU6050_Read_Accel(I2C_HandleTypeDef *, float *);
+void MPU6050_Read_Gyro(I2C_HandleTypeDef *, float *);
 

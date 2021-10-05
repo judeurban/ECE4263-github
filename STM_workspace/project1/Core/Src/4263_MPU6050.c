@@ -44,7 +44,7 @@ void MPU6050_init(I2C_HandleTypeDef * hi2c)
 }
 
 //read accelerometer data from the MPU6050. pass the I2C bus!
-void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c)
+void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c, float * A)
 {
   uint8_t rcvd_data[6];
 
@@ -58,19 +58,21 @@ void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c)
   Z_RAW_accel = (uint16_t)(rcvd_data[4] << 8 | rcvd_data[5]);
 
   /*  16384.0 is device constant  */
-  Ax = X_RAW_accel / 16384.0;
-  Ay = Y_RAW_accel / 16384.0;
-  Az = Z_RAW_accel / 16384.0;
+
+  A[0] = X_RAW_accel / 16384.0;
+  A[1] = Y_RAW_accel / 16384.0;
+  A[2] = Z_RAW_accel / 16384.0;
+
+  return;
 
 }
 
 //read gyro data from the MPU6050. pass the I2C bus!
-void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c)
+void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c, float * G)
 {
   uint8_t rcvd_data[6];
 
   //read all six byes of data from the gyro
-  //error!!
   HAL_I2C_Mem_Read(hi2c, MPU6050_I2CADDR_DEFAULT, MPU6050_GYRO_OUT, 1, rcvd_data, 6, 1000);
 
   X_RAW_gyro = (uint16_t)(rcvd_data[0] << 8 | rcvd_data[1]);
@@ -78,8 +80,10 @@ void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c)
   Z_RAW_gyro = (uint16_t)(rcvd_data[4] << 8 | rcvd_data[5]);
 
   /*  131.0 is device constant  */
-  Gx = X_RAW_gyro / 131.0;
-  Gy = Y_RAW_gyro / 131.0;
-  Gz = Z_RAW_gyro / 131.0;
+  G[0] = X_RAW_gyro / 131.0;
+  G[1] = Y_RAW_gyro / 131.0;
+  G[2] = Z_RAW_gyro / 131.0;
+
+  return;
 
 }
