@@ -18,7 +18,9 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include "main.h"
+#include "4263_MPU6050.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -74,8 +76,7 @@ int main(void)
   float AccelData[3];
   float GyroData[3];
 
-  uint8_t MSG[35] = {'\0'};
-  uint8_t X = 0;
+  uint8_t MSG[50] = {'\0'};
 
   /* USER CODE END 1 */
 
@@ -114,11 +115,19 @@ int main(void)
     MPU6050_Read_Accel(&hi2c4, AccelData);
     MPU6050_Read_Gyro(&hi2c4, GyroData);
 
-    sprintf(MSG, "Hello Dudes! Tracing X = %d\r\n", X);
+    // sprintf(MSG, "Hello Dudes! Tracing X = %d\r\n", X);
+    // sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
+    
+    // sprintf(MSG, AccelData[0]);
+    gcvt(AccelData[0], 5, MSG);
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    X++;
-    HAL_Delay(500);
 
+    // sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
+
+    // gcvt (float value, int ndigits, char * buf);
+    
+    // X++;
+    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
