@@ -15,3 +15,9 @@ STM_workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 *.prefs
 *.resources
 *.snap
+STM_workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+*.prefs
+*.resources
+*.dat
+STM_workspace/.metadata/.log
+libraries/.DS_Store
