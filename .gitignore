@@ -9,3 +9,9 @@ STM_workspace/project1/Debug
 *.xml
 *.ini
 
+*.xmi
+STM_workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+*.xmi
+*.prefs
+*.resources
+*.snap
