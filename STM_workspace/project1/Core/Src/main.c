@@ -107,8 +107,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    MPU6050_Read_Accel(&hi2c4, &AccelData);
-    MPU6050_Read_Gyro(&hi2c4, &GyroData);
+    MPU6050_Read_Accel(&hi2c4, AccelData);
+    MPU6050_Read_Gyro(&hi2c4, GyroData);
 
     HAL_Delay(50);
     /* USER CODE END WHILE */
