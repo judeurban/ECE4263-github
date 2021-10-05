@@ -125,7 +125,7 @@ int main(void)
     // gcvt (float value, int ndigits, char * buf);
 
     gcvt(AccelData[0], 5, floatstr);
-    sprintf(MSG, "\r\nAx: ");
+    sprintf(MSG, "\r\n\nAx: ");
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
 
@@ -136,6 +136,21 @@ int main(void)
     
     gcvt(AccelData[2], 5, floatstr);
     sprintf(MSG, "\r\nAz: ");
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+    gcvt(GyroData[0], 5, floatstr);
+    sprintf(MSG, "\r\n\nGx: ");
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+    gcvt(GyroData[1], 5, floatstr);
+    sprintf(MSG, "\r\nGy: ");
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    
+    gcvt(GyroData[2], 5, floatstr);
+    sprintf(MSG, "\r\nGz: ");
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
 
