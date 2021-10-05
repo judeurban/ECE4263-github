@@ -73,6 +73,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
+  char floatstr[6];
   float AccelData[3];
   float GyroData[3];
 
@@ -119,12 +120,34 @@ int main(void)
     // sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
     
     // sprintf(MSG, AccelData[0]);
-    gcvt(AccelData[0], 5, MSG);
+    // gcvt(AccelData[0], 5, MSG);
+
+    // gcvt (float value, int ndigits, char * buf);
+
+    gcvt(AccelData[0], 5, floatstr);
+    sprintf(MSG, "\r\nAx: ");
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+    gcvt(AccelData[1], 5, floatstr);
+    sprintf(MSG, "\r\nAy: ");
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    
+    gcvt(AccelData[2], 5, floatstr);
+    sprintf(MSG, "\r\nAz: ");
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+/*
+    sprintf(Buffer,"Hello World");
+    sprintf(Buffer + strlen(Buffer),"Good Morning");
+    sprintf(Buffer + strlen(Buffer),"Good Afternoon");
+*/
+
 
     // sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
 
-    // gcvt (float value, int ndigits, char * buf);
     
     // X++;
     HAL_Delay(500);

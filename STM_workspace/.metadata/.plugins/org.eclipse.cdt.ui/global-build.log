@@ -1,264 +1,70 @@
-15:02:48 **** Incremental Build of configuration Debug for project project1 ****
+15:38:43 **** Incremental Build of configuration Debug for project project1 ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:118:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  118 |     sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
-      |     ^~~~~~~
-../Core/Src/main.c:118:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:118:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  118 |     sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:118:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: project1.elf
- 
-arm-none-eabi-size   project1.elf 
-arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
-arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
-   text	   data	    bss	    dec	    hex	filename
-  19128	    120	   1848	  21096	   5268	project1.elf
-Finished building: default.size.stdout
- 
-Finished building: project1.bin
- 
-Finished building: project1.list
- 
-15:02:54 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-size   project1.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19128	    120	   1848	  21096	   5268	project1.elf
-Finished building: default.size.stdout
- 
-15:04:35 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-size   project1.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19128	    120	   1848	  21096	   5268	project1.elf
-Finished building: default.size.stdout
- 
-15:05:35 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:118:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  118 |     sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
-      |     ^~~~~~~
-../Core/Src/main.c:118:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:118:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  118 |     sprintf(MSG, "Ax: %f\nAy %f\nAz: %f\n\nGx: %f\nGy: %f\nGz: %f\n\n", AccelData[0], AccelData[1], AccelData[2], GyroData[0], GyroData[1], GyroData[2]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:118:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: project1.elf
- 
-arm-none-eabi-size   project1.elf 
-arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
-arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
-   text	   data	    bss	    dec	    hex	filename
-  19128	    120	   1848	  21096	   5268	project1.elf
-Finished building: default.size.stdout
- 
-Finished building: project1.bin
- 
-Finished building: project1.list
- 
-15:09:00 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:120:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  120 |     sprintf(MSG, "Ax: %f", AccelData[0]);
-      |     ^~~~~~~
-../Core/Src/main.c:120:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:120:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  120 |     sprintf(MSG, "Ax: %f", AccelData[0]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:120:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: project1.elf
- 
-arm-none-eabi-size   project1.elf 
-arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
-arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
-   text	   data	    bss	    dec	    hex	filename
-  18976	    120	   1848	  20944	   51d0	project1.elf
-Finished building: default.size.stdout
- 
-Finished building: project1.bin
- 
-Finished building: project1.list
- 
-15:09:48 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:120:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  120 |     sprintf(MSG, "Ax: %f\n", AccelData[0]);
-      |     ^~~~~~~
-../Core/Src/main.c:120:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:120:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  120 |     sprintf(MSG, "Ax: %f\n", AccelData[0]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:120:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: project1.elf
- 
-arm-none-eabi-size   project1.elf 
-arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
-arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
-   text	   data	    bss	    dec	    hex	filename
-  18976	    120	   1848	  20944	   51d0	project1.elf
-Finished building: default.size.stdout
- 
-Finished building: project1.bin
- 
-Finished building: project1.list
- 
-15:09:51 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-size   project1.elf 
-   text	   data	    bss	    dec	    hex	filename
-  18976	    120	   1848	  20944	   51d0	project1.elf
-Finished building: default.size.stdout
- 
-15:10:39 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:120:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  120 |     sprintf(MSG, "Ax: %f\r\n", AccelData[0]);
-      |     ^~~~~~~
-../Core/Src/main.c:120:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:120:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  120 |     sprintf(MSG, "Ax: %f\r\n", AccelData[0]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:120:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: project1.elf
- 
-arm-none-eabi-size   project1.elf 
-arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
-arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
-   text	   data	    bss	    dec	    hex	filename
-  18980	    120	   1848	  20948	   51d4	project1.elf
-Finished building: default.size.stdout
- 
-Finished building: project1.bin
- 
-Finished building: project1.list
- 
-15:12:55 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:120:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  120 |     sprintf(MSG, "Ax: %f\r\n", *AccelData[0]);
-      |     ^~~~~~~
-../Core/Src/main.c:120:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:120:32: error: invalid type argument of unary '*' (have 'float')
-  120 |     sprintf(MSG, "Ax: %f\r\n", *AccelData[0]);
-      |                                ^~~~~~~~~~~~~
-../Core/Src/main.c:120:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  120 |     sprintf(MSG, "Ax: %f\r\n", *AccelData[0]);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:120:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-15:16:24 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:121:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |     ^~~~~~~
-../Core/Src/main.c:121:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:121:61: error: invalid operands to binary % (have 'float' and 'int')
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |                                                 ~~~~~~~~~~~~^
-      |                                                          |
-      |                                                          float
-../Core/Src/main.c:121:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:121:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-15:16:31 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:121:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |     ^~~~~~~
-../Core/Src/main.c:121:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-../Core/Src/main.c:23:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
-   22 | #include "4263_MPU6050.h"
-  +++ |+#include <stdio.h>
-   23 | 
-../Core/Src/main.c:121:61: error: invalid operands to binary % (have 'float' and 'int')
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |                                                 ~~~~~~~~~~~~^
-      |                                                          |
-      |                                                          float
-../Core/Src/main.c:121:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
-  121 |     sprintf(MSG, "Ax: %i.%d\r\n", AccelData[0], AccelData[0]%10);
-      |             ^~~
-      |             |
-      |             uint8_t * {aka unsigned char *}
-../Core/Src/main.c:121:13: note: expected 'char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-15:20:08 **** Incremental Build of configuration Debug for project project1 ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:122:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
-  122 |     gcvt(AccelData[0], 5, MSG);
+../Core/Src/main.c:76:8: error: array size missing in 'floatstr'
+   76 |   char floatstr[];
+      |        ^~~~~~~~
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
       |     ^~~~
+../Core/Src/main.c:128:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:128:18: warning: too many arguments for format [-Wformat-extra-args]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |                  ^~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:38:50 **** Incremental Build of configuration Debug for project project1 ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:76:8: error: array size missing in 'floatstr'
+   76 |   char floatstr[];
+      |        ^~~~~~~~
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:128:18: warning: too many arguments for format [-Wformat-extra-args]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |                  ^~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:39:21 **** Incremental Build of configuration Debug for project project1 ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:128:18: warning: too many arguments for format [-Wformat-extra-args]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |                  ^~~~~~
 arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 Finished building target: project1.elf
  
@@ -266,31 +72,275 @@ arm-none-eabi-size   project1.elf
 arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
 arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
    text	   data	    bss	    dec	    hex	filename
-  28044	    120	   1848	  30012	   753c	project1.elf
+  28984	    120	   1848	  30952	   78e8	project1.elf
 Finished building: default.size.stdout
  
 Finished building: project1.bin
  
 Finished building: project1.list
  
-15:20:52 **** Incremental Build of configuration Debug for project project1 ****
+15:40:19 **** Incremental Build of configuration Debug for project project1 ****
 make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:128:18: warning: too many arguments for format [-Wformat-extra-args]
+  128 |     sprintf(MSG, "Ax: ", floatstr, "\r\n");
+      |                  ^~~~~~
+../Core/Src/main.c:130:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  130 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 5);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
 arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
    text	   data	    bss	    dec	    hex	filename
-  28044	    120	   1848	  30012	   753c	project1.elf
+  28992	    120	   1848	  30960	   78f0	project1.elf
 Finished building: default.size.stdout
  
-15:23:42 **** Incremental Build of configuration Debug for project project1 ****
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:42:07 **** Incremental Build of configuration Debug for project project1 ****
 make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:9: error: assignment to expression with array type
+  128 |     MSG = "\r\nAx: "
+      |         ^
+../Core/Src/main.c:128:21: error: expected ';' before 'HAL_UART_Transmit'
+  128 |     MSG = "\r\nAx: "
+      |                     ^
+      |                     ;
+  129 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+      |     ~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:130:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  130 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:133:9: error: assignment to expression with array type
+  133 |     MSG = "\r\nAy: "
+      |         ^
+../Core/Src/main.c:133:21: error: expected ';' before 'HAL_UART_Transmit'
+  133 |     MSG = "\r\nAy: "
+      |                     ^
+      |                     ;
+  134 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+      |     ~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  135 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:138:9: error: assignment to expression with array type
+  138 |     MSG = "\r\nAz: "
+      |         ^
+../Core/Src/main.c:138:21: error: expected ';' before 'HAL_UART_Transmit'
+  138 |     MSG = "\r\nAz: "
+      |                     ^
+      |                     ;
+  139 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+      |     ~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:140:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  140 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:80:11: warning: variable 'MSG' set but not used [-Wunused-but-set-variable]
+   80 |   uint8_t MSG[50] = {'\0'};
+      |           ^~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:42:30 **** Incremental Build of configuration Debug for project project1 ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:9: error: assignment to expression with array type
+  128 |     MSG = "\r\nAx: ";
+      |         ^
+../Core/Src/main.c:130:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  130 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:133:9: error: assignment to expression with array type
+  133 |     MSG = "\r\nAy: ";
+      |         ^
+../Core/Src/main.c:135:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  135 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:138:9: error: assignment to expression with array type
+  138 |     MSG = "\r\nAz: ";
+      |         ^
+../Core/Src/main.c:140:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  140 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:43:15 **** Incremental Build of configuration Debug for project project1 ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  127 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:128:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  128 |     sprintf(MSG, "\r\nAx: ");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:130:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  130 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:133:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  133 |     sprintf(MSG, "\r\nAy: ");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:135:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  135 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:138:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  138 |     sprintf(MSG, "\r\nAz: ");
+      |             ^~~
+      |             |
+      |             uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:21:
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.macos64_2.0.0.202105311346/tools/arm-none-eabi/include/stdio.h:244:14: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  244 | int sprintf (char *__restrict, const char *__restrict, ...)
+      |              ^
+../Core/Src/main.c:140:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  140 |     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+      |                                ^~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/project1/STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
 arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
    text	   data	    bss	    dec	    hex	filename
-  28044	    120	   1848	  30012	   753c	project1.elf
+  29136	    120	   1848	  31104	   7980	project1.elf
 Finished building: default.size.stdout
  
-15:23:44 **** Incremental Build of configuration Debug for project project1 ****
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:43:28 **** Incremental Build of configuration Debug for project project1 ****
 make -j7 all 
 arm-none-eabi-size   project1.elf 
    text	   data	    bss	    dec	    hex	filename
-  28044	    120	   1848	  30012	   753c	project1.elf
+  29136	    120	   1848	  31104	   7980	project1.elf
 Finished building: default.size.stdout
  
