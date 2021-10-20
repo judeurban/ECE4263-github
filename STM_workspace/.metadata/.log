@@ -431,3 +431,19 @@ java.io.FileNotFoundException: /Users/judeurban/OneDrive - University of Tulsa/f
 	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2333)
 	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:542)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+!SESSION 2021-10-20 18:21:49.274 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/judeurban/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/judeurban/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-10-20 18:21:55.607
+!MESSAGE Log4j initialized with config file /Users/judeurban/OneDrive - University of Tulsa/fs2021/mpdd/ECE4263-github/STM_workspace/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-10-20 18:22:01.218
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-10-20 18:22:04.687
+!MESSAGE Indexed 'project1' (26 sources, 143 headers) in 5.71 sec: 12,114 declarations; 47,606 references; 2 unresolved inclusions; 42 syntax errors; 784 unresolved names (1.3%)

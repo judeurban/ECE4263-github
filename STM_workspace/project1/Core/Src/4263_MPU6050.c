@@ -67,9 +67,9 @@ void MPU6050_Read_Accel(I2C_HandleTypeDef * hi2c, float * A)
 
     /*  16384.0 is device constant  */
 
-    A[0] = X_avg / 16384.0 / (float)AVERAGE_AMOUNT;
-    A[1] = Y_avg / 16384.0 / (float)AVERAGE_AMOUNT;
-    A[2] = Z_avg / 16384.0 / (float)AVERAGE_AMOUNT;
+    A[0] = X_avg / 16384.0 / (double)AVERAGE_AMOUNT;
+    A[1] = Y_avg / 16384.0 / (double)AVERAGE_AMOUNT;
+    A[2] = Z_avg / 16384.0 / (double)AVERAGE_AMOUNT;
 
 }
 
@@ -101,8 +101,8 @@ void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c, float * G)
   }
 
   /*  131.0 is device constant  */
-  G[0] = X_avg / 131.0 / (float)AVERAGE_AMOUNT;
-  G[1] = Y_avg / 131.0 / (float)AVERAGE_AMOUNT;
-  G[2] = Z_avg / 131.0 / (float)AVERAGE_AMOUNT;
+  G[0] = X_avg / 131.0 / (double)AVERAGE_AMOUNT;
+  G[1] = Y_avg / 131.0 / (double)AVERAGE_AMOUNT;
+  G[2] = Z_avg / 131.0 / (double)AVERAGE_AMOUNT;
 
 }
