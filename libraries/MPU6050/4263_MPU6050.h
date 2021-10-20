@@ -15,9 +15,9 @@
 #define MPU6050_USER_CTRL         0x6A      // FIFO and I2C Master control register
 #define MPU6050_PWR_MGMT_1        0x6B      // Primary power/sleep control register
 #define MPU6050_PWR_MGMT_2        0x6C      // Secondary power/sleep control register
-#define MPU6050_TEMP_H            0x41      //Temperature data high byte register
-#define MPU6050_TEMP_L            0x42      // Temperature data low byte register
 #define MPU6050_ACCEL_OUT         0x3B      // base address for sensor data reads
+
+#define AVERAGE_AMOUNT            20        // determines how many measurements will be averaged
 
 /* variables  */
 
@@ -48,3 +48,37 @@ hex     decimal     register
 source: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
 
 */
+
+/*
+
++---------------+-----+-----+-----+
+|               |  x  |  y  |  z  |
++===============+=====+=====+=====+
+| accelerometer | [0] | [1] | [2] |
++---------------+-----+-----+-----+
+|   gyroscope   | [0] | [1] | [2] |
++---------------+-----+-----+-----+
+
+*?
+
+
+
+
+    Ax: -0.274
+    Ay: -1.032
+    Az: -0.717
+
+    Gx: 197.69
+    Gy: 18.916
+    Gz: -58.74
+
+    Ax: 0.2612
+    Ay: 0.0615
+    Az: 0.9470
+
+    Gx: 76.29
+    Gy: 1.9084
+    Gz: -30.37
+
+*/
+
