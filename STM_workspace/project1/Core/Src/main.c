@@ -142,7 +142,7 @@ int main(void)
     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
 
     gcvt(GyroData[0], 5, floatstr);
-    sprintf(MSG, "\r\n\nGx: ");
+    sprintf(MSG, "\r\nGx: ");
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
     HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
 
