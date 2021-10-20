@@ -17,6 +17,8 @@
 #define MPU6050_PWR_MGMT_2        0x6C      // Secondary power/sleep control register
 #define MPU6050_ACCEL_OUT         0x3B      // base address for sensor data reads
 
+#define AVERAGE_AMOUNT            20        // determines how many measurements will be averaged
+
 /* variables  */
 
 float Ax, Ay, Az, Gx, Gy, Gz;
@@ -78,6 +80,5 @@ source: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Register-
     Gy: 1.9084
     Gz: -30.37
 
+*/
 
-
-    

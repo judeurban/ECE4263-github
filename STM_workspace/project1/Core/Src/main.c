@@ -30,6 +30,8 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+#define TIME_DELAY 500    // millisecconds
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -165,7 +167,7 @@ int main(void)
 
     
     // X++;
-    HAL_Delay(500);
+    HAL_Delay(TIME_DELAY);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
