@@ -17,7 +17,7 @@
 #define MPU6050_PWR_MGMT_2        0x6C      // Secondary power/sleep control register
 #define MPU6050_ACCEL_OUT         0x3B      // base address for sensor data reads
 
-#define AVERAGE_AMOUNT            20        // determines how many measurements will be averaged
+#define AVERAGE_AMOUNT            10        // determines how many measurements will be averaged
 
 /* variables  */
 
@@ -31,6 +31,7 @@ int16_t X_RAW_gyro, Y_RAW_gyro, Z_RAW_gyro;
 void MPU6050_init(I2C_HandleTypeDef *);
 void MPU6050_Read_Accel(I2C_HandleTypeDef *, float *);
 void MPU6050_Read_Gyro(I2C_HandleTypeDef *, float *);
+//void MPU6050_SerialOscilloscope(UART_HandleTypeDef *, float *, float *);
 
 /*  
 

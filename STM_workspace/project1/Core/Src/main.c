@@ -136,14 +136,49 @@ int main(void)
     // // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 10);
     // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
 
-    MSG[0] = '\0';         // clear message buffer
-    gcvt(GyroData[0], 5, floatstr);
-    for (int i = 0 ; i < strlen(floatstr) ; i++)
-    {
-      MSG[i] = floatstr[i];
-    }
+//    MSG[0] = '\0';         // clear message buffer
 
-    MSG[strlen(floatstr) + 1] = '\r';
+	  MSG[0] = '\0';          // clear message buffer
+
+    // channel four
+    gcvt(GyroData[0], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel five
+    gcvt(GyroData[1], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel six
+    gcvt(GyroData[2], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel one
+    gcvt(AccelData[0], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel two
+    gcvt(AccelData[1], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel three
+    gcvt(AccelData[2], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, "\r");
+
+    
+  //   for (int i = 0 ; i < strlen(floatstr) ; i++)
+  //   {
+  //     MSG[i] = floatstr[i];
+  //   }
+
+	// uint16_t length = strlen(MSG);
+  //   MSG[strlen(floatstr) + 1] = '\r';
+
     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
 
 

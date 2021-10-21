@@ -106,3 +106,32 @@ void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c, float * G)
   G[2] = Z_avg / 131.0 / (double)AVERAGE_AMOUNT;
 
 }
+
+// Visualize data  with the Serial Oscilloscope application
+// Download here:
+// https://x-io.co.uk/serial-oscilloscope/
+//void MPU6050_SerialOscilloscope(UART_HandleTypeDef * uart, float * accel, float * gyro)
+//{
+//  char MSG[50];
+//  char floatstr[5];
+//  MSG[0] = '\0';        // clear message
+//
+//  gcvt(gyro[0], 5, floatstr);
+//  for (int i = 0 ; i < strlen(floatstr) ; i++)
+//  {
+//    MSG[i] = floatstr[i];
+//  }
+//
+//  MSG[strlen(MSG) + 1] = ',';
+//
+//  gcvt(gyro[1], 5, floatstr);
+//  for (int i = 0 ; i < strlen(floatstr) ; i++)
+//  {
+//    MSG[i] = floatstr[i];
+//  }
+//
+//  MSG[strlen(MSG) + 1] = '\n';
+//  HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+//
+//
+//}

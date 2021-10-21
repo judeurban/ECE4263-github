@@ -15,3 +15,1180 @@ Finished building: project1.bin
  
 Finished building: project1.list
  
+15:30:00 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:118:3: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |   ^~~~
+../Core/Src/4263_MPU6050.c:118:20: error: 'floatstr' undeclared (first use in this function); did you mean 'float'?
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |                    ^~~~~~~~
+      |                    float
+../Core/Src/4263_MPU6050.c:118:20: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/4263_MPU6050.c:119:24: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  119 |   for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                        ^~~~~~
+../Core/Src/4263_MPU6050.c:119:24: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    2 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+    3 | 
+../Core/Src/4263_MPU6050.c:124:7: warning: incompatible implicit declaration of built-in function 'strlen'
+  124 |   MSG[strlen(MSG) + 1] = ',';
+      |       ^~~~~~
+../Core/Src/4263_MPU6050.c:124:7: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/4263_MPU6050.c:132:30: error: expected ';' before 'HAL_UART_Transmit'
+  132 |   MSG[strlen(MSG) + 1] = '\n'
+      |                              ^
+      |                              ;
+  133 |   HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |   ~~~~~~~~~~~~~~~~~           
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:151:59: error: expected ';' before 'HAL_Delay'
+  151 |   MPU6050_SerialOscilloscope(&huart3, AccelData, GyroData)
+      |                                                           ^
+      |                                                           ;
+......
+  192 |     HAL_Delay(TIME_DELAY);
+      |     ~~~~~~~~~                                              
+../Core/Src/main.c:82:8: warning: unused variable 'MSG' [-Wunused-variable]
+   82 |   char MSG[50];
+      |        ^~~
+../Core/Src/main.c:78:8: warning: unused variable 'floatstr' [-Wunused-variable]
+   78 |   char floatstr[6];
+      |        ^~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/4263_MPU6050.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:30:06 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:118:3: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |   ^~~~
+../Core/Src/4263_MPU6050.c:118:20: error: 'floatstr' undeclared (first use in this function); did you mean 'float'?
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |                    ^~~~~~~~
+      |                    float
+../Core/Src/4263_MPU6050.c:118:20: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/4263_MPU6050.c:119:24: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  119 |   for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                        ^~~~~~
+../Core/Src/4263_MPU6050.c:119:24: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    2 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+    3 | 
+../Core/Src/4263_MPU6050.c:124:7: warning: incompatible implicit declaration of built-in function 'strlen'
+  124 |   MSG[strlen(MSG) + 1] = ',';
+      |       ^~~~~~
+../Core/Src/4263_MPU6050.c:124:7: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/4263_MPU6050.c:132:30: error: expected ';' before 'HAL_UART_Transmit'
+  132 |   MSG[strlen(MSG) + 1] = '\n'
+      |                              ^
+      |                              ;
+  133 |   HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |   ~~~~~~~~~~~~~~~~~           
+make: *** [Core/Src/subdir.mk:37: Core/Src/4263_MPU6050.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:82:8: warning: unused variable 'MSG' [-Wunused-variable]
+   82 |   char MSG[50];
+      |        ^~~
+../Core/Src/main.c:78:8: warning: unused variable 'floatstr' [-Wunused-variable]
+   78 |   char floatstr[6];
+      |        ^~~~~~~~
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:30:25 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:118:3: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |   ^~~~
+../Core/Src/4263_MPU6050.c:118:20: error: 'floatstr' undeclared (first use in this function); did you mean 'float'?
+  118 |   gcvt(gyro[0], 5, floatstr);
+      |                    ^~~~~~~~
+      |                    float
+../Core/Src/4263_MPU6050.c:118:20: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/4263_MPU6050.c:119:24: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  119 |   for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                        ^~~~~~
+../Core/Src/4263_MPU6050.c:119:24: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    2 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+    3 | 
+../Core/Src/4263_MPU6050.c:124:7: warning: incompatible implicit declaration of built-in function 'strlen'
+  124 |   MSG[strlen(MSG) + 1] = ',';
+      |       ^~~~~~
+../Core/Src/4263_MPU6050.c:124:7: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/4263_MPU6050.c:133:27: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  133 |   HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |                           ^~~
+      |                           |
+      |                           char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/4263_MPU6050.c:1:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/4263_MPU6050.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:30:49 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:116:8: error: array size missing in 'floatstr'
+  116 |   char floatstr[];
+      |        ^~~~~~~~
+../Core/Src/4263_MPU6050.c:119:3: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  119 |   gcvt(gyro[0], 5, floatstr);
+      |   ^~~~
+../Core/Src/4263_MPU6050.c:120:24: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  120 |   for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                        ^~~~~~
+../Core/Src/4263_MPU6050.c:120:24: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    2 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+    3 | 
+../Core/Src/4263_MPU6050.c:125:7: warning: incompatible implicit declaration of built-in function 'strlen'
+  125 |   MSG[strlen(MSG) + 1] = ',';
+      |       ^~~~~~
+../Core/Src/4263_MPU6050.c:125:7: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/4263_MPU6050.c:134:27: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  134 |   HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |                           ^~~
+      |                           |
+      |                           char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/4263_MPU6050.c:1:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/4263_MPU6050.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:31:01 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:119:3: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  119 |   gcvt(gyro[0], 5, floatstr);
+      |   ^~~~
+../Core/Src/4263_MPU6050.c:120:24: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  120 |   for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                        ^~~~~~
+../Core/Src/4263_MPU6050.c:120:24: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    2 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+    3 | 
+../Core/Src/4263_MPU6050.c:125:7: warning: incompatible implicit declaration of built-in function 'strlen'
+  125 |   MSG[strlen(MSG) + 1] = ',';
+      |       ^~~~~~
+../Core/Src/4263_MPU6050.c:125:7: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/4263_MPU6050.c:134:27: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  134 |   HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |                           ^~~
+      |                           |
+      |                           char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/4263_MPU6050.c:1:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28564	    120	   1848	  30532	   7744	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:31:40 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:9: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |     MSG[strlen(floatstr) + 1] = '\r';
+      |         ^~~~~~
+../Core/Src/main.c:146:9: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:147:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  147 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28412	    120	   1848	  30380	   76ac	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:31:42 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28412	    120	   1848	  30380	   76ac	project1.elf
+Finished building: default.size.stdout
+ 
+15:33:11 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:2: error: 'length' undeclared (first use in this function)
+  146 |  length = strlen(MSG);
+      |  ^~~~~~
+../Core/Src/main.c:146:2: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:146:11: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |  length = strlen(MSG);
+      |           ^~~~~~
+../Core/Src/main.c:146:11: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:148:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  148 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:33:11 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:2: error: 'length' undeclared (first use in this function)
+  146 |  length = strlen(MSG);
+      |  ^~~~~~
+../Core/Src/main.c:146:2: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:146:11: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |  length = strlen(MSG);
+      |           ^~~~~~
+../Core/Src/main.c:146:11: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:148:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  148 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:33:36 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:20: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |  uint16_t length = strlen(MSG);
+      |                    ^~~~~~
+../Core/Src/main.c:146:20: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:148:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  148 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:146:11: warning: unused variable 'length' [-Wunused-variable]
+  146 |  uint16_t length = strlen(MSG);
+      |           ^~~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28428	    120	   1848	  30396	   76bc	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:35:25 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:20: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |  uint16_t length = strlen(MSG);
+      |                    ^~~~~~
+../Core/Src/main.c:146:20: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:148:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  148 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:146:11: warning: unused variable 'length' [-Wunused-variable]
+  146 |  uint16_t length = strlen(MSG);
+      |           ^~~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28428	    120	   1848	  30396	   76bc	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:36:13 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:26: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  141 |     for (int i = 0 ; i < strlen(floatstr) ; i++)
+      |                          ^~~~~~
+../Core/Src/main.c:141:26: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:20: warning: incompatible implicit declaration of built-in function 'strlen'
+  146 |  uint16_t length = strlen(MSG);
+      |                    ^~~~~~
+../Core/Src/main.c:146:20: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:148:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  148 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+../Core/Src/main.c:146:11: warning: unused variable 'length' [-Wunused-variable]
+  146 |  uint16_t length = strlen(MSG);
+      |           ^~~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28420	    120	   1848	  30388	   76b4	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:36:24 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28420	    120	   1848	  30388	   76b4	project1.elf
+Finished building: default.size.stdout
+ 
+15:40:36 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  141 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:141:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:142:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  142 |     strcat(MSG, ",")
+      |     ^~~~~~
+../Core/Src/main.c:142:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:142:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:142:21: error: expected ';' before 'gcvt'
+  142 |     strcat(MSG, ",")
+      |                     ^
+      |                     ;
+  143 | 
+  144 |     gcvt(GyroData[1], 5, floatstr);
+      |     ~~~~             
+../Core/Src/main.c:146:22: error: expected ';' before 'HAL_UART_Transmit'
+  146 |     strcat(MSG, "\r")
+      |                      ^
+      |                      ;
+......
+  154 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |     ~~~~~~~~~~~~~~~~~ 
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:40:36 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  141 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:141:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:142:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  142 |     strcat(MSG, ",")
+      |     ^~~~~~
+../Core/Src/main.c:142:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:142:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:142:21: error: expected ';' before 'gcvt'
+  142 |     strcat(MSG, ",")
+      |                     ^
+      |                     ;
+  143 | 
+  144 |     gcvt(GyroData[1], 5, floatstr);
+      |     ~~~~             
+../Core/Src/main.c:146:22: error: expected ';' before 'HAL_UART_Transmit'
+  146 |     strcat(MSG, "\r")
+      |                      ^
+      |                      ;
+......
+  154 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |     ~~~~~~~~~~~~~~~~~ 
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:40:51 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  140 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:141:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  141 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:141:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:142:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  142 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:142:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:142:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:154:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  154 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28452	    120	   1848	  30420	   76d4	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:41:37 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28452	    120	   1848	  30420	   76d4	project1.elf
+Finished building: default.size.stdout
+ 
+15:41:50 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28452	    120	   1848	  30420	   76d4	project1.elf
+Finished building: default.size.stdout
+ 
+15:44:14 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:141:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  141 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:142:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  142 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:142:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:143:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  143 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:143:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:143:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:161:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  161 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:45:34 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:142:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  142 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:143:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  143 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:143:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  144 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:144:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:144:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:163:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  163 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:46:06 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+15:46:06 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+15:46:42 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+15:46:43 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+15:46:49 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28524	    120	   1848	  30492	   771c	project1.elf
+Finished building: default.size.stdout
+ 
+15:49:28 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  145 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  146 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:146:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:146:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:172:1: error: stray '`' in program
+  172 | `
+      | ^
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:43 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  145 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  146 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:146:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:146:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:172:1: error: stray '`' in program
+  172 | `
+      | ^
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:54 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  145 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  146 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:146:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:146:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28732	    120	   1848	  30700	   77ec	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:51:37 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(AccelData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  145 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcpy'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  146 |     strcat(MSG, ",");
+      |     ^~~~~~
+../Core/Src/main.c:146:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:146:5: note: include '<string.h>' or provide a declaration of 'strcat'
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28756	    120	   1848	  30724	   7804	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:52:34 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:159:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  159 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:160:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  160 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:160:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28556	    120	   1848	  30524	   773c	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:53:41 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:159:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  159 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:160:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  160 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:160:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28556	    120	   1848	  30524	   773c	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:54:43 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:159:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  159 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:160:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  160 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:160:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28556	    120	   1848	  30524	   773c	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:55:50 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  145 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  146 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:146:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:161:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  161 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:161:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:161:5: note: include '<string.h>' or provide a declaration of 'strcpy'
+../Core/Src/main.c:183:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  183 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28756	    120	   1848	  30724	   7804	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:56:01 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-size   project1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  28756	    120	   1848	  30724	   7804	project1.elf
+Finished building: default.size.stdout
+ 
+15:58:06 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  145 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:160:5: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+  160 |     strcpy(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:160:5: warning: incompatible implicit declaration of built-in function 'strcpy'
+../Core/Src/main.c:160:5: note: include '<string.h>' or provide a declaration of 'strcpy'
+../Core/Src/main.c:182:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  182 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28756	    120	   1848	  30724	   7804	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
+15:59:13 **** Incremental Build of configuration Debug for project project1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  144 |     gcvt(GyroData[0], 5, floatstr);
+      |     ^~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  145 |     strcat(MSG, floatstr);
+      |     ^~~~~~
+../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
+   23 | #include "4263_MPU6050.h"
+  +++ |+#include <string.h>
+   24 | 
+../Core/Src/main.c:182:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  182 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+      |                                ^~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
+                 from ../Core/Inc/main.h:31,
+                 from ../Core/Src/main.c:22:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~^~~~~
+arm-none-eabi-g++ -o "project1.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\project1\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="project1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: project1.elf
+ 
+arm-none-eabi-size   project1.elf 
+arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
+arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
+   text	   data	    bss	    dec	    hex	filename
+  28756	    120	   1848	  30724	   7804	project1.elf
+Finished building: default.size.stdout
+ 
+Finished building: project1.bin
+ 
+Finished building: project1.list
+ 
