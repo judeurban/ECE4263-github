@@ -1,27 +1,27 @@
-15:59:13 **** Incremental Build of configuration Debug for project project1 ****
+16:08:03 **** Incremental Build of configuration Debug for project project1 ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:144:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
-  144 |     gcvt(GyroData[0], 5, floatstr);
+arm-none-eabi-gcc "../Core/Src/4263_MPU6050.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/4263_MPU6050.d" -MT"Core/Src/4263_MPU6050.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/4263_MPU6050.o"
+../Core/Src/4263_MPU6050.c: In function 'MPU6050_SerialOscilloscope':
+../Core/Src/4263_MPU6050.c:120:5: warning: implicit declaration of function 'gcvt' [-Wimplicit-function-declaration]
+  120 |     gcvt(floatA1[0], 5, floatstr);
       |     ^~~~
-../Core/Src/main.c:145:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
-  145 |     strcat(MSG, floatstr);
+../Core/Src/4263_MPU6050.c:121:5: warning: implicit declaration of function 'strcat' [-Wimplicit-function-declaration]
+  121 |     strcat(MSG, floatstr);
       |     ^~~~~~
-../Core/Src/main.c:145:5: warning: incompatible implicit declaration of built-in function 'strcat'
-../Core/Src/main.c:24:1: note: include '<string.h>' or provide a declaration of 'strcat'
-   23 | #include "4263_MPU6050.h"
+../Core/Src/4263_MPU6050.c:121:5: warning: incompatible implicit declaration of built-in function 'strcat'
+../Core/Src/4263_MPU6050.c:3:1: note: include '<string.h>' or provide a declaration of 'strcat'
+    2 | #include "4263_MPU6050.h"
   +++ |+#include <string.h>
-   24 | 
-../Core/Src/main.c:182:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  182 |     HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
-      |                                ^~~
-      |                                |
-      |                                char *
+    3 | 
+../Core/Src/4263_MPU6050.c:149:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  149 |     HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
+      |                             ^~~
+      |                             |
+      |                             char *
 In file included from ../Core/Inc/stm32f7xx_hal_conf.h:410,
                  from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:30,
                  from ../Core/Inc/main.h:31,
-                 from ../Core/Src/main.c:22:
+                 from ../Core/Src/4263_MPU6050.c:1:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1531:73: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
  1531 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~^~~~~
@@ -32,7 +32,7 @@ arm-none-eabi-size   project1.elf
 arm-none-eabi-objdump -h -S  project1.elf  > "project1.list"
 arm-none-eabi-objcopy  -O binary  project1.elf  "project1.bin"
    text	   data	    bss	    dec	    hex	filename
-  28756	    120	   1848	  30724	   7804	project1.elf
+  28748	    120	   1904	  30772	   7834	project1.elf
 Finished building: default.size.stdout
  
 Finished building: project1.bin
@@ -40,5 +40,5 @@ Finished building: project1.bin
 Finished building: project1.list
  
 
-15:59:14 Build Finished. 0 errors, 4 warnings. (took 1s.166ms)
+16:08:04 Build Finished. 0 errors, 4 warnings. (took 1s.111ms)
 

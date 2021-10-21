@@ -21,17 +21,19 @@
 
 /* variables  */
 
-float Ax, Ay, Az, Gx, Gy, Gz;
-
 int16_t X_RAW_accel, Y_RAW_accel, Z_RAW_accel;
 int16_t X_RAW_gyro, Y_RAW_gyro, Z_RAW_gyro;
+float Ax, Ay, Az, Gx, Gy, Gz;
+char MSG[50];
+char floatstr[6];
+
 
 /* functions  */
 
 void MPU6050_init(I2C_HandleTypeDef *);
 void MPU6050_Read_Accel(I2C_HandleTypeDef *, float *);
 void MPU6050_Read_Gyro(I2C_HandleTypeDef *, float *);
-//void MPU6050_SerialOscilloscope(UART_HandleTypeDef *, float *, float *);
+void MPU6050_SerialOscilloscope(UART_HandleTypeDef *, float *, float *);
 
 /*  
 
