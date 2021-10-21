@@ -30,7 +30,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-#define TIME_DELAY 500    // millisecconds
+#define TIME_DELAY 50    // millisecconds
 
 /* USER CODE END PTD */
 
@@ -79,7 +79,7 @@ int main(void)
   float AccelData[3];
   float GyroData[3];
 
-  uint8_t MSG[50] = {'\0'};
+  char MSG[50];
 
   /* USER CODE END 1 */
 
@@ -124,37 +124,56 @@ int main(void)
     // sprintf(MSG, AccelData[0]);
     // gcvt(AccelData[0], 5, MSG);
 
-    // gcvt (float value, int ndigits, char * buf);
+    // Serial Oscilloscope is compatible with any serial stream 
+    // containing comma-separated values terminated by a new-line character ("\r"). 
+    // For example,"11,22,33\r" will be interpreted as values 11, 22 and 33 for channels 1, 2 and 3 respectively. 
 
-    gcvt(AccelData[0], 5, floatstr);
-    sprintf(MSG, "\r\n\nAx: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    // MSG[0] = '\0';         // clear message buffer
+    // gcvt(GyroData[0], 5, floatstr);
+    // // sprintf(MSG, "4");
+    // strcat(MSG, floatstr);
+    // strcat(MSG, "\r");
+    // // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 10);
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
 
-    gcvt(AccelData[1], 5, floatstr);
-    sprintf(MSG, "\r\nAy: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
-    
-    gcvt(AccelData[2], 5, floatstr);
-    sprintf(MSG, "\r\nAz: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
-
+    MSG[0] = '\0';         // clear message buffer
     gcvt(GyroData[0], 5, floatstr);
-    sprintf(MSG, "\r\nGx: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    for (int i = 0 ; i < strlen(floatstr) ; i++)
+    {
+      MSG[i] = floatstr[i];
+    }
 
-    gcvt(GyroData[1], 5, floatstr);
-    sprintf(MSG, "\r\nGy: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    MSG[strlen(floatstr) + 1] = '\r';
+    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 10);
+
+
+
+
+
+    // gcvt(AccelData[1], 5, floatstr);
+    // sprintf(MSG, "\r\nAy: ");
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
     
-    gcvt(GyroData[2], 5, floatstr);
-    sprintf(MSG, "\r\nGz: ");
-    HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
-    HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    // gcvt(AccelData[2], 5, floatstr);
+    // sprintf(MSG, "\r\nAz: ");
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+    // gcvt(GyroData[0], 5, floatstr);
+    // sprintf(MSG, "\r\nGx: ");
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+
+    // gcvt(GyroData[1], 5, floatstr);
+    // sprintf(MSG, "\r\nGy: ");
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
+    
+    // gcvt(GyroData[2], 5, floatstr);
+    // sprintf(MSG, "\r\nGz: ");
+    // HAL_UART_Transmit(&huart3, MSG, sizeof(MSG), 100);
+    // HAL_UART_Transmit(&huart3, floatstr, sizeof(floatstr), 100);
 
 /*
     sprintf(Buffer,"Hello World");
