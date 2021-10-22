@@ -4,7 +4,7 @@
 /*
 initialize the MPU6050
 pass:
-I2C_HandleTypeDef * ----- your initilized I2C bus
+I2C_HandleTypeDef * ----- your initialized  I2C bus
 */
 void MPU6050_init(I2C_HandleTypeDef * hi2c)
 {
@@ -147,6 +147,5 @@ void MPU6050_SerialOscilloscope(UART_HandleTypeDef * uart, float * floatA1, floa
     strcat(MSG, "\r");
 
     HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
-
 
 }

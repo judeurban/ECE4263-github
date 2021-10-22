@@ -4,7 +4,7 @@
 /*
 initialize the MPU6050
 pass:
-I2C_HandleTypeDef * ----- your initilized I2C bus
+I2C_HandleTypeDef * ----- your initialized  I2C bus
 */
 void MPU6050_init(I2C_HandleTypeDef * hi2c)
 {
@@ -104,5 +104,48 @@ void MPU6050_Read_Gyro(I2C_HandleTypeDef * hi2c, float * G)
   G[0] = X_avg / 131.0 / (double)AVERAGE_AMOUNT;
   G[1] = Y_avg / 131.0 / (double)AVERAGE_AMOUNT;
   G[2] = Z_avg / 131.0 / (double)AVERAGE_AMOUNT;
+
+}
+
+// Visualize data  with the Serial Oscilloscope application
+// Download here:
+// https://x-io.co.uk/serial-oscilloscope/
+// Pass UART bus object, float array to be displayed 
+// on channel 1-3, then float array to be displayed on channels 4-6
+void MPU6050_SerialOscilloscope(UART_HandleTypeDef * uart, float * floatA1, float * floatA2)
+{
+	  MSG[0] = '\0';          // clear message buffer
+
+    // channel one
+    gcvt(floatA1[0], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel two
+    gcvt(floatA1[1], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel three
+    gcvt(floatA1[2], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel four
+    gcvt(floatA2[0], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel five
+    gcvt(floatA2[1], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, ",");
+
+    // channel six
+    gcvt(floatA2[2], 5, floatstr);
+    strcat(MSG, floatstr);
+    strcat(MSG, "\r");
+
+    HAL_UART_Transmit(uart, MSG, sizeof(MSG), 10);
 
 }
