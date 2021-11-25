@@ -182,6 +182,7 @@ SECTIONS
     libgcc.a ( * )
   }
   
+  /*
   .lwip_sec (NOLOAD) :
   {
   	. = ABSOLUTE(0x20010000);
@@ -196,7 +197,7 @@ SECTIONS
   	. = ABSOLUTE(0x200118D0);
   	*(.TxArraySection)
   } >RAM
-  
+  */
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
 }
