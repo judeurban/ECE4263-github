@@ -30,14 +30,15 @@
 #include "udpClientRAW.h"
 
 struct udp_pcb *upcb;
-char buffer[100];
+char received_buffer[100];
 int counter = 0;
 
 #define HOST_PORT 12345
 #define LOCAL_PORT 7
 
-  void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
+void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
 
+// extern Bool server_connected = false;
 
 /* IMPLEMENTATION FOR UDP CLIENT :   source:https://www.geeksforgeeks.org/udp-server-client-implementation-c/
 
@@ -64,15 +65,18 @@ void udpClient_connect(void)
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
 	IP_ADDR4(&DestIPaddr, 192,168,2,95);
-	err= udp_connect(upcb, &DestIPaddr, 20001);
+	err = udp_connect(upcb, &DestIPaddr, 20001);
 
 	if (err == ERR_OK)
 	{
+		 server_connected = true;
+
 		/* 2. Send message to server */
 		udpClient_send();
 
-		/* 3. Set a receive callback for the upcb */
-		udp_recv(upcb, udp_client_receive_callback, NULL);
+    /* 3. Set a receive callback for the upcb */
+    // subscribe to a server callback
+		udp_recv(upcb, udpClient_receive_callback, NULL);
 	}
 }
 
@@ -99,17 +103,21 @@ void udpClient_send(void)
   }
 }
 
-
-void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
+// this function is run on callback event from the python server
+void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
 	/* Copy the data from the pbuf */
-	strncpy (buffer, (char *)p->payload, p->len);
+	strncpy (received_buffer, (char *)p->payload, p->len);
 
 	/*increment message count */
 	counter++;
 
 	/* Free receive pbuf */
 	pbuf_free(p);
+
+  //	reset buffer
+  memset(received_buffer, 0, strlen(received_buffer));
+
 }
 
 

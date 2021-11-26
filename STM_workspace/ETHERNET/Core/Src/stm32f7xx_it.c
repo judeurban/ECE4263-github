@@ -21,6 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f7xx_it.h"
+#include "udpClientRAW.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -56,7 +57,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim14;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -198,6 +199,28 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f7xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
+  */
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim14);
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
+  
+  if(server_connected)
+  {
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+    udpClient_send();
+
+  }
+
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
+}
 
 /* USER CODE BEGIN 1 */
 

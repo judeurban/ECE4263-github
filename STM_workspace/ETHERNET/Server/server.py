@@ -1,33 +1,46 @@
-
+import time
 import socket
 
-localIP     = "192.168.2.95"
-localPort   = 20001
+hostIP     = "192.168.2.95"
+hostPort   = 20001
 bufferSize  = 1024
 
-msgFromServer       = "Hello UDP Client"
-bytesToSend         = str.encode(msgFromServer)
+def createSocket():
+    global UDPServerSocket
 
-# Create a datagram socket
-UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    # Create a datagram socket
+    UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-# Bind to address and ip
-UDPServerSocket.bind((localIP, localPort))
+    # Bind to clientAdress and ip
+    UDPServerSocket.bind((hostIP, hostPort))
 
-print("UDP server up and listening")
+    print("UDP server up and listening")
 
-# Listen for incoming datagrams
-while True:
+def listenForRequests():
 
-    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-    message = bytesAddressPair[0]
-    address = bytesAddressPair[1]
+    # first time
+    clientMessage, clientAdress = UDPServerSocket.recvfrom(bufferSize)
+    print("Client found at", clientAdress)
 
-    clientMsg = "Message from Client:{}".format(message)
-    clientIP  = "Client IP Address:{}".format(address)
+    try:
+        # Listen for incoming datagrams
+        while True:
+
+            print(clientMessage)
+
+            # Sending a reply to client
+            UDPServerSocket.sendto("Hello UDP Client".encode('utf-8'), clientAdress)
+
+            time.sleep(1)
+
+            UDPServerSocket.sendto("ID246,TRUE".encode('utf-8'), clientAdress)
+            
+            clientMessage, clientAdress = UDPServerSocket.recvfrom(bufferSize)
     
-    print(clientMsg)
-    print(clientIP)
+    except KeyboardInterrupt:
+        pass
 
-    # Sending a reply to client
-    UDPServerSocket.sendto(bytesToSend, address)
+    UDPServerSocket.close()
+
+createSocket()
+listenForRequests()
