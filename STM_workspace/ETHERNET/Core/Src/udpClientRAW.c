@@ -71,10 +71,9 @@ void udpClient_connect(void)
 	IP_ADDR4(&myIPaddr, 192, 168, 2, 99);
 	udp_bind(upcb, &myIPaddr, 8);
 
-
-	/* configure destination IP address and port */
+	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 192, 168, 2, 96);
+	IP_ADDR4(&DestIPaddr, 192, 168, 2, 98);
 	err= udp_connect(upcb, &DestIPaddr, 7);
 
 	if (err == ERR_OK)
