@@ -1,41 +1,33 @@
-# first of all import the socket library
-import socket            
- 
-# next create a socket object
-s = socket.socket()        
-print ("Socket successfully created")
 
-# 192.168.2.95
- 
-# reserve a port on your computer in our
-# case it is 12345 but it can be anything
-port = 12345               
- 
-# Next bind to the port
-# we have not typed any ip in the ip field
-# instead we have inputted an empty string
-# this makes the server listen to requests
-# coming from other computers on the network
-s.bind(('', port))        
-print ("socket binded to %s" %(port))
- 
-# put the socket into listening mode
-s.listen(5)    
-print ("socket is listening")           
- 
-# a forever loop until we interrupt it or
-# an error occurs
+import socket
+
+localIP     = "192.168.2.95"
+localPort   = 20001
+bufferSize  = 1024
+
+msgFromServer       = "Hello UDP Client"
+bytesToSend         = str.encode(msgFromServer)
+
+# Create a datagram socket
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+# Bind to address and ip
+UDPServerSocket.bind((localIP, localPort))
+
+print("UDP server up and listening")
+
+# Listen for incoming datagrams
 while True:
- 
-# Establish connection with client.
-  c, addr = s.accept()    
-  print ('Got connection from', addr )
- 
-  # send a thank you message to the client. encoding to send byte type.
-  c.send('Thank you for connecting'.encode())
- 
-  # Close the connection with the client
-  c.close()
-   
-  # Breaking once connection closed
-  break
+
+    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+    message = bytesAddressPair[0]
+    address = bytesAddressPair[1]
+
+    clientMsg = "Message from Client:{}".format(message)
+    clientIP  = "Client IP Address:{}".format(address)
+    
+    print(clientMsg)
+    print(clientIP)
+
+    # Sending a reply to client
+    UDPServerSocket.sendto(bytesToSend, address)

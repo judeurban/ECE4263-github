@@ -33,20 +33,10 @@ struct udp_pcb *upcb;
 char buffer[100];
 int counter = 0;
 
-void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
+#define HOST_PORT 12345
+#define LOCAL_PORT 7
 
-
-// extern TIM_HandleTypeDef htim2;
-
-// void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-// {
-//   // filter out any other timers
-//   if (htim == &htim14)
-//   {
-//     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-// 	  udpClient_send();
-//   }
-// }
+  void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
 
 
 /* IMPLEMENTATION FOR UDP CLIENT :   source:https://www.geeksforgeeks.org/udp-server-client-implementation-c/
@@ -68,13 +58,13 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 192, 168, 2, 99);
-	udp_bind(upcb, &myIPaddr, 8);
+	IP_ADDR4(&myIPaddr, 192,168,2,90);
+	udp_bind(upcb, &myIPaddr, 7);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 192, 168, 2, 98);
-	err= udp_connect(upcb, &DestIPaddr, 7);
+	IP_ADDR4(&DestIPaddr, 192,168,2,95);
+	err= udp_connect(upcb, &DestIPaddr, 20001);
 
 	if (err == ERR_OK)
 	{
