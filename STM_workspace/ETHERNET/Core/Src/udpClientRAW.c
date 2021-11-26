@@ -18,6 +18,7 @@
   ***************************************************************************************************************
 */
 
+#include "main.h"
 
 #include "lwip/pbuf.h"
 #include "lwip/udp.h"
@@ -28,19 +29,23 @@
 
 #include "udpClientRAW.h"
 
-
-void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
-static void udpClient_send(void);
-
 struct udp_pcb *upcb;
 char buffer[100];
 int counter = 0;
 
-extern TIM_HandleTypeDef htim2;
+void udp_client_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
+
+
+// extern TIM_HandleTypeDef htim2;
 
 // void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 // {
-// 	udpClient_send();
+//   // filter out any other timers
+//   if (htim == &htim14)
+//   {
+//     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+// 	  udpClient_send();
+//   }
 // }
 
 
@@ -78,16 +83,16 @@ void udpClient_connect(void)
 		udpClient_send();
 
 		/* 3. Set a receive callback for the upcb */
-		udp_recv(upcb, udp_receive_callback, NULL);
+		udp_recv(upcb, udp_client_receive_callback, NULL);
 	}
 }
 
-static void udpClient_send(void)
+void udpClient_send(void)
 {
   struct pbuf *txBuf;
   char data[100];
 
-  int len = sprintf(data, "sending UDP client message %d", counter);
+  int len = sprintf(data, "sending UDP client message %d\n", counter);
 
   /* allocate pbuf from pool*/
   txBuf = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_RAM);

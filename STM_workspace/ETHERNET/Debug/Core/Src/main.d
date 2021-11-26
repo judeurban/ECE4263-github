@@ -59,7 +59,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h \
- ../LWIP/Target/ethernetif.h ../Core/Src/udpServerRAW.h
+ ../LWIP/Target/ethernetif.h ../Core/Src/udpClientRAW.h
 
 ../Core/Inc/main.h:
 
@@ -185,4 +185,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../LWIP/Target/ethernetif.h:
 
-../Core/Src/udpServerRAW.h:
+../Core/Src/udpClientRAW.h:

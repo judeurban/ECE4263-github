@@ -1,7 +1,4 @@
-Core/Src/udpClientRAW.o: ../Core/Src/udpClientRAW.c \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/pbuf.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
- ../LWIP/Target/lwipopts.h ../Core/Inc/main.h \
+Core/Src/udpClientRAW.o: ../Core/Src/udpClientRAW.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -31,6 +28,9 @@ Core/Src/udpClientRAW.o: ../Core/Src/udpClientRAW.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/pbuf.h \
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
+ ../LWIP/Target/lwipopts.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h \
  ../Middlewares/Third_Party/LwIP/system/arch/cc.h \
@@ -60,12 +60,6 @@ Core/Src/udpClientRAW.o: ../Core/Src/udpClientRAW.c \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h \
  ../Core/Src/udpClientRAW.h
-
-../Middlewares/Third_Party/LwIP/src/include/lwip/pbuf.h:
-
-../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
-
-../LWIP/Target/lwipopts.h:
 
 ../Core/Inc/main.h:
 
@@ -126,6 +120,12 @@ Core/Src/udpClientRAW.o: ../Core/Src/udpClientRAW.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h:
 
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
+
+../Middlewares/Third_Party/LwIP/src/include/lwip/pbuf.h:
+
+../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
+
+../LWIP/Target/lwipopts.h:
 
 ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h:
 

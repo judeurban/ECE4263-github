@@ -72,6 +72,7 @@
         "forward_list": "cpp",
         "numeric": "cpp",
         "queue": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "udpclientraw.h": "c"
     }
 }

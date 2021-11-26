@@ -24,7 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "udpServerRAW.h"
+#include "udpClientRAW.h"
 
 /* USER CODE END Includes */
 
@@ -107,8 +107,10 @@ int main(void)
   MX_TIM14_Init();
   /* USER CODE BEGIN 2 */
 
-  udpServer_init();
+  // Connect the client to the server
+  udpClient_connect();
 
+  // Start interrupt timer 
   HAL_TIM_Base_Start_IT(&htim14);
 
   /* USER CODE END 2 */
@@ -124,7 +126,6 @@ int main(void)
 	  ethernetif_input(&gnetif);
 
 	  sys_check_timeouts();
-
 
   }
   /* USER CODE END 3 */
@@ -290,7 +291,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
   if (htim == &htim14)
   {
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);  
+	  udpClient_send();
   }
 
   /* USER CODE END Callback 1 */

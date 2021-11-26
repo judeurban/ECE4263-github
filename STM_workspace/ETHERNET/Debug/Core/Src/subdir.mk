@@ -12,8 +12,7 @@ C_SRCS += \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32f7xx.c \
-../Core/Src/udpClientRAW.c \
-../Core/Src/udpServerRAW.c 
+../Core/Src/udpClientRAW.c 
 
 OBJS += \
 ./Core/Src/main.o \
@@ -23,8 +22,7 @@ OBJS += \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32f7xx.o \
-./Core/Src/udpClientRAW.o \
-./Core/Src/udpServerRAW.o 
+./Core/Src/udpClientRAW.o 
 
 C_DEPS += \
 ./Core/Src/main.d \
@@ -34,8 +32,7 @@ C_DEPS += \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32f7xx.d \
-./Core/Src/udpClientRAW.d \
-./Core/Src/udpServerRAW.d 
+./Core/Src/udpClientRAW.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
