@@ -31,8 +31,7 @@
 
 struct udp_pcb *upcb;
 char received_buffer[100];
-int counter = 0;
-
+char *token;
 #define HOST_PORT 12345
 #define LOCAL_PORT 7
 
@@ -69,10 +68,10 @@ void udpClient_connect(void)
 
 	if (err == ERR_OK)
 	{
-		 server_connected = true;
+//		 server_connected = true;
 
 		/* 2. Send message to server */
-		udpClient_send();
+		udpClient_send("stmF746ZG_ready");
 
     /* 3. Set a receive callback for the upcb */
     // subscribe to a server callback
@@ -80,12 +79,13 @@ void udpClient_connect(void)
 	}
 }
 
-void udpClient_send(void)
+void udpClient_send(char* send_msg[])
 {
+  // int len = sprintf(data, "\n");
   struct pbuf *txBuf;
   char data[100];
 
-  int len = sprintf(data, "sending UDP client message %d\n", counter);
+  int len = sprintf(data, send_msg);
 
   /* allocate pbuf from pool*/
   txBuf = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_RAM);
@@ -106,13 +106,40 @@ void udpClient_send(void)
 // this function is run on callback event from the python server
 void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
+
+  /*
+    if Return value < 0 then it indicates str1 is less than str2.
+    if Return value > 0 then it indicates str2 is less than str1.
+    if Return value = 0 then it indicates str1 is equal to str2.
+  */
+
 	/* Copy the data from the pbuf */
-	strncpy (received_buffer, (char *)p->payload, p->len);
+	strncpy(received_buffer, (char *)p->payload, p->len);
 
-	/*increment message count */
-	counter++;
+	if(!server_connected)
+	{
+    if (strcmp(received_buffer, "server_ready") == 0)
+      server_connected = true;
 
-	/* Free receive pbuf */
+    else
+      udpClient_send("stmF746ZG_ready");
+  }
+  else
+  {
+    token = strtok(received_buffer, ",");
+    token = strtok(NULL, ",");
+    if(strcmp(token, "T"))
+    {
+      // open lockbox
+      // close on button interrupt?
+    }
+    else
+    {
+      // keep lockbox close
+    }
+  }
+
+	// Free receive pbuf
 	pbuf_free(p);
 
   //	reset buffer

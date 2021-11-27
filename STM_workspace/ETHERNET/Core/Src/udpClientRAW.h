@@ -23,7 +23,7 @@
 #define INC_UDPCLIENTRAW_H_
 
 void udpClient_connect(void);
-void udpClient_send(void);
+void udpClient_send(char* []);
 
 typedef enum Bool {false, true} Bool;
 Bool server_connected;
