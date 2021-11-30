@@ -5,6 +5,8 @@ hostIP     = "192.168.2.95"
 hostPort   = 20001
 bufferSize  = 1024
 
+validID = ("6013CA34", "8023BC37", "8B9BB54C", "5F9BA54F", "595BA47D")
+
 def createSocket():
     global UDPServerSocket
 
@@ -26,10 +28,12 @@ def listenForRequests():
             
             clientMessage = clientMessage.decode('utf-8')
 
-            if clientMessage == 'ID246':
+            if clientMessage in validID:
                 access = True
+                print("access granted")
             else:
                 access = False
+                print("access denied")
 
             # read client message, go get log....
 
@@ -80,10 +84,12 @@ def debugWhileAlwaysOn():
                 UDPServerSocket.sendto("server_ready".encode('utf-8'), clientAdress)
                 continue
 
-            if clientMessage == 'ID246':
+            if clientMessage in validID:
                 access = True
+                print("access granted")
             else:
                 access = False
+                print("access denied")
 
             # read client message, go get log....
 
