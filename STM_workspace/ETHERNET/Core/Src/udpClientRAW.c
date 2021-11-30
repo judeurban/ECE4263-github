@@ -58,13 +58,13 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 192,168,2,90);
-	udp_bind(upcb, &myIPaddr, 7);
+	IP_ADDR4(&myIPaddr, 129,244,42,100);
+	udp_bind(upcb, &myIPaddr, 55555);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 192,168,2,95);
-	err = udp_connect(upcb, &DestIPaddr, 20001);
+	IP_ADDR4(&DestIPaddr, 129,244,42,102);
+	err = udp_connect(upcb, &DestIPaddr, 12345);
 
 	if (err == ERR_OK)
 	{
@@ -106,6 +106,8 @@ void udpClient_send(char* send_msg[])
 // this function is run on callback event from the python server
 void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+  
 
   /*
     if Return value < 0 then it indicates str1 is less than str2.
@@ -144,6 +146,9 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
 
   //	reset buffer
   memset(received_buffer, 0, strlen(received_buffer));
+
+  HAL_Delay(10);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 
 }
 
