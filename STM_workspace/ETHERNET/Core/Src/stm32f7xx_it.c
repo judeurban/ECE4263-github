@@ -220,6 +220,11 @@ void EXTI15_10_IRQHandler(void)
 
     // HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
     // udpClient_send("Button\n");
+
+    // close the lockbox
+    CMD_SET_SERVO_POSITION(1000);
+
+    // TODO: remove this. the button should just close the device
     udpClient_send("6013CA34");
 
   /* USER CODE END EXTI15_10_IRQn 1 */

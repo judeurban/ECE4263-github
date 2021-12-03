@@ -128,17 +128,29 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
   }
   else
   {
+
+    // parse da string
     token = strtok(received_buffer, ",");
     token = strtok(NULL, ",");
+
+    // user has access
     if(strcmp(token, "T"))
     {
-      // open lockbox
-      // close on button interrupt?
+      // open lockbox!
+      CMD_SET_SERVO_POSITION(2000);
+
+      // wait and close
+      HAL_Delay(10000);
+      CMD_SET_SERVO_POSITION(1000);
     }
+
+    // user does not have access
     else
     {
-      // keep lockbox close
+      // plz don't steal my stuff!!
+      CMD_SET_SERVO_POSITION(1000);
     }
+
   }
 
 	// Free receive pbuf

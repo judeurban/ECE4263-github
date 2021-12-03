@@ -45,3 +45,6 @@ STM_workspace/.metadata/version.ini
 STM_workspace/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
 STM_workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs
 STM_workspace/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+STM_workspace/.metadata/.log
+*.ini
+*.index

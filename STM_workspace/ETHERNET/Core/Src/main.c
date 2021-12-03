@@ -59,6 +59,8 @@ static void MX_TIM14_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
+void CMD_SET_SERVO_POSITION(int);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -117,6 +119,9 @@ int main(void)
   // Start interrupt timer 
   HAL_TIM_Base_Start_IT(&htim14);
 
+  // start PWM signal for the servo
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -128,7 +133,6 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  ethernetif_input(&gnetif);
-
 	  sys_check_timeouts();
 
   }
@@ -313,6 +317,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+// Enter pulse width in microseconds
+void CMD_SET_SERVO_POSITION(int microseconds)
+{
+  // default pulse width is 1000 microseconds
+  // sending it 25 gives a duty cycle of 1500 microseconds, meaning it doubles the value then multiplies it by ten
+  // 25 * 10 * 2 ---> 1000 + 500 = 1500 microseconds
+
+  // time to party like it's 1999
+  if(microseconds > 2000)
+    microseconds = 2000;
+  else if(microseconds < 0)
+    microseconds = 0;
+
+  microseconds -= 1000;
+  microseconds = (int)microseconds / 20;
+  htim2.Instance->CCR1 = microseconds;
+}
 
 /* USER CODE END 4 */
 

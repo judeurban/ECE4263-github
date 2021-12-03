@@ -73,6 +73,7 @@
         "numeric": "cpp",
         "queue": "cpp",
         "valarray": "cpp",
-        "udpclientraw.h": "c"
+        "udpclientraw.h": "c",
+        "main.h": "c"
     }
 }
