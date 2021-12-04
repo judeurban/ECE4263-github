@@ -2,3 +2,13 @@
 **/Middlewares
 **/Debug
 .DS_Store
+**.metadata
+**/.vscode
+**.mxproject
+**.cproject
+**.project
+**.settings
+*.s
+*.launch
+# git rm -r --cached .
+*.ld
