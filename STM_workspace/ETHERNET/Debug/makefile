@@ -44,34 +44,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := ETHERNET
+BUILD_ARTIFACT_NAME := ECE4263-final
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-ETHERNET.elf \
+ECE4263-final.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-ETHERNET.list \
+ECE4263-final.list \
 
 OBJCOPY_BIN += \
-ETHERNET.bin \
+ECE4263-final.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: ETHERNET.elf secondary-outputs
+main-build: ECE4263-final.elf secondary-outputs
 
 # Tool invocations
-ETHERNET.elf: $(OBJS) $(USER_OBJS) C:\Users\heyju\OneDrive\ -\ University\ of\ Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\ETHERNET\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ETHERNET.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\heyju\OneDrive - University of Tulsa\fs2021\mpdd\ECE4263-github\STM_workspace\ETHERNET\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ETHERNET.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ECE4263-final.elf: $(OBJS) $(USER_OBJS) C:\Users\heyju\github\ECE4263-github\STM_workspace\ETHERNET\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ECE4263-final.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\heyju\github\ECE4263-github\STM_workspace\ETHERNET\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ECE4263-final.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -80,19 +80,19 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ETHERNET.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ETHERNET.list"
+ECE4263-final.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "ECE4263-final.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-ETHERNET.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "ETHERNET.bin"
+ECE4263-final.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "ECE4263-final.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) ETHERNET.elf
+	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) ECE4263-final.elf
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)

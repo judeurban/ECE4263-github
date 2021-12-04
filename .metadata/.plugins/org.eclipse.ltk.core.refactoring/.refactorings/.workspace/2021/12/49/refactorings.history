@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ETHERNET&apos; to &apos;ECE4263-final&apos;" description="Rename resource &apos;ETHERNET&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/ETHERNET" name="ECE4263-final" stamp="1638642109302" updateReferences="true"/>
+</session>

@@ -58,12 +58,12 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 129,244,42,100);
+	IP_ADDR4(&myIPaddr, 172,31,1,235);
 	udp_bind(upcb, &myIPaddr, 55555);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 129,244,42,102);
+	IP_ADDR4(&DestIPaddr, 172,31,1,231);
 	err = udp_connect(upcb, &DestIPaddr, 12345);
 
 	if (err == ERR_OK)
@@ -106,14 +106,10 @@ void udpClient_send(char* send_msg[])
 // this function is run on callback event from the python server
 void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
-  
 
-  /*
-    if Return value < 0 then it indicates str1 is less than str2.
-    if Return value > 0 then it indicates str2 is less than str1.
-    if Return value = 0 then it indicates str1 is equal to str2.
-  */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+  HAL_Delay(10);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 
 	/* Copy the data from the pbuf */
 	strncpy(received_buffer, (char *)p->payload, p->len);
@@ -129,7 +125,7 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
   else
   {
 
-    // parse da string
+    // parse the string
     token = strtok(received_buffer, ",");
     token = strtok(NULL, ",");
 
@@ -140,7 +136,7 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
       CMD_SET_SERVO_POSITION(2000);
 
       // wait and close
-      HAL_Delay(10000);
+      HAL_Delay(2000);
       CMD_SET_SERVO_POSITION(1000);
     }
 
@@ -159,9 +155,6 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
   //	reset buffer
   memset(received_buffer, 0, strlen(received_buffer));
 
-  HAL_Delay(10);
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 
 }
-
 
