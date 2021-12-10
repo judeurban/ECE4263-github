@@ -59,7 +59,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
-void CMD_SET_SERVO_POSITION(int);
+void CMD_OPEN_LOCKBOX(int);
 
 /* USER CODE END EFP */
 

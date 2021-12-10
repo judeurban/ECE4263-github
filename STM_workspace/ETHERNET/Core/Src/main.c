@@ -57,7 +57,7 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
-void CMD_SET_SERVO_POSITION(int);
+void CMD_OPEN_LOCKBOX(int);
 
 /* USER CODE END PFP */
 
@@ -286,21 +286,32 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 // Argument: integer pulse width in microseconds (1000 to 2000)
-void CMD_SET_SERVO_POSITION(int microseconds)
+void CMD_OPEN_LOCKBOX(int microseconds)
 {
   // default pulse width is 1000 microseconds
   // sending it 25 gives a duty cycle of 1500 microseconds, meaning it doubles the value then multiplies it by ten
   // 25 * 10 * 2 ---> 1000 + 500 = 1500 microseconds
 
   // time to party like it's 1999
-  if(microseconds > 2000)
-    microseconds = 2000;
-  else if(microseconds < 0)
-    microseconds = 0;
+  // if(microseconds > 2000)
+  //   microseconds = 2000;
+  // else if(microseconds < 0)
+  //   microseconds = 0;
 
-  microseconds -= 1000;
-  microseconds = (int)microseconds / 20;
-  htim2.Instance->CCR1 = microseconds;
+  // microseconds -= 1000;
+  // microseconds = (int)microseconds / 20;
+  // htim2.Instance->CCR1 = microseconds;
+
+  // open
+  htim2.Instance->CCR1 = 75;      // 1.5 ms
+  HAL_Delay(500);
+  htim2.Instance->CCR1 = 125;     // 2.5 ms
+  
+  HAL_Delay(500);
+  // close
+  htim2.Instance->CCR1 = 25;      // 0.5 ms
+
+
 }
 
 /* USER CODE END 4 */
