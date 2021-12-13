@@ -58,12 +58,12 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 129,244,42,105);
+	IP_ADDR4(&myIPaddr, 172,31,1,235);
 	udp_bind(upcb, &myIPaddr, 55555);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 129,244,42,102);
+	IP_ADDR4(&DestIPaddr, 172,31,1,231);
 	err = udp_connect(upcb, &DestIPaddr, 12345);
 
 	if (err == ERR_OK)
@@ -133,18 +133,18 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
     if(strcmp(token, "T"))
     {
       // open lockbox!
-      CMD_OPEN_LOCKBOX(2000);
+      CMD_SET_SERVO_POSITION(2000);
 
       // wait and close
-      // HAL_Delay(2000);
-      // CMD_SET_SERVO_POSITION(1000);
+      HAL_Delay(2000);
+      CMD_SET_SERVO_POSITION(1000);
     }
 
     // user does not have access
     else
     {
       // plz don't steal my stuff!!
-      // CMD_SET_SERVO_POSITION(1000);
+      CMD_SET_SERVO_POSITION(1000);
     }
 
   }
