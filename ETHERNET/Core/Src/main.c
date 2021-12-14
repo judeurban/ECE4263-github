@@ -128,12 +128,9 @@ int main(void)
     // listen for network events
     // ethernetif_input(&gnetif);
     // sys_check_timeouts();
-	  	  htim2.Instance->CCR1 = 25;  // duty cycle is 1.5 ms
-	  	  HAL_Delay(200);
-	  	  htim2.Instance->CCR1 = 75;  // duty cycle is 1.5 ms
-	  	  HAL_Delay(200);
-	  	  htim2.Instance->CCR1 = 125;  // duty cycle is 2.5 ms
-	  	  HAL_Delay(200);
+
+
+        CMD_OPEN_LOCKBOX();
 
   }
   /* USER CODE END 3 */
@@ -289,29 +286,12 @@ static void MX_GPIO_Init(void)
 // Argument: integer pulse width in microseconds (1000 to 2000)
 void CMD_OPEN_LOCKBOX(void)
 {
-  // default pulse width is 1000 microseconds
-  // sending it 25 gives a duty cycle of 1500 microseconds, meaning it doubles the value then multiplies it by ten
-  // 25 * 10 * 2 ---> 1000 + 500 = 1500 microseconds
-
-  // time to party like it's 1999
-  // if(microseconds > 2000)
-  //   microseconds = 2000;
-  // else if(microseconds < 0)
-  //   microseconds = 0;
-
-  // microseconds -= 1000;
-  // microseconds = (int)microseconds / 20;
-  // htim2.Instance->CCR1 = microseconds;
-
-  // open
-  htim2.Instance->CCR1 = 25;      // 0.5 ms
-  HAL_Delay(500);
-  htim2.Instance->CCR1 = 75;      // 1.5 ms
-  HAL_Delay(500);
-  htim2.Instance->CCR1 = 125;     // 2.5 ms
-  HAL_Delay(500);
-  htim2.Instance->CCR1 = 25;      // 0.5 ms
-
+  htim2.Instance->CCR1 = 25;  // duty cycle is 1.5 ms
+  HAL_Delay(200);
+  htim2.Instance->CCR1 = 75;  // duty cycle is 1.5 ms
+  HAL_Delay(200);
+  htim2.Instance->CCR1 = 125;  // duty cycle is 2.5 ms
+  HAL_Delay(200);
 }
 /* USER CODE END 4 */
 
