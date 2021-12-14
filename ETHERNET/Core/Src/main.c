@@ -113,11 +113,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // Connect the client to the server
-  server_connected = false;
-  udpClient_connect();
+  // server_connected = false;
+  // udpClient_connect();
 
   // start PWM signal for the servo
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+//  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
+  // setup USART interrupt
+  HAL_UART_Receive_IT(&huart4, UART_RX_DATA, sizeof(UART_RX_DATA));
 
   /* USER CODE END 2 */
 
@@ -129,16 +132,19 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     // listen for network events
-	  ethernetif_input(&gnetif);
-	  sys_check_timeouts();
+   ethernetif_input(&gnetif);
+   sys_check_timeouts();
 
-    HAL_UART_Receive(&huart4, UART_RX_DATA, 10, 10000);
-    if(UART_RX_DATA[0] != lastResult)
+    // HAL_UART_Receive(&huart4, UART_RX_DATA, 10, 10000);
+    if(UART_RX_DATA[0] != lastResult || UART_RX_DATA[1] != lastResult)
     {
-      udpClient_send((char)UART_RX_DATA[0]);
+      // udpClient_send((char)UART_RX_DATA[0]);
       lastResult = UART_RX_DATA[0];
     }
 //    HAL_Delay(10);
+
+//	  x = x + 1;
+//	  HAL_Delay(10);
 
 
   }
@@ -279,7 +285,7 @@ static void MX_UART4_Init(void)
 
   /* USER CODE END UART4_Init 1 */
   huart4.Instance = UART4;
-  huart4.Init.BaudRate = 9600;
+  huart4.Init.BaudRate = 38400;
   huart4.Init.WordLength = UART_WORDLENGTH_8B;
   huart4.Init.StopBits = UART_STOPBITS_1;
   huart4.Init.Parity = UART_PARITY_NONE;
