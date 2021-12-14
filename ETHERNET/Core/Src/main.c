@@ -23,7 +23,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
 #include "udpClientRAW.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -105,12 +107,14 @@ int main(void)
   MX_LWIP_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+
   // Connect the client to the server
-  server_connected = false;
-  udpClient_connect();
+  // server_connected = false;
+  // udpClient_connect();
 
   // start PWM signal for the servo
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,10 +126,15 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     // listen for network events
-    ethernetif_input(&gnetif);
-    sys_check_timeouts();
+    // ethernetif_input(&gnetif);
+    // sys_check_timeouts();
+	  	  htim2.Instance->CCR1 = 25;  // duty cycle is 1.5 ms
+	  	  HAL_Delay(200);
+	  	  htim2.Instance->CCR1 = 75;  // duty cycle is 1.5 ms
+	  	  HAL_Delay(200);
+	  	  htim2.Instance->CCR1 = 125;  // duty cycle is 2.5 ms
+	  	  HAL_Delay(200);
 
-//    CMD_OPEN_LOCKBOX();
   }
   /* USER CODE END 3 */
 }
@@ -177,9 +186,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Enables the Clock Security System
-  */
-  HAL_RCC_EnableCSS();
 }
 
 /**
