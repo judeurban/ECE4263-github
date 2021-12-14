@@ -57,7 +57,7 @@ void MX_LWIP_Init(void);
  *   - Handle timeouts if NO_SYS_NO_TIMERS not set
  */
 void MX_LWIP_Process(void);
-
+uint8_t IP_ADDRESS[4];
 /* USER CODE END 1 */
 #endif /* WITH_RTOS */
 

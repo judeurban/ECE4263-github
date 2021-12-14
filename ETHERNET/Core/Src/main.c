@@ -125,7 +125,7 @@ int main(void)
     ethernetif_input(&gnetif);
     sys_check_timeouts();
 
-    CMD_OPEN_LOCKBOX();
+//    CMD_OPEN_LOCKBOX();
   }
   /* USER CODE END 3 */
 }
