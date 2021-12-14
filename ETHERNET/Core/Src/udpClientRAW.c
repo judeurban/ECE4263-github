@@ -59,16 +59,16 @@ void udpClient_connect(void)
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
 	IP_ADDR4(&myIPaddr, 129,244,42,104);
-	udp_bind(upcb, &myIPaddr, 54321);
+	udp_bind(upcb, &myIPaddr, 55555);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
 	IP_ADDR4(&DestIPaddr, 129,244,42,102);
-	err = udp_connect(upcb, &DestIPaddr, 12345);
+	err = udp_connect(upcb, &DestIPaddr, 54321);
 
 	if (err == ERR_OK)
 	{
-//		 server_connected = true;
+		 server_connected = true;
 
 		/* 2. Send message to server */
 		udpClient_send("stmF746ZG_ready");
@@ -124,29 +124,12 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
   }
   else
   {
-
-    // parse the string
-    token = strtok(received_buffer, ",");
-    token = strtok(NULL, ",");
-
-    // user has access
-    if(strcmp(token, "T"))
+    // USER HAS ACCESS
+    if(strcmp(received_buffer, "True") == 0)
     {
-      // open lockbox!
-    	CMD_OPEN_LOCKBOX(2000);
-
-      // wait and close
-      HAL_Delay(2000);
-      CMD_OPEN_LOCKBOX(1000);
+      // open and close lockbox
+    	CMD_OPEN_LOCKBOX();
     }
-
-    // user does not have access
-    else
-    {
-      // plz don't steal my stuff!!
-    	CMD_OPEN_LOCKBOX(1000);
-    }
-
   }
 
 	// Free receive pbuf

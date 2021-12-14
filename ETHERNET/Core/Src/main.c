@@ -29,8 +29,6 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-// void CMD_OPEN_LOCKBOX(int);
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -46,8 +44,6 @@
 
 TIM_HandleTypeDef htim2;
 
-UART_HandleTypeDef huart4;
-
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -57,7 +53,6 @@ void SystemClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
-static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -65,7 +60,6 @@ static void MX_UART4_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern struct netif gnetif;
-
 /* USER CODE END 0 */
 
 /**
@@ -76,7 +70,8 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-  uint8_t lastResult = 0;
+  // char validID[5][9] = {{"6013CA34"}, {"8023BC37"}, {"8B9BB54C"}, {"5F9BA54F"}, {"595BA47D"}};
+
 
   /* USER CODE END 1 */
 
@@ -109,19 +104,13 @@ int main(void)
   MX_GPIO_Init();
   MX_LWIP_Init();
   MX_TIM2_Init();
-  MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-
   // Connect the client to the server
   server_connected = false;
   udpClient_connect();
 
   // start PWM signal for the servo
-//  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-
-  // setup USART interrupt
-  HAL_UART_Receive_IT(&huart4, UART_RX_DATA, 10);
-
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,24 +118,13 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
+
     // listen for network events
-   ethernetif_input(&gnetif);
-   sys_check_timeouts();
+    ethernetif_input(&gnetif);
+    sys_check_timeouts();
 
-    // HAL_UART_Receive(&huart4, UART_RX_DATA, 10, 10000);
-    if(UART_RX_DATA[0] != lastResult)
-    {
-//       udpClient_send((char)UART_RX_DATA[0]);
-      lastResult = UART_RX_DATA[0];
-    }
-//    HAL_Delay(10);
-
-//	  x = x + 1;
-//	  HAL_Delay(10);
-
-
+    CMD_OPEN_LOCKBOX();
   }
   /* USER CODE END 3 */
 }
@@ -159,7 +137,6 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
 
   /** Configure the main internal regulator output voltage
   */
@@ -196,12 +173,6 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_UART4;
-  PeriphClkInitStruct.Uart4ClockSelection = RCC_UART4CLKSOURCE_PCLK1;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
@@ -270,41 +241,6 @@ static void MX_TIM2_Init(void)
 }
 
 /**
-  * @brief UART4 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_UART4_Init(void)
-{
-
-  /* USER CODE BEGIN UART4_Init 0 */
-
-  /* USER CODE END UART4_Init 0 */
-
-  /* USER CODE BEGIN UART4_Init 1 */
-
-  /* USER CODE END UART4_Init 1 */
-  huart4.Instance = UART4;
-  huart4.Init.BaudRate = 38400;
-  huart4.Init.WordLength = UART_WORDLENGTH_8B;
-  huart4.Init.StopBits = UART_STOPBITS_1;
-  huart4.Init.Parity = UART_PARITY_NONE;
-  huart4.Init.Mode = UART_MODE_TX_RX;
-  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN UART4_Init 2 */
-
-  /* USER CODE END UART4_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -344,7 +280,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 // Argument: integer pulse width in microseconds (1000 to 2000)
-void CMD_OPEN_LOCKBOX(int microseconds)
+void CMD_OPEN_LOCKBOX(void)
 {
   // default pulse width is 1000 microseconds
   // sending it 25 gives a duty cycle of 1500 microseconds, meaning it doubles the value then multiplies it by ten
@@ -361,14 +297,13 @@ void CMD_OPEN_LOCKBOX(int microseconds)
   // htim2.Instance->CCR1 = microseconds;
 
   // open
+  htim2.Instance->CCR1 = 25;      // 0.5 ms
+  HAL_Delay(500);
   htim2.Instance->CCR1 = 75;      // 1.5 ms
   HAL_Delay(500);
   htim2.Instance->CCR1 = 125;     // 2.5 ms
-  
   HAL_Delay(500);
-  // close
   htim2.Instance->CCR1 = 25;      // 0.5 ms
-
 
 }
 /* USER CODE END 4 */

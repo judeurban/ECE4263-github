@@ -23,6 +23,7 @@
 #include "stm32f7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "udpClientRAW.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,7 +33,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+static char validID[5][9] = {{"6093AC43"}, {"8223CC37"}, {"8B8BB54C"}, {"3F9BA57F"}, {"595BA47D"}};
+uint8_t validIDindex = 0;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,7 +58,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern UART_HandleTypeDef huart4;
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -207,30 +209,24 @@ void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
+  if(!server_connected)
+    return;
+
+  // BUTTON PRESS INTERRUPT EVENT HERE
+
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
-  HAL_Delay(10);
+  udpClient_send(validID[validIDindex]);
+
+  validIDindex += 1;
+  if (validIDindex > sizeof(validID)/9)
+    validIDindex = 0; 
+
+//  HAL_Delay(50);       // prevent double interrupts
 
   /* USER CODE END EXTI15_10_IRQn 1 */
-}
-
-/**
-  * @brief This function handles UART4 global interrupt.
-  */
-void UART4_IRQHandler(void)
-{
-  /* USER CODE BEGIN UART4_IRQn 0 */
-
-  /* USER CODE END UART4_IRQn 0 */
-  HAL_UART_IRQHandler(&huart4);
-  /* USER CODE BEGIN UART4_IRQn 1 */
-//  HAL_Delay(10);
-  udpClient_send((char)UART_RX_DATA);
-
-
-  /* USER CODE END UART4_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

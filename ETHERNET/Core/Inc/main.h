@@ -62,10 +62,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
 
-void CMD_OPEN_LOCKBOX(int);
-
-uint8_t UART_RX_DATA[10];
-// uint8_t UART_RX_DATA[12] = {0};
+void CMD_OPEN_LOCKBOX(void);
 
 /* USER CODE END Private defines */
 
