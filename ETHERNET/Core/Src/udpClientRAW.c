@@ -59,7 +59,7 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr,  IP_ADDRESS[0],IP_ADDRESS[1],IP_ADDRESS[2],IP_ADDRESS[3]);
+	IP_ADDR4(&myIPaddr, IP_ADDRESS[0],IP_ADDRESS[1],IP_ADDRESS[2],IP_ADDRESS[3]);
 	udp_bind(upcb, &myIPaddr, 55555);
 
 	/* configure host IP address and port */

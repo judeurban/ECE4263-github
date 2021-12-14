@@ -109,8 +109,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // Connect the client to the server
-  // server_connected = false;
-  // udpClient_connect();
+  server_connected = false;
+  udpClient_connect();
 
   // start PWM signal for the servo
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
@@ -126,11 +126,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     // listen for network events
-    // ethernetif_input(&gnetif);
-    // sys_check_timeouts();
-
-
-        CMD_OPEN_LOCKBOX();
+    ethernetif_input(&gnetif);
+    sys_check_timeouts();
 
   }
   /* USER CODE END 3 */
@@ -287,11 +284,11 @@ static void MX_GPIO_Init(void)
 void CMD_OPEN_LOCKBOX(void)
 {
   htim2.Instance->CCR1 = 25;  // duty cycle is 1.5 ms
-  HAL_Delay(200);
+  HAL_Delay(800);
   htim2.Instance->CCR1 = 75;  // duty cycle is 1.5 ms
-  HAL_Delay(200);
+  HAL_Delay(800);
   htim2.Instance->CCR1 = 125;  // duty cycle is 2.5 ms
-  HAL_Delay(200);
+  HAL_Delay(800);
 }
 /* USER CODE END 4 */
 
