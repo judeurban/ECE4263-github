@@ -56,10 +56,10 @@ uint8_t GATEWAY_ADDRESS[4];
 void MX_LWIP_Init(void)
 {
   /* IP addresses initialization */
-  IP_ADDRESS[0] = 172;
-  IP_ADDRESS[1] = 16;
-  IP_ADDRESS[2] = 136;
-  IP_ADDRESS[3] = 69;
+  IP_ADDRESS[0] = 129;
+  IP_ADDRESS[1] = 244;
+  IP_ADDRESS[2] = 42;
+  IP_ADDRESS[3] = 104;
   NETMASK_ADDRESS[0] = 255;
   NETMASK_ADDRESS[1] = 255;
   NETMASK_ADDRESS[2] = 255;

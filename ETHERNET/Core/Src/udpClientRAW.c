@@ -58,12 +58,12 @@ void udpClient_connect(void)
 
 	/* Bind the block to module's IP and port */
 	ip_addr_t myIPaddr;
-	IP_ADDR4(&myIPaddr, 172,16,136,7);
-	udp_bind(upcb, &myIPaddr, 55555);
+	IP_ADDR4(&myIPaddr, 129,244,42,104);
+	udp_bind(upcb, &myIPaddr, 54321);
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 172,16,136,68);
+	IP_ADDR4(&DestIPaddr, 129,244,42,102);
 	err = udp_connect(upcb, &DestIPaddr, 12345);
 
 	if (err == ERR_OK)

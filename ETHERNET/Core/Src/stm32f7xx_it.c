@@ -227,6 +227,8 @@ void UART4_IRQHandler(void)
   HAL_UART_IRQHandler(&huart4);
   /* USER CODE BEGIN UART4_IRQn 1 */
 //  HAL_Delay(10);
+  udpClient_send((char)UART_RX_DATA);
+
   /* USER CODE END UART4_IRQn 1 */
 }
 

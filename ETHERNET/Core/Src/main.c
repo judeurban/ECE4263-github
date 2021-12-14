@@ -113,14 +113,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // Connect the client to the server
-  // server_connected = false;
-  // udpClient_connect();
+  server_connected = false;
+  udpClient_connect();
 
   // start PWM signal for the servo
 //  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
   // setup USART interrupt
-  HAL_UART_Receive_IT(&huart4, UART_RX_DATA, sizeof(UART_RX_DATA));
+  HAL_UART_Receive_IT(&huart4, UART_RX_DATA, 10);
 
   /* USER CODE END 2 */
 
@@ -136,9 +136,9 @@ int main(void)
    sys_check_timeouts();
 
     // HAL_UART_Receive(&huart4, UART_RX_DATA, 10, 10000);
-    if(UART_RX_DATA[0] != lastResult || UART_RX_DATA[1] != lastResult)
+    if(UART_RX_DATA[0] != lastResult)
     {
-      // udpClient_send((char)UART_RX_DATA[0]);
+//       udpClient_send((char)UART_RX_DATA[0]);
       lastResult = UART_RX_DATA[0];
     }
 //    HAL_Delay(10);
@@ -293,7 +293,8 @@ static void MX_UART4_Init(void)
   huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart4.Init.OverSampling = UART_OVERSAMPLING_16;
   huart4.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  huart4.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_DATAINVERT_INIT;
+  huart4.AdvancedInit.DataInvert = UART_ADVFEATURE_DATAINV_ENABLE;
   if (HAL_UART_Init(&huart4) != HAL_OK)
   {
     Error_Handler();
