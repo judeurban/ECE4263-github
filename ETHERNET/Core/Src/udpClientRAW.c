@@ -64,8 +64,8 @@ void udpClient_connect(void)
 
 	/* configure host IP address and port */
 	ip_addr_t DestIPaddr;
-	IP_ADDR4(&DestIPaddr, 129,244,42,102);
-	err = udp_connect(upcb, &DestIPaddr, 54321);
+	IP_ADDR4(&DestIPaddr, 129,244,42,177);
+	err = udp_connect(upcb, &DestIPaddr, 12345);
 
 	if (err == ERR_OK)
 	{
