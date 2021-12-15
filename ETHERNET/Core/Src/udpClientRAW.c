@@ -49,7 +49,6 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
 5. Close socket descriptor and exit.
 */
 
-
 void udpClient_connect(void)
 {
 	err_t err;
@@ -138,7 +137,6 @@ void udpClient_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p,
 
   //	reset buffer
   memset(received_buffer, 0, strlen(received_buffer));
-
 
 }
 

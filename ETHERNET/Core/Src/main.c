@@ -71,10 +71,6 @@ extern struct netif gnetif;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
-  // char validID[5][9] = {{"6013CA34"}, {"8023BC37"}, {"8B9BB54C"}, {"5F9BA54F"}, {"595BA47D"}};
-
-
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/

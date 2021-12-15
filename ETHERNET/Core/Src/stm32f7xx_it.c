@@ -220,10 +220,8 @@ void EXTI15_10_IRQHandler(void)
   udpClient_send(validID[validIDindex]);
 
   validIDindex += 1;
-  if (validIDindex > sizeof(validID)/9)
+  if (validIDindex >= sizeof(validID)/9)
     validIDindex = 0; 
-
-//  HAL_Delay(50);       // prevent double interrupts
 
   /* USER CODE END EXTI15_10_IRQn 1 */
 }
